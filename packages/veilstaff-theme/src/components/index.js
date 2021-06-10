@@ -1,17 +1,9 @@
 import { Global, css, connect, Head } from "frontity";
 import FontFaces from "./styles/font-faces";
-import { StickyProvider } from "react-stickup";
 import Header from "./header";
 import TopPreview from "./top-preview";
 import Features from "./features";
 import ForWhom from "./forWhom";
-import ProgrammFeatures from "./programmFeatures";
-import config from "../config";
-import Modules from './modules';
-import AssessmentStages from './assessmentStages';
-import AppScreenList from './appScreenList';
-import Advantages from "./advantages";
-import Results from "./results";
 
 const Theme = ({ state }) => {
   // const data = state.source.get(state.router.link);
@@ -37,16 +29,13 @@ const Theme = ({ state }) => {
 
       <FontFaces />
       <Global styles={globalStyles} />
-      <StickyProvider>
-        <Header />
-      </StickyProvider>
+      <Header />
       <TopPreview />
-      <ProgrammFeatures />
-      <Modules />
-      <AppScreenList />
-      <AssessmentStages />
-      <Advantages />
-      <Results />
+      {/* <div style={{height: '50vh'}}>
+        <h2 className="blockTitle">Название блока</h2>
+      </div> */}
+      <Features />
+      <ForWhom />
     </>
   );
 };
@@ -67,7 +56,6 @@ const globalStyles = css`
     font-family: MyriadPro;
     background: #f3f3f3;
     font-size: 16px;
-    line-height: 16px;
   }
 
   html {
@@ -88,26 +76,9 @@ const globalStyles = css`
     margin: 0.67em 0;
   }
   .blockTitle {
-    font-size: 1.75em;
+    font-size: 2.375em;
     font-weight: 600;
-    line-height: 1em;
-    margin: 0;
-    position: relative;
-    width: fit-content;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    &::after {
-      content: "";
-      display: block;
-      /* position: absolute; */
-      width: 54%;
-      height: 4px;
-      margin-top: 18px;
-      background-color: ${config.collors.secondary};
-    }
+    line-height: 2.5em;
   }
   hr {
     box-sizing: content-box; /* 1 */
@@ -296,7 +267,8 @@ const globalStyles = css`
     z-index: 1;
   }
   .activeCategoryLink {
-    color: ${config.collors.primary};
+    color: #fc6167;
+    font-weight: 600;
   }
 
   .container {
@@ -310,62 +282,6 @@ const globalStyles = css`
     font-size: 1rem;
     font-weight: normal;
     font-style: normal;
-  }
-
-  .tabsContainer {
-    display: flex;
-  }
-
-  .tabsList {
-    max-width: 410px;
-    width: 100%;
-    list-style: none;
-    padding: 0;
-  }
-
-  .tabItem {
-    color: ${config.collors.primary};
-    line-height: 35px;
-    font-weight: 300;
-    font-size: 18px;
-    &::after {
-      content: "";
-      width: 0;
-      height: 0;
-      position: absolute;
-      max-height: 10px;
-      max-width: 10px;
-      border-style: solid;
-      border-width: 5px 10px 5px 0;
-      border-color: transparent;
-      top: calc(50% - 5px);
-      transform: translateX(20px);
-      transition: 0.2s
-    }
-  }
-
-  .selectedTab {
-    color: ${config.collors.secondary};
-    position: relative;
-    padding-right: 20px;
-    &::after {
-      border-color: transparent ${config.collors.secondary} transparent transparent;
-    }
-  }
-
-  .headerWithShadow {
-    & nav {
-      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 20%);
-      transform: translateY(-20px);
-      background: #fff;
-      height: 65px;
-      opacity: 0.7;
-      transition: 0.2s;
-
-      &:hover {
-        opacity: 1;
-      }
-    }
   }
 `;
 

@@ -1,18 +1,24 @@
 import React, { Component } from "react";
 import { Link } from "react-scroll";
-import { window } from "global";
+
 import { styled } from "frontity";
-import Logo from "../assets/images/logo.png";
-import { Sticky, StickyScrollUp } from "react-stickup";
+import Logo from '../assets/images/logo.png'
 import config from "../config";
+
+["О программе", "/"],
+  ["Возможности", "https://community.frontity.org"],
+  ["Модули", "https://docs.frontity.org"],
+  ["Интерфейс", "https://github.com/frontity/frontity"],
+  ["Начать работу", "https://twitter.com/frontity"],
+  ["Калькулятор", "https://twitter.com/frontity"];
 
 const categories = [
   {
-    id: "about-programm",
+    id: "about-us",
     title: "О программе",
   },
   {
-    id: "features",
+    id: "featues",
     title: "Возможности",
   },
   {
@@ -46,8 +52,7 @@ const NavContainer = styled.nav`
   display: flex;
   align-items: center;
   height: 75px;
-  transition: 0.2s;
-  
+
   & ul {
     align-items: center;
     display: flex;
@@ -76,7 +81,7 @@ const NavContainer = styled.nav`
 const LogoContainer = styled.div`
   width: 140px;
   height: fit-content;
-`;
+`
 
 export default class Header extends Component {
   constructor(props) {
@@ -86,76 +91,51 @@ export default class Header extends Component {
     });
   }
 
-  state = {
-    offset: 0,
-  };
-
   scrollToCategory(id) {
     this[id].current.scrollIntoView({ inline: "center" });
   }
 
-  componentDidMount = () => {
-    window.addEventListener("scroll", this.handleScroll);
-    console.log(window);
-    if (window) {
-      this.setState({ offset: window.pageYOffset });
-    }
-  };
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
-  }
-
-  handleScroll = (event) => {
-    const scrollTop = event.currentTarget.pageYOffset;
-    this.setState({
-      offset: scrollTop,
-    });
-  };
-
   render() {
     return (
-      <Sticky
-        style={{ zIndex: 100000 }}
-      >
-        <HeaderContainer className={`${this.state.offset != 0 ? 'headerWithShadow'  : ''}`}>
-          <div>
-            <NavContainer>
-              <LogoContainer>
-                <img src={Logo} alt="Логотип"></img>
-              </LogoContainer>
-              <ul>
-                {categories.map((category) => (
-                  <li
-                    key={category.id}
-                    style={{
-                      display: "inline-block",
-                      margin: "20px",
-                    }}
-                    ref={this[category.id]}
+      <HeaderContainer className="sticky">
+        <div>
+          <NavContainer>
+            <LogoContainer>
+              <img src={Logo} alt="Логотип"></img>
+            </LogoContainer>
+            <ul>
+              {categories.map((category) => (
+                <li
+                  key={category.id}
+                  style={{
+                    display: "inline-block",
+                    margin: "20px",
+                  }}
+                  ref={this[category.id]}
+                >
+                  <Link
+                    activeClass="activeCategoryLink"
+                    className={category.id}
+                    to={category.id.toString()}
+                    spy={true}
+                    smooth={true}
+                    duration={500}
+                    offset={-50}
+                    onSetActive={() => this.scrollToCategory(category.id)}
                   >
-                    <Link
-                      activeClass="activeCategoryLink"
-                      className={category.id}
-                      to={category.id.toString()}
-                      spy={true}
-                      smooth={true}
-                      duration={500}
-                      offset={-50}
-                      onSetActive={() => this.scrollToCategory(category.id)}
-                    >
-                      {category.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </NavContainer>
-          </div>
-        </HeaderContainer>
-      </Sticky>
+                    {category.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </NavContainer>
+        </div>
+      </HeaderContainer>
     );
   }
 }
+
+
 
 {
   /* <div style={{ marginTop: "30px" }}>
