@@ -7,11 +7,13 @@ import Features from "./features";
 import ForWhom from "./forWhom";
 import ProgrammFeatures from "./programmFeatures";
 import config from "../config";
-import Modules from './modules';
-import AssessmentStages from './assessmentStages';
-import AppScreenList from './appScreenList';
+import Modules from "./modules";
+import AssessmentStages from "./assessmentStages";
+import AppScreenList from "./appScreenList";
 import Advantages from "./advantages";
 import Results from "./results";
+import Calculator from "./calculator";
+import ContactForm from './contactForm'
 
 const Theme = ({ state }) => {
   // const data = state.source.get(state.router.link);
@@ -47,6 +49,8 @@ const Theme = ({ state }) => {
       <AssessmentStages />
       <Advantages />
       <Results />
+      <Calculator />
+      <ContactForm />
     </>
   );
 };
@@ -340,7 +344,7 @@ const globalStyles = css`
       border-color: transparent;
       top: calc(50% - 5px);
       transform: translateX(20px);
-      transition: 0.2s
+      transition: 0.2s;
     }
   }
 
@@ -349,7 +353,8 @@ const globalStyles = css`
     position: relative;
     padding-right: 20px;
     &::after {
-      border-color: transparent ${config.collors.secondary} transparent transparent;
+      border-color: transparent ${config.collors.secondary} transparent
+        transparent;
     }
   }
 
