@@ -15,7 +15,7 @@ import Trophy from '../assets/images/trophy.svg';
 
 const Container = styled.div`
   background-color: #fff;
-  padding-bottom: 140px;
+  padding-bottom: 40px;
   background: #fff;
   padding-top: 60px;
 `;

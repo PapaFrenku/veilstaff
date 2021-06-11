@@ -146,7 +146,7 @@ export default class Header extends Component {
                       spy={true}
                       smooth={true}
                       duration={500}
-                      offset={-250}
+                      offset={-50}
                       onSetActive={() => this.scrollToCategory(category.id)}
                     >
                       {category.title}

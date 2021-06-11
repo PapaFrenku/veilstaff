@@ -101,8 +101,8 @@ const Footer = () => {
                 spy={true}
                 smooth={true}
                 duration={500}
-                offset={-150}
-                onSetActive={() => this.scrollToCategory(category.id)}
+                offset={-50}
+                // onSetActive={() => this.scrollToCategory(category.id)}
               >
                 {category.title}
               </Link>

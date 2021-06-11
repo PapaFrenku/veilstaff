@@ -1,6 +1,6 @@
 import React from "react";
 import Slider from "./slider";
-import { styled } from "frontity";
+import { connect, styled } from "frontity";
 import PreviewImage from "../assets/images/Layer_18.png";
 import { Element } from "react-scroll";
 import Features from "./features";
@@ -92,4 +92,4 @@ const PreviewContainer = () => (
   </Element>
 );
 
-export default PreviewContainer;
+export default connect(PreviewContainer);
