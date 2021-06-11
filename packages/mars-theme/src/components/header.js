@@ -47,7 +47,7 @@ const NavContainer = styled.nav`
   align-items: center;
   height: 75px;
   transition: 0.2s;
-  
+
   & ul {
     align-items: center;
     display: flex;
@@ -115,10 +115,10 @@ export default class Header extends Component {
 
   render() {
     return (
-      <Sticky
-        style={{ zIndex: 100000 }}
-      >
-        <HeaderContainer className={`${this.state.offset != 0 ? 'headerWithShadow'  : ''}`}>
+      <Sticky style={{ zIndex: 100000 }}>
+        <HeaderContainer
+          className={`${this.state.offset != 0 ? "headerWithShadow" : ""}`}
+        >
           <div>
             <NavContainer>
               <LogoContainer>
@@ -150,6 +150,13 @@ export default class Header extends Component {
                 ))}
               </ul>
             </NavContainer>
+            <Button
+              color={"#fff"}
+              brColor={config.collors.secondary}
+              bgColor={config.collors.secondary}
+              type="button"
+              disabled={isSubmitting}
+            >Обратный звонок</Button>
           </div>
         </HeaderContainer>
       </Sticky>

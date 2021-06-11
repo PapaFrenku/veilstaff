@@ -128,7 +128,7 @@ const Results = () => {
     >
       <Container>
         <div className="container">
-          <div style={{ margin: "0 auto", width: "65px", height: "65px" }}>
+          <div style={{ margin: "0 auto", width: "65px", height: "1px" }}>
             <ArrowInCircle color={config.collors.secondary} />
           </div>
           <h2 className="blockTitle">Результаты работы программы</h2>
