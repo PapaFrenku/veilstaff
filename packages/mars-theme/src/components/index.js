@@ -301,6 +301,15 @@ const globalStyles = css`
   }
   .activeCategoryLink {
     color: ${config.collors.primary};
+    position: relative;
+    &::after {
+      content: "";
+      width: 100%;
+      height: 2px;
+      display: block;
+      position: absolute;
+      background: ${config.collors.primary};
+    }
   }
 
   .container {

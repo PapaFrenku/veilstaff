@@ -31,7 +31,6 @@
     "react-slick": "^0.28.1",
     "react-stickup": "^1.12.0",
     "react-svg": "^13.0.6",
-    "react-tabs": "^3.2.2",
-    "veilstaff-theme": "./packages/veilstaff-theme"
+    "react-tabs": "^3.2.2"
   }
 }

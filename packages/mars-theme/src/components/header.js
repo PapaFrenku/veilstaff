@@ -5,6 +5,8 @@ import { styled } from "frontity";
 import Logo from "../assets/images/logo.png";
 import { Sticky, StickyScrollUp } from "react-stickup";
 import config from "../config";
+import Button from "./styles/button";
+import CompanyNumber from './styles/CompanyNumber'
 
 const categories = [
   {
@@ -61,7 +63,7 @@ const NavContainer = styled.nav`
     justify-items: center;
     padding: 0;
     margin: 0;
-    padding-left: 95px;
+    padding-left: 50px;
   }
 
   & li {
@@ -70,6 +72,11 @@ const NavContainer = styled.nav`
     &:hover {
       color: ${config.collors.primary};
     }
+  }
+
+  & li a {
+    font-size: 14px;
+    
   }
 `;
 
@@ -149,14 +156,21 @@ export default class Header extends Component {
                   </li>
                 ))}
               </ul>
+              <CompanyNumber href="tel:+78123197345" style={{marginLeft: "auto"}}>
+                8 (812) 319-73-45
+              </CompanyNumber>
+              <Button
+                color={"#fff"}
+                brColor={config.collors.secondary}
+                bgColor={config.collors.secondary}
+                type="button"
+                style={{padding: "10px 15px", height: '40px', borderRadius: "11px", marginLeft: "20px"}}
+              >
+                <span>
+                  Обратный звонок
+                </span>
+              </Button>
             </NavContainer>
-            <Button
-              color={"#fff"}
-              brColor={config.collors.secondary}
-              bgColor={config.collors.secondary}
-              type="button"
-              disabled={isSubmitting}
-            >Обратный звонок</Button>
           </div>
         </HeaderContainer>
       </Sticky>

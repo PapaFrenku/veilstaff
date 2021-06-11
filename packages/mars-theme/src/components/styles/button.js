@@ -26,7 +26,7 @@ const Button = styled.button`
         height: 2px;
         display: block;
         transition: 0.2s;
-        border-top: 2px dashed ${props => props.color};
+        border-top: 2px dotted ${props => props.color};
     }
 `
 

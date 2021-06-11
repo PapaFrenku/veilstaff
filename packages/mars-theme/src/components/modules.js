@@ -13,7 +13,7 @@ import AppScreenList from "./appScreenList";
 
 const Container = styled.div`
   background-color: #fff;
-  padding-bottom: 140px;
+  padding-bottom: 40px;
   background: #f8f8f8;
   padding-top: 60px;
   position: relative;

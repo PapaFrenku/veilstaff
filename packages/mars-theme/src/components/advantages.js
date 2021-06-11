@@ -10,6 +10,8 @@ import Smartphone from "../assets/images/smartphone.svg";
 import Clock from "../assets/images/clock.svg";
 import Document from "../assets/images/document.svg";
 import PhoneCall from "../assets/images/phone-call.svg";
+import Trophy from '../assets/images/trophy.svg';
+
 
 const Container = styled.div`
   background-color: #fff;
@@ -76,8 +78,8 @@ const IconWrapper = styled.div`
   position: relative;
   max-width: 90px;
   max-height: 90px;
-  width: 90px;
-  height: 90px;
+  width: 70px;
+  height: 70px;
   margin: 0 auto;
   overflow: hidden;
   color: ${config.collors.primary};
@@ -87,6 +89,18 @@ const IconWrapper = styled.div`
     height: inherit;
   }
 `;
+
+const HeadingIcon = styled.div`
+  color: #5c5c5c;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+  margin: 0 auto;
+  & svg {
+    width: 50px;
+    height: 50px;
+  }
+`
 
 const Advantages = () => {
   const advantages = [
@@ -130,7 +144,12 @@ const Advantages = () => {
   return (
     <Container>
       <div className={"container"}>
-        <h2 className="blockTitle">ТОП 6 преимуществ нашего сервиса</h2>
+      <HeadingIcon>
+          <ReactSVG 
+            src={Trophy} 
+          />
+        </HeadingIcon>
+        <h2 style={{marginTop: "20px"}} className="blockTitle">ТОП 6 преимуществ нашего сервиса</h2>
         <AdvantagesList>
           {advantages.map((item) => (
             <ModuleItem key={item.title}>

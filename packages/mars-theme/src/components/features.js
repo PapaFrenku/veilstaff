@@ -17,7 +17,7 @@ const FeatureContainer = styled.div`
   align-items: center;
   /* justify-content: space-between; */
   height: inherit;
-
+  position: relative;
   & img {
     width: fit-content;
     height: auto;
@@ -37,6 +37,16 @@ const FeatureContainer = styled.div`
     margin: 0;
     margin-top: 20px;
   }
+`;
+
+const Plus = styled.span`
+  content: "+";
+  font-size: 21px;
+  color: #727272;
+  font-weight: 700;
+  position: absolute;
+  right: -18px;
+  top: 40px;
 `;
 
 const FeaturesList = styled.div`
@@ -113,17 +123,18 @@ const Features = () => {
 
   console.log(height, listEl);
   return (
-      <BlockContainer>
-        <div className="container">
-          <FeaturesList ref={listEl}>
-            {featuresArr.map((item, idx) => (
-              <div key={idx} style={{ height: `${height}px` }}>
-                {item}
-              </div>
-            ))}
-          </FeaturesList>
-        </div>
-      </BlockContainer>
+    <BlockContainer>
+      <div className="container">
+        <FeaturesList ref={listEl}>
+          {featuresArr.map((item, idx, arr) => (
+            <div key={idx} style={{ height: `${height}px`, position: "relative" }}>
+              {item}
+              {idx !== 3 ? <Plus>+</Plus> : null}
+            </div>
+          ))}
+        </FeaturesList>
+      </div>
+    </BlockContainer>
   );
 };
 

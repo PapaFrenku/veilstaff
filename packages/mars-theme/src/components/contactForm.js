@@ -8,6 +8,8 @@ import TextArea from "./styles/textarea";
 import Button from "./styles/button";
 import InputMask from "react-input-mask";
 import NumberFormat from "react-number-format";
+import FedbackForm from '../assets/images/fedbackForm.svg'
+import { ReactSVG } from 'react-svg'
 
 const Container = styled.div`
   padding-top: 60px;
@@ -36,12 +38,29 @@ const Subtitle = styled.div`
   margin-top: 15px;
 `;
 
+const HeadingIcon = styled.div`
+  color: #5c5c5c;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+  margin: 0 auto;
+  & svg {
+    width: 50px;
+    height: 50px;
+  }
+`
+
 const ContactForm = () => {
   const onSubmit = () => {};
   return (
     <Container>
       <div className="container">
-        <h2 className="blockTitle">Обратная связь</h2>
+        <HeadingIcon>
+          <ReactSVG 
+            src={FedbackForm} 
+          />
+        </HeadingIcon>
+        <h2 style={{marginTop: "10px"}} className="blockTitle">Обратная связь</h2>
         <Subtitle>
           Задайте любой вопрос и мы ответим вам в течении 2-х часов
         </Subtitle>
@@ -116,7 +135,7 @@ const ContactForm = () => {
                 type="submit"
                 disabled={isSubmitting}
               >
-                Отправить сообщение
+                <span>Отправить сообщение</span>
               </Button>
             </Form>
           )}

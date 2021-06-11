@@ -1,7 +1,7 @@
 import Theme from './components'
 
 export default {
-  name: "veilstaff-theme",
+  name: "vmars-theme",
   roots: {
     theme: Theme
   },
