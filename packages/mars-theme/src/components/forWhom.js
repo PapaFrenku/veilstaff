@@ -19,7 +19,7 @@ const ItemsList = styled.ul`
   }
 
   & div {
-    width: 33.33%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,6 +33,7 @@ const ItemsList = styled.ul`
     font-weight: 600;
     max-width: 185px;
     text-align: center;
+    line-height: 20px;
   }
 `;
 

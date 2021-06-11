@@ -69,13 +69,15 @@ const NavContainer = styled.nav`
   & li {
     transition: 0.1s;
     cursor: pointer;
+    display: inline-block;
+    margin: 15px;
     &:hover {
       color: ${config.collors.primary};
     }
   }
 
   & li a {
-    font-size: 14px;
+    font-size: 16px;
     
   }
 `;
@@ -98,7 +100,7 @@ export default class Header extends Component {
   };
 
   scrollToCategory(id) {
-    this[id].current.scrollIntoView({ inline: "center" });
+    this[id].current?.scrollIntoView({ inline: "center" });
   }
 
   componentDidMount = () => {
@@ -135,10 +137,6 @@ export default class Header extends Component {
                 {categories.map((category) => (
                   <li
                     key={category.id}
-                    style={{
-                      display: "inline-block",
-                      margin: "20px",
-                    }}
                     ref={this[category.id]}
                   >
                     <Link
@@ -148,7 +146,7 @@ export default class Header extends Component {
                       spy={true}
                       smooth={true}
                       duration={500}
-                      offset={-50}
+                      offset={-250}
                       onSetActive={() => this.scrollToCategory(category.id)}
                     >
                       {category.title}
@@ -163,6 +161,10 @@ export default class Header extends Component {
                 color={"#fff"}
                 brColor={config.collors.secondary}
                 bgColor={config.collors.secondary}
+                onClick={(e) => {
+                  e.preventDefault()
+                  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+                }}
                 type="button"
                 style={{padding: "10px 15px", height: '40px', borderRadius: "11px", marginLeft: "20px"}}
               >

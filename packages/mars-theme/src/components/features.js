@@ -30,6 +30,7 @@ const FeatureContainer = styled.div`
     margin-bottom: 0;
     font-weight: 600;
     max-width: 200px;
+    line-height: 20px;
   }
   & p {
     text-align: center;

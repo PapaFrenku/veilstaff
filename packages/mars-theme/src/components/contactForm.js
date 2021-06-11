@@ -15,6 +15,7 @@ const Container = styled.div`
   padding-top: 60px;
   padding-bottom: 60px;
   background: #fff;
+  padding-bottom: 8rem;
 `;
 
 const Form = styled.form`
@@ -53,7 +54,7 @@ const HeadingIcon = styled.div`
 const ContactForm = () => {
   const onSubmit = () => {};
   return (
-    <Container>
+    <Container id="feedbackForm">
       <div className="container">
         <HeadingIcon>
           <ReactSVG 

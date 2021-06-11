@@ -7,6 +7,8 @@ import ArrowIcon from "../assets/images/next.svg";
 import { ReactSVG } from "react-svg";
 import Screen1 from "../assets/images/screen1.png";
 import config from "../config";
+import AssessmentStages from "./assessmentStages";
+import Advantages from "./advantages";
 
 const UnderText = styled.p`
   font-weight: 300;
@@ -240,6 +242,8 @@ const AppScreenList = () => {
           </UnderText>
         </div>
       </Container>
+      <AssessmentStages />
+      <Advantages />
     </Element>
   );
 };

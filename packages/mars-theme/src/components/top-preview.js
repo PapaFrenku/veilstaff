@@ -37,6 +37,7 @@ const SlideTitle = styled.h2`
 
 const SlideText = styled.div`
   font-weight: 300;
+  line-height: 22px;
 `;
 
 const images = [PreviewImage, PreviewImage];

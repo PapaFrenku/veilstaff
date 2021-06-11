@@ -92,7 +92,7 @@ const Footer = () => {
               key={category.id}
               style={{
                 display: "inline-block",
-                margin: "10px",
+                margin: "15px",
               }}
             >
               <Link
@@ -109,7 +109,7 @@ const Footer = () => {
             </li>
           ))}
         </ul>
-        <CompanyNumber href="tel:+78123197345" style={{ marginLeft: "" }}>
+        <CompanyNumber href="tel:+78123197345" style={{marginLeft: '20px'}}>
           <ReactSVG src={PhoneCall} />
           <span>8 (812) 319-73-45</span>
         </CompanyNumber>

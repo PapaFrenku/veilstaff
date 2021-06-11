@@ -7,7 +7,17 @@ const CompanyNumber = styled.a`
     color: #000;
     font-size: 18px;
     transition: .2s;
-
+    display: flex;
+    align-items: center;
+    & svg {
+        width: 15px;
+        height: 15px;
+    }
+    & span {
+        display: inline-block;
+        margin-left: 5px;
+        font-size: inherit;
+    }
     &:hover {
         color: ${config.collors.secondary};
     }

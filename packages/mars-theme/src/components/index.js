@@ -13,7 +13,8 @@ import AppScreenList from "./appScreenList";
 import Advantages from "./advantages";
 import Results from "./results";
 import Calculator from "./calculator";
-import ContactForm from './contactForm'
+import ContactForm from "./contactForm";
+import Footer from "./footer";
 
 const Theme = ({ state }) => {
   // const data = state.source.get(state.router.link);
@@ -46,11 +47,10 @@ const Theme = ({ state }) => {
       <ProgrammFeatures />
       <Modules />
       <AppScreenList />
-      <AssessmentStages />
-      <Advantages />
       <Results />
       <Calculator />
       <ContactForm />
+      <Footer />
     </>
   );
 };
@@ -59,6 +59,7 @@ const globalStyles = css`
   html {
     box-sizing: border-box;
     font-size: 16px;
+    scroll-behavior: smooth;
   }
   *,
   *:before,
