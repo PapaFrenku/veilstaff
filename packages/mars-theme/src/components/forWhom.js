@@ -1,8 +1,10 @@
 import { connect, styled } from "frontity";
 import { Element } from "react-scroll";
+import config from "../config";
 import ItemIcon1 from "./../assets/images/forWhom1.png";
 import ItemIcon2 from "./../assets/images/forWhom2.png";
 import ItemIcon3 from "./../assets/images/forWhom3.png";
+import ArrowInCircle from './styles/ArrowInCircle';
 
 const ItemsList = styled.ul`
   display: flex;
@@ -49,6 +51,7 @@ const AdditionalText = styled.p`
 const Container = styled.div`
   padding-top: 40px;
   padding-bottom: 60px;
+  position: relative;
 `;
 
 const items = () => [
@@ -69,6 +72,9 @@ const items = () => [
 const ForWhom = () => {
   return (
     <Container className="container">
+      <div style={{margin: '0 auto', width: '65px', height: '65px'}}>
+        <ArrowInCircle color={config.collors.secondary} />
+      </div>
       <h2 style={{ textAlign: "center" }} className="blockTitle">
         Для кого
       </h2>

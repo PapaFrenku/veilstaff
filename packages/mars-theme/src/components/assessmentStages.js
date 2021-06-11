@@ -2,12 +2,13 @@ import { useMemo } from "react";
 import { Element } from "react-scroll";
 import { connect, styled } from "frontity";
 import config from "../config";
-
+import ArrowInCircle from './styles/ArrowInCircle';
 
 const Container = styled.div`
   background-color: #f8f8f8;
   padding-top: 40px;
   padding-bottom: 72px;
+  position: relative;
 `;
 
 const HeadText = styled.p`
@@ -24,6 +25,8 @@ const StageList = styled.div`
   padding: 0;
   list-style: none;
   display: flex;
+  /* align-items: center; */
+  justify-content: center;
   padding-top: 45px;
 `;
 
@@ -31,7 +34,10 @@ const StageListCol = styled.ul`
   padding: 0;
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 40%;
+  &:last-of-type {
+    margin-left: 80px;
+  }
 `;
 
 const StageItem = styled.li`
@@ -61,7 +67,6 @@ const StageText = styled.span`
   color: #5c5c5c;
   font-weight: 300;
   line-height: 19px;
-  padding-right: 40px;
   display: inline-block;
   flex-grow: 1;
 `;
@@ -90,33 +95,36 @@ const AssessmentStages = () => {
     return arr.slice(length, arr.length);
   }, [stages]);
   return (
-      <Container>
-        <div className="container">
-          <h2 className="blockTitle">Этапы проведения оценки</h2>
-          <HeadText>
-            Подготовка программы оценки (определение сроков, целей, объемов,
-            возможных результатов оценки)
-          </HeadText>
-          <StageList>
-            <StageListCol>
-              {stages1.map((text, idx) => (
-                <StageItem key={text}>
-                  <StageCounter>{idx + 1}</StageCounter>
-                  <StageText>{text}</StageText>
-                </StageItem>
-              ))}
-            </StageListCol>
-            <StageListCol>
-              {stages2.map((text, idx) => (
-                <StageItem key={text}>
-                  <StageCounter>{stages1.length + idx}</StageCounter>
-                  <StageText>{text}</StageText>
-                </StageItem>
-              ))}
-            </StageListCol>
-          </StageList>
+    <Container>
+      <div className="container">
+        <div style={{ margin: "0 auto", width: "65px", height: "65px" }}>
+          <ArrowInCircle />
         </div>
-      </Container>
+        <h2 className="blockTitle">Этапы проведения оценки</h2>
+        <HeadText>
+          Подготовка программы оценки (определение сроков, целей, объемов,
+          возможных результатов оценки)
+        </HeadText>
+        <StageList>
+          <StageListCol>
+            {stages1.map((text, idx) => (
+              <StageItem key={text}>
+                <StageCounter>{idx + 1}</StageCounter>
+                <StageText>{text}</StageText>
+              </StageItem>
+            ))}
+          </StageListCol>
+          <StageListCol>
+            {stages2.map((text, idx) => (
+              <StageItem key={text}>
+                <StageCounter>{stages1.length + idx}</StageCounter>
+                <StageText>{text}</StageText>
+              </StageItem>
+            ))}
+          </StageListCol>
+        </StageList>
+      </div>
+    </Container>
   );
 };
 

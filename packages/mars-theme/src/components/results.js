@@ -1,10 +1,12 @@
 import { styled, connect } from "frontity";
 import { Element } from "react-scroll";
 import config from "../config";
+import ArrowInCircle from './styles/ArrowInCircle';
 
 const Container = styled.div`
   padding-top: 50px;
   padding-bottom: 75px;
+  position: relative;
 `;
 
 const Subtitle = styled.p`
@@ -126,6 +128,9 @@ const Results = () => {
     >
       <Container>
         <div className="container">
+          <div style={{ margin: "0 auto", width: "65px", height: "65px" }}>
+            <ArrowInCircle color={config.collors.secondary} />
+          </div>
           <h2 className="blockTitle">Результаты работы программы</h2>
           <Subtitle>Детальные отчёты</Subtitle>
 
