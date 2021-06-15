@@ -30,12 +30,12 @@ const settings = {
       name: "@frontity/wp-source",
       state: {
         source: {
-          url: "http://91.201.41.228/",
+          url: "http://91.201.41.228/index.php/",
           postTypes: [
             {
               type: "banner",
               endpoint: "/banners",
-              archive: "/banner",
+              archive: "/banners",
             },
           ],
         },

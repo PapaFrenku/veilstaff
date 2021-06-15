@@ -1,4 +1,4 @@
-import Theme from './components'
+import Theme from './components';
 
 export default {
   name: "vmars-theme",
@@ -10,5 +10,5 @@ export default {
   },
   actions: {
     theme: {}
-  }
+  },
 };
