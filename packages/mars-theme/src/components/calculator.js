@@ -48,14 +48,14 @@ const Text = styled.p`
 `;
 
 const InputWrapper = styled.div`
-  width: 27%;
+  width: 20%;
   margin-left: 28px;
   margin-right: 15px;
 `;
 
 export const Calculator = () => {
-  const [result, setResult] = useState(config.calСoef * 10);
-  const [number, setNumber] = useState(10);
+  const [result, setResult] = useState();
+  const [number, setNumber] = useState();
 
   const onClick = () => {
     setResult(number * config.calСoef);
@@ -113,7 +113,7 @@ export const Calculator = () => {
                 <span>{` руб. в месяц`}</span>
               </>
             ) : (
-              "300 рублей за человека"
+              <span>от <span style={{fontSize: "22px"}}>240</span> руб. за человека</span>
             )}
           </Text>
         </Container>
