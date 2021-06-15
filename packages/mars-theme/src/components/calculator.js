@@ -41,6 +41,10 @@ const Text = styled.p`
   white-space: nowrap;
   width: 22%;
   font-size: 18px;
+
+  & span {
+    font-size: inherit;
+  }
 `;
 
 const InputWrapper = styled.div`
@@ -50,8 +54,8 @@ const InputWrapper = styled.div`
 `;
 
 export const Calculator = () => {
-  const [result, setResult] = useState(0);
-  const [number, setNumber] = useState();
+  const [result, setResult] = useState(config.calСoef * 10);
+  const [number, setNumber] = useState(10);
 
   const onClick = () => {
     setResult(number * config.calСoef);
@@ -89,7 +93,7 @@ export const Calculator = () => {
               e.preventDefault();
               onClick();
             }}
-            style={{ marginRight: "30px" }}
+            style={{ marginRight: "27px" }}
             color={config.collors.primary}
             brColor={"#fff"}
             bgColor="#fff"
@@ -99,12 +103,14 @@ export const Calculator = () => {
           <Text>
             {result ? (
               <>
+                <span>{`от `}</span>
                 <NumberFormat
                   value={result}
                   displayType={"text"}
                   thousandSeparator={true}
+                  style={{fontSize: "22px"}}
                 />
-                <span>{` рублей`}</span>
+                <span>{` руб. в месяц`}</span>
               </>
             ) : (
               "300 рублей за человека"

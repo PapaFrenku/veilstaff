@@ -120,7 +120,7 @@ const PreviewContainer = ({ state, actions, libraries }) => {
       className="about-programm"
       key={"display" + "about-programm"}
     >
-      <Container className="container">
+      <Container style={banners.length === 0 ? {minHeight: "300px"} : {}} className="container">
         <Slider slides={slides}></Slider>
       </Container>
       <Features />

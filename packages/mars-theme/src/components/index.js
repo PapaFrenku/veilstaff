@@ -15,10 +15,10 @@ import Results from "./results";
 import Calculator from "./calculator";
 import ContactForm from "./contactForm";
 import Footer from "./footer";
+import { window, document } from "global";
 
 const Theme = ({ state }) => {
-  // const data = state.source.get(state.router.link);
-  console.log(state)
+  
   return (
     <>
       {/* Add some metatags to the <head> of the HTML. */}
@@ -36,6 +36,14 @@ const Theme = ({ state }) => {
           type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
         />
+        {/* <script>
+          {
+            (function(w,d,u){
+              var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/60000|0)
+              var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h)
+            })(window, document,'https://vkmbitrix.ru/upload/crm/site_button/loader_3_61voe2.js%27')
+          }
+      </script> */}
       </Head>
 
       <FontFaces />

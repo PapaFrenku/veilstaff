@@ -1,3 +1,4 @@
+import { useMemo, useState, useEffect } from "react";
 import { Element } from "react-scroll";
 import { connect, styled } from "frontity";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
@@ -44,6 +45,32 @@ const conntent = [
 ];
 
 const ProgrammFeatures = () => {
+  const [data, setData] = useState([]);
+
+  const getData = async () => {
+    const res = await fetch(
+      "http://91.201.41.228/index.php/wp-json/wp/v2/programm-features"
+    );
+    const arr = await res.json();
+    if (Array.isArray(arr)) {
+      setData(arr);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const tabs = useMemo(() => {
+    return data.map((item) => ({
+      title: item.advantage_title,
+      content: item.advantage_content,
+      index: item.advantage_index
+    })).sort((a, b) => a.index - b.index)
+  }, [data]);
+
+  console.log(tabs)
+
   return (
     <Element name="features" className="features" key={"display" + "features"}>
       <Container>
@@ -60,34 +87,15 @@ const ProgrammFeatures = () => {
           <TabsWrapper>
             <Tabs className="tabsContainer">
               <TabList className="tabsList" default={0}>
-                <Tab className="tabItem" selectedClassName="selectedTab">
-                  Подбор персонала
-                </Tab>
-                <Tab className="tabItem" selectedClassName="selectedTab">
-                  Тестирование персонала
-                </Tab>
-                <Tab className="tabItem" selectedClassName="selectedTab">
-                  Аттестация персонала
-                </Tab>
-                <Tab className="tabItem" selectedClassName="selectedTab">
-                  Оценка мотивации персонала
-                </Tab>
-                <Tab className="tabItem" selectedClassName="selectedTab">
-                  Оценка компетенций персонала
-                </Tab>
-                <Tab className="tabItem" selectedClassName="selectedTab">
-                  Оценка лояльности персонала
-                </Tab>
-                <Tab className="tabItem" selectedClassName="selectedTab">
-                  Динамика развития
-                </Tab>
-                <Tab className="tabItem" selectedClassName="selectedTab">
-                  Обратная связь от руководителей и коллег
-                </Tab>
+                {tabs.map((item) => (
+                  <Tab key={item.title} className="tabItem" selectedClassName="selectedTab">
+                    {item.title}
+                  </Tab>
+                ))}
               </TabList>
-              {conntent.map((item) => (
-                <TabPanel>
-                  <TabContent>{item}</TabContent>
+              {tabs.map((item, idx) => (
+                <TabPanel key={idx}>
+                  <TabContent>{item.content}</TabContent>
                 </TabPanel>
               ))}
             </Tabs>
