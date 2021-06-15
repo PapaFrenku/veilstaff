@@ -5,6 +5,7 @@ import PreviewImage from "../assets/images/Layer_18.png";
 import { Element } from "react-scroll";
 import Features from "./features";
 import ForWhom from "./forWhom";
+import Button from './styles/button'
 import parse from 'html-react-parser';
 
 {
@@ -48,43 +49,11 @@ const SlideText = styled.div`
   line-height: 22px;
 `;
 
-const images = [PreviewImage, PreviewImage];
-
-// const slideContent = [
-//   <SlideContent key={1}>
-//     <SlideTitle>Система подбора, тестирования и оценки персонала!</SlideTitle>
-//     <SlideText>
-//       <div>– Находите лучших сотрудников за короткое время</div>
-//       <div>– Оценивайте on-line удаленных сотрудников</div>
-//       <div>– Оценивайте реальный уровень компетенции сотрудников</div>
-//       <div>– Вводите модель компетенций сотрудников вашей организации</div>
-//       <div>– Повышайте уровень мотивации и вовлеченности сотрудников</div>
-//       <div>– Определяйте и удерживайте самых талантливых сотрудников</div>
-//     </SlideText>
-//   </SlideContent>,
-//   <SlideContent key={2}>
-//     <SlideTitle>Система подбора, тестирования и оценки персонала!</SlideTitle>
-//     <SlideText>
-//       <div>– Находите лучших сотрудников за короткое время</div>
-//       <div>– Оценивайте on-line удаленных сотрудников</div>
-//       <div>– Оценивайте реальный уровень компетенции сотрудников</div>
-//       <div>– Вводите модель компетенций сотрудников вашей организации</div>
-//       <div>– Повышайте уровень мотивации и вовлеченности сотрудников</div>
-//       <div>– Определяйте и удерживайте самых талантливых сотрудников</div>
-//     </SlideText>
-//   </SlideContent>,
-// ];
-
-// const slides = images.map((image, idx) => (
-//   <SlideContainer key={idx}>
-//     <img
-//       style={{ width: "fit-content", height: "fit-content" }}
-//       src={image}
-//       alt="промо картинка"
-//     ></img>
-//     {slideContent[idx]}
-//   </SlideContainer>
-// ));
+const SlideButton = styled.div`
+  margin-top: 30px;
+  display: flex;
+  /* justify-content: center; */
+`
 
 const PreviewContainer = ({ state, actions, libraries }) => {
   const [banners, setBanners] = useState([]);
@@ -104,6 +73,18 @@ const PreviewContainer = ({ state, actions, libraries }) => {
           <SlideContent key={1}>
             <SlideTitle>{item.banner_title}</SlideTitle>
             <SlideText>{parse(item.banner_content)}</SlideText>
+            <SlideButton>
+              {item.button_get_started && <button className="primaryButton">
+                <span>
+                  Начать работу
+                </span>
+              </button>}
+              {item.button_get_demo && <button style={{marginLeft: "20px"}} className="transparentButton">
+                <span>
+                  Попробовать демо
+                </span>
+              </button>}
+            </SlideButton>
           </SlideContent>
         </SlideContainer>
       );

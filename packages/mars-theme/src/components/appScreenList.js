@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useMemo, useEffect } from "react";
 import { Element } from "react-scroll";
 import { connect, styled } from "frontity";
 import MackBookBg from "../assets/images/MacBook_Pro_16.png";
@@ -118,41 +118,34 @@ const ArroWrapper = styled.div`
   }
 `;
 
-const slides = () => [
-  {
-    image: Screen1,
-    title: "Новости",
-    description:
-      "Отображаются новости: Начало опроса, окончание времени опросарезультаты опроса, новый коллега, увольнение, фидбек со стороны коллег, ответ по запросу фидбека от коллеги, отзыв от коллеги без запроса",
-  },
-  {
-    image: Screen1,
-    title: "Коллеги",
-    description:
-      "Praesent vitae auctor mauris, ac cursus ipsum. Donec vel libero molestie",
-  },
-  {
-    image: Screen1,
-    title: "Библиотека",
-    description:
-      "Phasellus et viverra massa, at tristique lorem. Cras id dolor condimentum, convallis diam sed, sollicitudin lorem.",
-  },
-  {
-    image: Screen1,
-    title: "Календарь",
-    description:
-      "Praesent arcu magna, porttitor at sapien a, mollis imperdiet magna",
-  },
-  {
-    image: Screen1,
-    title: "Статистика",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel faucibus diam. Sed dapibus dictum nisl hendrerit dignissim.",
-  },
-];
-
 const AppScreenList = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  const [data, setData] = useState([]);
+
+  const getData = async () => {
+    const res = await fetch(
+      "http://91.201.41.228/index.php/wp-json/wp/v2/screens"
+    );
+    const arr = await res.json();
+    if (Array.isArray(arr)) {
+      setData(arr);
+    }
+  };
+
+  const slides = useMemo(() => {
+    return data.map((item) => ({
+      title: item.screen_name,
+      image: item.screen_image,
+      index: item.screen_index,
+      description: item.screen_description
+    })).sort((a, b) => a.index - b.index)
+  }, [data]);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   const slick = useRef();
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
@@ -174,7 +167,7 @@ const AppScreenList = () => {
 
   const next = () => {
     slick.current.slickNext();
-    if (currentSlide + 1 === slides().length) {
+    if (currentSlide + 1 === slides.length) {
       setCurrentSlide(0);
     } else {
       setCurrentSlide((prev) => prev + 1);
@@ -184,7 +177,7 @@ const AppScreenList = () => {
   const prev = () => {
     slick.current.slickPrev();
     if (currentSlide - 1 < 0) {
-      setCurrentSlide(slides().length - 1);
+      setCurrentSlide(slides.length - 1);
     } else {
       setCurrentSlide((prev) => prev - 1);
     }
@@ -215,7 +208,7 @@ const AppScreenList = () => {
           className="container"
         >
           <LinksList>
-            {slides().map((item, idx) => (
+            {slides.map((item, idx) => (
               <LinkWrapper
                 active={idx === currentSlide}
                 key={item.title}
@@ -230,15 +223,15 @@ const AppScreenList = () => {
           </LinksList>
           <SliderBg>
             <Slider ref={slick} {...settings}>
-              {slides().map((item) => (
+              {slides.map((item) => (
                 <SlideWrapper key={item.title}>
-                  <img src={item.image} alt={item.title}></img>
+                  <img src={item.image.guid} alt={item.title}></img>
                 </SlideWrapper>
               ))}
             </Slider>
           </SliderBg>
           <UnderText>
-            {slides()[currentSlide]?.description}
+            {slides[currentSlide]?.description}
           </UnderText>
         </div>
       </Container>

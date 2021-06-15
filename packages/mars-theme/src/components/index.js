@@ -18,7 +18,6 @@ import Footer from "./footer";
 import { window, document } from "global";
 
 const Theme = ({ state }) => {
-  
   return (
     <>
       {/* Add some metatags to the <head> of the HTML. */}
@@ -388,6 +387,63 @@ const globalStyles = css`
       &:hover {
         opacity: 1;
       }
+    }
+  }
+
+  .primaryButton {
+    background: ${config.collors.primary};
+    color: #fff;
+    height: 60px;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    padding-left: 35px;
+    padding-right: 35px;
+    width: fit-content;
+    outline: none;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.35s ease-out;
+    font-weight: 600;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    & span::after {
+      content: "";
+      height: 2px;
+      display: block;
+      transition: 0.2s;
+      border-top: 2px dotted #fff;
+    }
+  }
+  .transparentButton {
+    background: transparent;
+    color: ${config.collors.primary};
+    height: 60px;
+    border: 2px solid ${config.collors.primary};
+    display: inline-flex;
+    align-items: center;
+    padding-left: 35px;
+    padding-right: 35px;
+    width: fit-content;
+    outline: none;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.35s ease-out;
+    font-weight: 600;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    & span::after {
+      content: "";
+      height: 2px;
+      display: block;
+      transition: 0.2s;
+      border-top: 2px dotted ${config.collors.primary};
     }
   }
 `;
