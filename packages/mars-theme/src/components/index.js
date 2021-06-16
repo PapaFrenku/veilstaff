@@ -468,6 +468,13 @@ const globalStyles = css`
     opacity: 0;
     display: none;
   }
+  .tabItem {
+    cursor: pointer;
+  }
+  .tabItem:hover {
+    color: ${config.collors.secondary};
+    transition: .2s;
+  }
 `;
 
 export default connect(Theme);
