@@ -2,6 +2,7 @@ import { styled } from "frontity";
 import Arrow from "../../assets/images/next.svg";
 import { ReactSVG } from "react-svg";
 import config from "../../config";
+import { Link } from "react-scroll";
 
 const Container = styled.div`
   color: ${(props) => props.color || config.collors.primary};
@@ -20,11 +21,21 @@ const Container = styled.div`
     height: 30px;
     transform: rotate(90deg);
   }
+  cursor: pointer;
 `;
 
-const ArrowInCircle = ({ color }) => (
+const ArrowInCircle = ({ color, id }) => (
   <Container color={color}>
-    <ReactSVG src={Arrow} />
+    <Link
+      className={id}
+      to={id}
+      spy={true}
+      smooth={true}
+      duration={150}
+      offset={-100}
+    >
+      <ReactSVG src={Arrow} />
+    </Link>
   </Container>
 );
 

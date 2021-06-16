@@ -4,7 +4,7 @@ import config from "../config";
 import ArrowInCircle from './styles/ArrowInCircle';
 
 const Container = styled.div`
-  padding-top: 50px;
+  padding-top: 60px;
   padding-bottom: 75px;
   position: relative;
 `;
@@ -129,7 +129,7 @@ const Results = () => {
       <Container>
         <div className="container">
           <div style={{ margin: "0 auto", width: "65px", height: "1px" }}>
-            <ArrowInCircle color={config.collors.secondary} />
+            <ArrowInCircle id="getting-started" color={config.collors.secondary} />
           </div>
           <h2 className="blockTitle">Результаты работы программы</h2>
           <Subtitle>Детальные отчёты</Subtitle>

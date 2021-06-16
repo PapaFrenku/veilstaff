@@ -81,8 +81,13 @@ const items = () => [
 const ForWhom = () => {
   return (
     <Container className="container">
+      <Element
+        name="forWhom"
+        className="forWhom"
+        key={"display" + "forWhom"}
+      >
       <div style={{ margin: "0 auto", width: "65px", height: "1px" }}>
-        <ArrowInCircle color={config.collors.secondary} />
+        <ArrowInCircle id="forWhom" color={config.collors.secondary} />
       </div>
       <h2 style={{ textAlign: "center" }} className="blockTitle">
         Для кого
@@ -93,12 +98,13 @@ const ForWhom = () => {
       </AdditionalText>
       <ItemsList>
         {items().map((item, idx) => (
-          <div style={{position: 'relative'}}>
+          <div style={{ position: "relative" }}>
             {item}
             {idx !== 2 ? <DottedLine /> : null}
           </div>
         ))}
       </ItemsList>
+      </Element>
     </Container>
   );
 };

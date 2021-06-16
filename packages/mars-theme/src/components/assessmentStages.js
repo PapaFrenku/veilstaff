@@ -2,11 +2,11 @@ import { useMemo } from "react";
 import { Element } from "react-scroll";
 import { connect, styled } from "frontity";
 import config from "../config";
-import ArrowInCircle from './styles/ArrowInCircle';
+import ArrowInCircle from "./styles/ArrowInCircle";
 
 const Container = styled.div`
   background-color: #f8f8f8;
-  padding-top: 40px;
+  padding-top: 60px;
   padding-bottom: 72px;
   position: relative;
 `;
@@ -96,34 +96,38 @@ const AssessmentStages = () => {
   }, [stages]);
   return (
     <Container>
-      <div className="container">
-        <div style={{ margin: "0 auto", width: "65px", height: "1px" }}>
-          <ArrowInCircle />
+      <Element
+        name="assessmentStages" className="assessmentStages" key={"display" + "assessmentStages"}
+      >
+        <div className="container">
+          <div style={{ margin: "0 auto", width: "65px", height: "1px" }}>
+            <ArrowInCircle id="assessmentStages"/>
+          </div>
+          <h2 className="blockTitle">Этапы проведения оценки</h2>
+          <HeadText>
+            Подготовка программы оценки (определение сроков, целей, объемов,
+            возможных результатов оценки)
+          </HeadText>
+          <StageList>
+            <StageListCol>
+              {stages1.map((text, idx) => (
+                <StageItem key={text}>
+                  <StageCounter>{idx + 1}</StageCounter>
+                  <StageText>{text}</StageText>
+                </StageItem>
+              ))}
+            </StageListCol>
+            <StageListCol>
+              {stages2.map((text, idx) => (
+                <StageItem key={text}>
+                  <StageCounter>{stages1.length + idx}</StageCounter>
+                  <StageText>{text}</StageText>
+                </StageItem>
+              ))}
+            </StageListCol>
+          </StageList>
         </div>
-        <h2 className="blockTitle">Этапы проведения оценки</h2>
-        <HeadText>
-          Подготовка программы оценки (определение сроков, целей, объемов,
-          возможных результатов оценки)
-        </HeadText>
-        <StageList>
-          <StageListCol>
-            {stages1.map((text, idx) => (
-              <StageItem key={text}>
-                <StageCounter>{idx + 1}</StageCounter>
-                <StageText>{text}</StageText>
-              </StageItem>
-            ))}
-          </StageListCol>
-          <StageListCol>
-            {stages2.map((text, idx) => (
-              <StageItem key={text}>
-                <StageCounter>{stages1.length + idx}</StageCounter>
-                <StageText>{text}</StageText>
-              </StageItem>
-            ))}
-          </StageListCol>
-        </StageList>
-      </div>
+      </Element>
     </Container>
   );
 };

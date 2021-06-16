@@ -5,6 +5,7 @@ import config from "../config";
 import Input from "./styles/input";
 import Button from "./styles/button";
 import NumberFormat from "react-number-format";
+import {round} from 'lodash'
 
 const CalculatorWrapper = styled.div`
   background-color: ${config.collors.primary};
@@ -58,7 +59,17 @@ export const Calculator = () => {
   const [number, setNumber] = useState();
 
   const onClick = () => {
-    setResult(number * config.calСoef);
+    if (number >= 1000) {
+      setResult((number * config.calСoef) * 0.5);
+    } else if (number >= 500) {
+      setResult((number * config.calСoef) * 0.6);
+    } else if (number >= 300) {
+      setResult((number * config.calСoef) * 0.7);
+    } else if (number >= 100) {
+      setResult((number * config.calСoef) * 0.8);
+    } else if (number < 100) {
+      setResult(number * config.calСoef);
+    }
   };
 
   const onChange = (val) => {
@@ -81,8 +92,8 @@ export const Calculator = () => {
               onChange={(e) => onChange(e.currentTarget.value)}
               placeholder="Кол-во человек"
               onKeyPress={(e) => {
-                if(e.charCode === 13) {
-                    onClick()
+                if (e.charCode === 13) {
+                  onClick();
                 }
               }}
               type="number"
@@ -105,15 +116,18 @@ export const Calculator = () => {
               <>
                 <span>{`от `}</span>
                 <NumberFormat
-                  value={result}
+                  value={round(result, 3)}
                   displayType={"text"}
                   thousandSeparator={true}
-                  style={{fontSize: "22px"}}
+                  style={{ fontSize: "22px" }}
                 />
                 <span>{` руб. в месяц`}</span>
               </>
             ) : (
-              <span>от <span style={{fontSize: "22px"}}>240</span> руб. за человека</span>
+              <span>
+                от <span style={{ fontSize: "22px" }}>240</span> руб. за
+                человека
+              </span>
             )}
           </Text>
         </Container>

@@ -8,8 +8,9 @@ import TextArea from "./styles/textarea";
 import Button from "./styles/button";
 import InputMask from "react-input-mask";
 import NumberFormat from "react-number-format";
-import FedbackForm from '../assets/images/fedbackForm.svg'
-import { ReactSVG } from 'react-svg'
+import FedbackForm from "../assets/images/fedbackForm.svg";
+import { ReactSVG } from "react-svg";
+import { window, document } from "global";
 
 const Container = styled.div`
   padding-top: 60px;
@@ -49,7 +50,7 @@ const HeadingIcon = styled.div`
     width: 50px;
     height: 50px;
   }
-`
+`;
 
 const ContactForm = () => {
   const onSubmit = () => {};
@@ -57,15 +58,15 @@ const ContactForm = () => {
     <Container id="feedbackForm">
       <div className="container">
         <HeadingIcon>
-          <ReactSVG 
-            src={FedbackForm} 
-          />
+          <ReactSVG src={FedbackForm} />
         </HeadingIcon>
-        <h2 style={{marginTop: "10px"}} className="blockTitle">Обратная связь</h2>
+        <h2 style={{ marginTop: "10px" }} className="blockTitle">
+          Обратная связь
+        </h2>
         <Subtitle>
           Задайте любой вопрос и мы ответим вам в течении 2-х часов
         </Subtitle>
-        <Formik
+        {/* <Formik
           initialValues={{ name: "", number: "", comment: "" }}
           validate={(values) => {
             const errors = {};
@@ -140,7 +141,23 @@ const ContactForm = () => {
               </Button>
             </Form>
           )}
-        </Formik>
+        </Formik> */}
+        <script data-b24-form="inline/26/zcxgvq" data-skip-moving="true">
+          {" "}
+          {(function (w, d, u) {
+            if (d) {
+              var s = d.createElement("script");
+              s.async = true;
+              s.src = u + "?" + ((Date.now() / 180000) | 0);
+              var h = d.getElementsByTagName("script")[0];
+              h.parentNode.insertBefore(s, h);
+            }
+          })(
+            window,
+            document,
+            "https://vkmbitrix.ru/upload/crm/form/loader_26_zcxgvq.js"
+          )}{" "}
+        </script>
       </div>
     </Container>
   );

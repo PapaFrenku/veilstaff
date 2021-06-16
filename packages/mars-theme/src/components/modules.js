@@ -132,7 +132,7 @@ const Modules = () => {
       <Container>
         <div className="container">
           <div style={{ margin: "0 auto", width: "65px", height: "1px" }}>
-            <ArrowInCircle color={config.collors.secondary} />
+            <ArrowInCircle id="modules" color={config.collors.secondary} />
           </div>
           <h2 style={{ textAlign: "center" }} className="blockTitle">
             Модули, входящие в состав программы

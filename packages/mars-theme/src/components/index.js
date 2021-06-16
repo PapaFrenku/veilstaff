@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Global, css, connect, Head } from "frontity";
 import FontFaces from "./styles/font-faces";
 import { StickyProvider } from "react-stickup";
@@ -17,6 +18,16 @@ import ContactForm from "./contactForm";
 import Footer from "./footer";
 import { window, document } from "global";
 
+// export const useDocument = () => {
+//   const [myDocument, setMyDocument] = useState(null);
+
+//   useEffect(() => {
+//     setMyDocument(document);
+//   }, []);
+
+//   return myDocument;
+// };
+
 const Theme = ({ state }) => {
   return (
     <>
@@ -35,14 +46,21 @@ const Theme = ({ state }) => {
           type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
         />
-        {/* <script>
-          {
-            (function(w,d,u){
-              var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/60000|0)
-              var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h)
-            })(window, document,'https://vkmbitrix.ru/upload/crm/site_button/loader_3_61voe2.js%27')
-          }
-      </script> */}
+        <script>
+          {(function (w, d, u) {
+            if (d) {
+              var s = d.createElement("script");
+              s.async = true;
+              s.src = u + "?" + ((Date.now() / 60000) | 0);
+              var h = d.getElementsByTagName("script")[0];
+              h.parentNode.insertBefore(s, h);
+            }
+          })(
+            window,
+            document,
+            "https://vkmbitrix.ru/upload/crm/site_button/loader_3_61voe2.js"
+          )}
+        </script>
       </Head>
 
       <FontFaces />
@@ -445,6 +463,10 @@ const globalStyles = css`
       transition: 0.2s;
       border-top: 2px dotted ${config.collors.primary};
     }
+  }
+  .b24-form-sign {
+    opacity: 0;
+    display: none;
   }
 `;
 

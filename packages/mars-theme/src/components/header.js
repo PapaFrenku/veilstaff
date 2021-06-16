@@ -124,7 +124,7 @@ export default class Header extends Component {
 
   render() {
     return (
-      <Sticky style={{ zIndex: 100000 }}>
+      <Sticky style={{ zIndex: 100 }}>
         <HeaderContainer
           className={`${this.state.offset != 0 ? "headerWithShadow" : ""}`}
         >
