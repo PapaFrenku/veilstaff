@@ -34,28 +34,30 @@ const TabContent = styled.p`
   max-width: 620px;
 `;
 
-const ProgrammFeatures = () => {
+const ProgrammFeatures = ({state, actions, libraries}) => {
   const [data, setData] = useState([]);
 
-  const getData = async () => {
-    const res = await fetch(
-      "http://91.201.41.228/index.php/wp-json/wp/v2/programm-features"
-    );
-    const arr = await res.json();
-    if (Array.isArray(arr)) {
-      setData(arr);
+  const getData = () => {
+    const arr = []
+    for(let key in state.source.post) {
+      console.log(state.source.post[key].acf.type)
+      if(state.source.post[key].acf.type === 'features') {
+        arr.push(state.source.post[key])
+      }
     }
-  };
 
-  useEffect(() => {
-    getData();
-  }, []);
+    setData(arr)
+  }
+
+  useEffect(async () => {
+   getData()
+  }, [])
 
   const tabs = useMemo(() => {
     return data.map((item) => ({
-      title: item.advantage_title,
-      content: item.advantage_content,
-      index: item.advantage_index
+      title: item.acf.title,
+      content: item.acf.content,
+      index: item.acf.index
     })).sort((a, b) => a.index - b.index)
   }, [data]);
 

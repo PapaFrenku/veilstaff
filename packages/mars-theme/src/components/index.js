@@ -475,6 +475,9 @@ const globalStyles = css`
     color: ${config.collors.secondary};
     transition: .2s;
   }
+  .b24-form-control {
+    border-radius: 12px !important;
+  }
 `;
 
 export default connect(Theme);

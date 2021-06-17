@@ -118,27 +118,29 @@ const ArroWrapper = styled.div`
   }
 `;
 
-const AppScreenList = () => {
+const AppScreenList = ({state, actions, libraries}) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const [data, setData] = useState([]);
 
   const getData = async () => {
-    const res = await fetch(
-      "http://91.201.41.228/index.php/wp-json/wp/v2/screens"
-    );
-    const arr = await res.json();
-    if (Array.isArray(arr)) {
-      setData(arr);
+    const arr = []
+    for(let key in state.source.post) {
+      console.log(state.source.post[key].acf.type)
+      if(state.source.post[key].acf.type === 'screen') {
+        arr.push(state.source.post[key])
+      }
     }
+
+    setData(arr)
   };
 
   const slides = useMemo(() => {
     return data.map((item) => ({
-      title: item.screen_name,
-      image: item.screen_image,
-      index: item.screen_index,
-      description: item.screen_description
+      title: item.acf.title,
+      image: item.acf.image,
+      index: item.acf.index,
+      description: item.acf.description
     })).sort((a, b) => a.index - b.index)
   }, [data]);
 
@@ -225,7 +227,7 @@ const AppScreenList = () => {
             <Slider ref={slick} {...settings}>
               {slides.map((item) => (
                 <SlideWrapper key={item.title}>
-                  <img src={item.image.guid} alt={item.title}></img>
+                  <img src={item.image.url} alt={item.title}></img>
                 </SlideWrapper>
               ))}
             </Slider>

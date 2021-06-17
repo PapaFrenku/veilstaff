@@ -5,8 +5,12 @@ import PreviewImage from "../assets/images/Layer_18.png";
 import { Element } from "react-scroll";
 import Features from "./features";
 import ForWhom from "./forWhom";
-import Button from './styles/button'
-import parse from 'html-react-parser';
+import Button from "./styles/button";
+import parse from "html-react-parser";
+import Modal from "react-modal";
+import { window, document } from "global";
+import Cancel from '../assets/images/cancel.svg'
+import {ReactSVG} from 'react-svg'
 
 {
   /* <PreviewContainer>
@@ -15,6 +19,17 @@ import parse from 'html-react-parser';
 </div>
 </PreviewContainer> */
 }
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
 
 const Container = styled.div`
   position: relative;
@@ -53,47 +68,82 @@ const SlideButton = styled.div`
   margin-top: 30px;
   display: flex;
   /* justify-content: center; */
+`;
+
+const CloseBtn = styled.button`
+  background: transparent;
+  border: none;
+  display: block;
+  margin-left: auto;
+  cursor: pointer;
+  & svg {
+    width: 12px;
+    height: 12px;
+  }
 `
 
 const PreviewContainer = ({ state, actions, libraries }) => {
+  const [getStartedmodalIsOpen, setGetStartedIsOpen] = useState(false);
+  const [getDemomodalIsOpen, setGetDemoIsOpen] = useState(false);
   const [banners, setBanners] = useState([]);
-  const getBanners = async () => {
-    const res = await fetch(
-      "http://91.201.41.228/index.php/wp-json/wp/v2/banners"
-    );
-    const obj = await res.json();
-    setBanners(obj);
-  };
+
+  const getBanners = () => {
+    const arr = []
+    for(let key in state.source.post) {
+      console.log(state.source.post[key].acf.type)
+      if(state.source.post[key].acf.type === 'banner') {
+        arr.push(state.source.post[key])
+      }
+    }
+
+    setBanners(arr)
+  }
+
+  useEffect(async () => {
+   getBanners() 
+  }, [])
+
+
+
 
   const slides = useMemo(() => {
-    return banners.map((item, idx) => {
+    return banners.map((s, idx) => {
+      const item = s.acf
       return (
-        <SlideContainer key={idx}>
-          <img src={item.banner_image.guid} />
-          <SlideContent key={1}>
-            <SlideTitle>{item.banner_title}</SlideTitle>
-            <SlideText>{parse(item.banner_content)}</SlideText>
-            <SlideButton>
-              {item.button_get_started && <button className="primaryButton">
-                <span>
-                  Начать работу
-                </span>
-              </button>}
-              {item.button_get_demo && <button style={{marginLeft: "20px"}} className="transparentButton">
-                <span>
-                  Попробовать демо
-                </span>
-              </button>}
-            </SlideButton>
-          </SlideContent>
-        </SlideContainer>
+        <>
+          <SlideContainer key={idx}>
+            <img src={item.banner_image.url} />
+            <SlideContent key={1}>
+              <SlideTitle>{item.banner_title}</SlideTitle>
+              <SlideText>{parse(item.banner_content)}</SlideText>
+              <SlideButton>
+                {item.button_get_demo && (
+                  <button onClick={(e) => {
+                    e.preventDefault();
+                    setGetDemoIsOpen(true)
+                  }} className="primaryButton">
+                    <span>Попробовать демо</span>
+                  </button>
+                )}
+                {item.button_get_started && (
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setGetStartedIsOpen(true)
+                    }}
+                    style={{ marginLeft: "20px" }}
+                    className="transparentButton"
+                  >
+                    <span>Начать работу</span>
+                  </button>
+                )}
+              </SlideButton>
+            </SlideContent>
+          </SlideContainer>
+        </>
       );
     });
   }, [banners]);
-
-  useEffect(() => {
-    getBanners();
-  }, []);
 
   return (
     <Element
@@ -101,11 +151,75 @@ const PreviewContainer = ({ state, actions, libraries }) => {
       className="about-programm"
       key={"display" + "about-programm"}
     >
-      <Container style={banners.length === 0 ? {minHeight: "300px"} : {}} className="container">
+      <Container
+        style={banners.length === 0 ? { minHeight: "300px" } : {}}
+        className="container"
+      >
         <Slider slides={slides}></Slider>
       </Container>
       <Features />
       <ForWhom />
+      <Modal
+        isOpen={getStartedmodalIsOpen}
+        onRequestClose={() => {setGetStartedIsOpen(false)}}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+        <CloseBtn 
+          onClick={(e) => {
+            e.preventDefault();
+            setGetStartedIsOpen(false)
+          }}
+        >
+          <ReactSVG src={Cancel} />
+        </CloseBtn>
+        <script data-b24-form="inline/30/ko324m" data-skip-moving="true">
+          {(function (w, d, u) {
+            if (d) {
+              var s = d.createElement("script");
+              s.async = true;
+              s.src = u + "?" + ((Date.now() / 180000) | 0);
+              var h = d.getElementsByTagName("script")[0];
+              h.parentNode.insertBefore(s, h);
+            }
+          })(
+            window,
+            document,
+            "https://vkmbitrix.ru/upload/crm/form/loader_30_ko324m.js"
+          )}
+        </script>
+      </Modal>
+      <Modal
+        isOpen={getDemomodalIsOpen}
+        onRequestClose={() => {setGetDemoIsOpen(false)}}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+        <CloseBtn
+          onClick={(e) => {
+            e.preventDefault();
+            setGetDemoIsOpen(false)
+          }}
+        >
+          <ReactSVG src={Cancel} />
+        </CloseBtn>
+        <script data-b24-form="inline/31/uze9f6" data-skip-moving="true">
+          {" "}
+          {(function (w, d, u) {
+            if (d) {
+              var s = d.createElement("script");
+              s.async = true;
+              s.src = u + "?" + ((Date.now() / 180000) | 0);
+              var h = d.getElementsByTagName("script")[0];
+              h.parentNode.insertBefore(s, h);
+            }
+          })(
+            window,
+            document,
+            "https://vkmbitrix.ru/upload/crm/form/loader_31_uze9f6.js"
+          )}{" "}
+        </script>
+      </Modal>
     </Element>
   );
 };
