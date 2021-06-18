@@ -36,32 +36,6 @@ const Theme = ({ state }) => {
       <Head>
         <meta name="description" content={state.frontity.description} />
         <html lang="ru" />
-        <link
-          rel="stylesheet"
-          type="text/css"
-          charset="UTF-8"
-          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
-        />
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
-        />
-        <script>
-          {(function (w, d, u) {
-            if (d) {
-              var s = d.createElement("script");
-              s.async = true;
-              s.src = u + "?" + ((Date.now() / 60000) | 0);
-              var h = d.getElementsByTagName("script")[0];
-              h.parentNode.insertBefore(s, h);
-            }
-          })(
-            window,
-            document,
-            "https://vkmbitrix.ru/upload/crm/site_button/loader_3_61voe2.js"
-          )}
-        </script>
       </Head>
 
       <FontFaces />
@@ -84,6 +58,33 @@ const Theme = ({ state }) => {
       <Calculator />
       <ContactForm />
       <Footer />
+
+      <link
+        rel="stylesheet"
+        type="text/css"
+        charSet="UTF-8"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
+      />
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
+      />
+      <script>
+        {(function (w, d, u) {
+          if (d) {
+            var s = d.createElement("script");
+            s.async = true;
+            s.src = u + "?" + ((Date.now() / 60000) | 0);
+            var h = d.getElementsByTagName("script")[0];
+            h.parentNode.insertBefore(s, h);
+          }
+        })(
+          window,
+          document,
+          "https://vkmbitrix.ru/upload/crm/site_button/loader_3_61voe2.js"
+        )}
+      </script>
     </>
   );
 };
@@ -417,12 +418,12 @@ const globalStyles = css`
       transition: 0.2s;
     }
 
-    @media(max-width: 690px) {
+    @media (max-width: 690px) {
       font-size: 14px;
       line-height: 1.8em;
       padding-right: 10px;
       ::after {
-       display: none;
+        display: none;
       }
     }
   }

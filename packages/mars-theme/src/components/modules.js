@@ -141,8 +141,8 @@ const modules = () => [
   },
   {
     image: Growth,
-    title: "Модуль оценки 360",
-    content: "По SoftSkill для всех сотрудников",
+    title: "Оценка динамики развития",
+    content: "Отдельного сотрудника / отделов и департаментов",
   },
 ];
 
@@ -159,7 +159,7 @@ const Modules = () => {
           </h2>
           <ModulesList>
             {modules().map((item) => (
-              <ModuleItem key="m1">
+              <ModuleItem key={item.title}>
                 <IconWrapper>
                   <ReactSVG fill={"inherit"} src={item.image} />
                 </IconWrapper>
