@@ -40,7 +40,7 @@ const ItemsList = styled.ul`
   @media(max-width: 690px) {
     align-items: baseline;
     & img {
-      width: 60px;
+      width: 45px;
     }
   }
 `;

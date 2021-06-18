@@ -146,6 +146,7 @@ const ContactForm = () => {
             </Form>
           )}
         </Formik> */}
+        <div style={{height: '450px'}}>
         <script data-b24-form="inline/26/zcxgvq" data-skip-moving="true">
           {" "}
           {(function (w, d, u) {
@@ -162,6 +163,7 @@ const ContactForm = () => {
             "https://vkmbitrix.ru/upload/crm/form/loader_26_zcxgvq.js"
           )}{" "}
         </script>
+        </div>
       </div>
     </Container>
   );
