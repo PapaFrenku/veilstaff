@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { styled, connect } from "frontity";
 import { Formik } from "formik";
 import { Element } from "react-scroll";
@@ -57,7 +57,16 @@ const HeadingIcon = styled.div`
 `;
 
 const ContactForm = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
   const onSubmit = () => {};
+
+  useEffect(() => {
+    if(document) {
+      console.log(document)
+      setIsLoaded(true)
+    }
+  }, [document])
+
   return (
     <Container id="feedbackForm">
       <div className="container">
@@ -147,22 +156,24 @@ const ContactForm = () => {
           )}
         </Formik> */}
         <div style={{height: '450px'}}>
-        <script data-b24-form="inline/26/zcxgvq" data-skip-moving="true">
-          {" "}
-          {(function (w, d, u) {
-            if (d) {
-              var s = d.createElement("script");
-              s.async = true;
-              s.src = u + "?" + ((Date.now() / 180000) | 0);
-              var h = d.getElementsByTagName("script")[0];
-              h.parentNode.insertBefore(s, h);
-            }
-          })(
-            window,
-            document,
-            "https://vkmbitrix.ru/upload/crm/form/loader_26_zcxgvq.js"
-          )}{" "}
-        </script>
+          {
+            isLoaded && <script data-b24-form="inline/26/zcxgvq" data-skip-moving="true">
+            {" "}
+            {(function (w, d, u) {
+              if (d) {
+                var s = d.createElement("script");
+                s.async = true;
+                s.src = u + "?" + ((Date.now() / 180000) | 0);
+                var h = d.getElementsByTagName("script")[0];
+                h.parentNode.insertBefore(s, h);
+              }
+            })(
+              window,
+              document,
+              "https://vkmbitrix.ru/upload/crm/form/loader_26_zcxgvq.js"
+            )}{" "}
+          </script>
+          }
         </div>
       </div>
     </Container>
