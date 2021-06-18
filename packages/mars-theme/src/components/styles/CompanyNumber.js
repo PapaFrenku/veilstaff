@@ -22,11 +22,11 @@ const CompanyNumber = styled.a`
         color: ${config.collors.secondary};
     }
 
-    @media(max-width: 1205px) {
+    /* @media(max-width: 1205px) {
         & .telNumber {
             display: none;
         }
-    }
+    } */
 `
 
 export default CompanyNumber;
