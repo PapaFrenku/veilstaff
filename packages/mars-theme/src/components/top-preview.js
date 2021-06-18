@@ -112,7 +112,7 @@ const SlideButton = styled.div`
       width: 100%;
     }
 
-    & button:first-child {
+    & button:first-of-type {
       margin-bottom: 20px;
     }
     & button {

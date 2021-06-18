@@ -41,6 +41,7 @@ const ItemsList = styled.ul`
     align-items: baseline;
     & img {
       width: 45px;
+      height: auto;
     }
   }
 `;
