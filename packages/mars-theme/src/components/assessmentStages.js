@@ -9,6 +9,10 @@ const Container = styled.div`
   padding-top: 60px;
   padding-bottom: 72px;
   position: relative;
+
+  @media (max-width: 700px) {
+    padding-bottom: 20px;
+  }
 `;
 
 const HeadText = styled.p`

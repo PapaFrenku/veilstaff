@@ -90,7 +90,8 @@ const AdvantagesList = styled.div`
   }
 
   @media(max-width: 560px) {
-    padding: 0px;
+    padding: 20px;
+    padding-top: 35px;
   }
 `;
 
