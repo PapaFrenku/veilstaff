@@ -17,6 +17,10 @@ const Container = styled.div`
   padding-bottom: 60px;
   background: #fff;
   padding-bottom: 8rem;
+
+  @media(max-width: 1100px) {
+    padding-bottom: 1rem;
+  }
 `;
 
 const Form = styled.form`

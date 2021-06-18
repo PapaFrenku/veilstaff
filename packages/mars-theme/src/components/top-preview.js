@@ -9,8 +9,8 @@ import Button from "./styles/button";
 import parse from "html-react-parser";
 import Modal from "react-modal";
 import { window, document } from "global";
-import Cancel from '../assets/images/cancel.svg'
-import {ReactSVG} from 'react-svg'
+import Cancel from "../assets/images/cancel.svg";
+import { ReactSVG } from "react-svg";
 
 {
   /* <PreviewContainer>
@@ -35,10 +35,23 @@ const Container = styled.div`
   position: relative;
   margin-top: 4rem;
   margin-bottom: 4.2rem;
+  @media (max-width: 930px) {
+    margin-top: 2rem;
+  margin-bottom: 2.2rem;
+  }
 `;
 
 const SlideContent = styled.div`
   padding-left: 4.68em;
+  @media (max-width: 1070px) {
+    padding-left: 0;
+  }
+  @media (max-width: 930px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 0;
+  }
 `;
 
 const SlideContainer = styled.div`
@@ -47,6 +60,24 @@ const SlideContainer = styled.div`
 
   & img {
     width: fit-content;
+  }
+  @media (max-width: 1070px) {
+    padding-left: 0;
+  }
+  @media (max-width: 930px) {
+    flex-direction: column;
+    align-items: center;
+    padding-left: 0;
+  }
+
+  @media (max-width: 500px) {
+    & img {
+      width: 100%;
+    }
+
+    & .SlideButton {
+      flex-direction: column;
+    }
   }
 `;
 
@@ -57,6 +88,11 @@ const SlideTitle = styled.h2`
   line-height: 1em;
   margin: 0;
   margin-bottom: 40px;
+  max-width: 466px;
+  @media (max-width: 930px) {
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
 `;
 
 const SlideText = styled.div`
@@ -68,6 +104,21 @@ const SlideButton = styled.div`
   margin-top: 30px;
   display: flex;
   /* justify-content: center; */
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+    width: 100%;
+    & button {
+      width: 100%;
+    }
+
+    & button:first-child {
+      margin-bottom: 20px;
+    }
+    & button {
+      margin-left: 0 !important;
+    }
+  }
 `;
 
 const CloseBtn = styled.button`
@@ -80,7 +131,7 @@ const CloseBtn = styled.button`
     width: 12px;
     height: 12px;
   }
-`
+`;
 
 const PreviewContainer = ({ state, actions, libraries }) => {
   const [getStartedmodalIsOpen, setGetStartedIsOpen] = useState(false);
@@ -88,27 +139,23 @@ const PreviewContainer = ({ state, actions, libraries }) => {
   const [banners, setBanners] = useState([]);
 
   const getBanners = () => {
-    const arr = []
-    for(let key in state.source.post) {
-      console.log(state.source.post[key].acf.type)
-      if(state.source.post[key].acf.type === 'banner') {
-        arr.push(state.source.post[key])
+    const arr = [];
+    for (let key in state.source.post) {
+      if (state.source.post[key].acf.type === "banner") {
+        arr.push(state.source.post[key]);
       }
     }
 
-    setBanners(arr)
-  }
+    setBanners(arr);
+  };
 
   useEffect(async () => {
-   getBanners() 
-  }, [])
-
-
-
+    getBanners();
+  }, []);
 
   const slides = useMemo(() => {
     return banners.map((s, idx) => {
-      const item = s.acf
+      const item = s.acf;
       return (
         <>
           <SlideContainer key={idx}>
@@ -118,10 +165,13 @@ const PreviewContainer = ({ state, actions, libraries }) => {
               <SlideText>{parse(item.banner_content)}</SlideText>
               <SlideButton>
                 {item.button_get_demo && (
-                  <button onClick={(e) => {
-                    e.preventDefault();
-                    setGetDemoIsOpen(true)
-                  }} className="primaryButton">
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setGetDemoIsOpen(true);
+                    }}
+                    className="primaryButton"
+                  >
                     <span>Попробовать демо</span>
                   </button>
                 )}
@@ -129,7 +179,7 @@ const PreviewContainer = ({ state, actions, libraries }) => {
                   <button
                     onClick={(e) => {
                       e.preventDefault();
-                      setGetStartedIsOpen(true)
+                      setGetStartedIsOpen(true);
                     }}
                     style={{ marginLeft: "20px" }}
                     className="transparentButton"
@@ -161,18 +211,21 @@ const PreviewContainer = ({ state, actions, libraries }) => {
       <ForWhom />
       <Modal
         isOpen={getStartedmodalIsOpen}
-        onRequestClose={() => {setGetStartedIsOpen(false)}}
+        onRequestClose={() => {
+          setGetStartedIsOpen(false);
+        }}
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <CloseBtn 
+        <CloseBtn
           onClick={(e) => {
             e.preventDefault();
-            setGetStartedIsOpen(false)
+            setGetStartedIsOpen(false);
           }}
         >
           <ReactSVG src={Cancel} />
         </CloseBtn>
+        <h2 className="modalTitle">Начать работу</h2>
         <script data-b24-form="inline/30/ko324m" data-skip-moving="true">
           {(function (w, d, u) {
             if (d) {
@@ -191,18 +244,21 @@ const PreviewContainer = ({ state, actions, libraries }) => {
       </Modal>
       <Modal
         isOpen={getDemomodalIsOpen}
-        onRequestClose={() => {setGetDemoIsOpen(false)}}
+        onRequestClose={() => {
+          setGetDemoIsOpen(false);
+        }}
         style={customStyles}
         contentLabel="Example Modal"
       >
         <CloseBtn
           onClick={(e) => {
             e.preventDefault();
-            setGetDemoIsOpen(false)
+            setGetDemoIsOpen(false);
           }}
         >
           <ReactSVG src={Cancel} />
         </CloseBtn>
+        <h2 className="modalTitle">Запросить демо</h2>
         <script data-b24-form="inline/31/uze9f6" data-skip-moving="true">
           {" "}
           {(function (w, d, u) {

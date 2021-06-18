@@ -8,12 +8,23 @@ import { ReactSVG } from "react-svg";
 const Container = styled.div`
   background-color: #fff;
   padding-top: 80px;
-  padding-bottom: 140px;
+  padding-bottom: 82px;
+
+  
 `;
 
 const TabsWrapper = styled.div`
   padding-top: 20px;
   padding-bottom: 20px;
+
+  @media (max-width: 690px) {
+    & .tabsList {
+      width: 40%;
+    }
+    & .tabPannel {
+      width: 60%;
+    }
+  }
 `;
 
 const HeadingIcon = styled.div`
@@ -32,36 +43,39 @@ const TabContent = styled.p`
   font-weight: 300;
   line-height: 24px;
   max-width: 620px;
+
+  @media (max-width: 690px) {
+    height: 60vh;
+  }
 `;
 
-const ProgrammFeatures = ({state, actions, libraries}) => {
+const ProgrammFeatures = ({ state, actions, libraries }) => {
   const [data, setData] = useState([]);
 
   const getData = () => {
-    const arr = []
-    for(let key in state.source.post) {
-      console.log(state.source.post[key].acf.type)
-      if(state.source.post[key].acf.type === 'features') {
-        arr.push(state.source.post[key])
+    const arr = [];
+    for (let key in state.source.post) {
+      if (state.source.post[key].acf.type === "features") {
+        arr.push(state.source.post[key]);
       }
     }
 
-    setData(arr)
-  }
+    setData(arr);
+  };
 
   useEffect(async () => {
-   getData()
-  }, [])
+    getData();
+  }, []);
 
   const tabs = useMemo(() => {
-    return data.map((item) => ({
-      title: item.acf.title,
-      content: item.acf.content,
-      index: item.acf.index
-    })).sort((a, b) => a.index - b.index)
+    return data
+      .map((item) => ({
+        title: item.acf.title,
+        content: item.acf.content,
+        index: item.acf.index,
+      }))
+      .sort((a, b) => a.index - b.index);
   }, [data]);
-
-  console.log(tabs)
 
   return (
     <Element name="features" className="features" key={"display" + "features"}>
@@ -80,16 +94,22 @@ const ProgrammFeatures = ({state, actions, libraries}) => {
             <Tabs className="tabsContainer">
               <TabList className="tabsList" default={0}>
                 {tabs.map((item) => (
-                  <Tab key={item.title} className="tabItem" selectedClassName="selectedTab">
+                  <Tab
+                    key={item.title}
+                    className="tabItem"
+                    selectedClassName="selectedTab"
+                  >
                     {item.title}
                   </Tab>
                 ))}
               </TabList>
-              {tabs.map((item, idx) => (
-                <TabPanel key={idx}>
-                  <TabContent>{item.content}</TabContent>
-                </TabPanel>
-              ))}
+              <div className="tabPannel">
+                {tabs.map((item, idx) => (
+                  <TabPanel key={idx}>
+                    <TabContent>{item.content}</TabContent>
+                  </TabPanel>
+                ))}
+              </div>
             </Tabs>
           </TabsWrapper>
         </div>

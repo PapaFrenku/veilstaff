@@ -1,3 +1,4 @@
+import React from "react";
 import { connect, styled } from "frontity";
 import { Element } from "react-scroll";
 import config from "../config";
@@ -20,7 +21,7 @@ const ItemsList = styled.ul`
 
   & div {
     width: 100%;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -35,6 +36,13 @@ const ItemsList = styled.ul`
     text-align: center;
     line-height: 20px;
   }
+
+  @media(max-width: 690px) {
+    align-items: baseline;
+    & img {
+      width: 60px;
+    }
+  }
 `;
 
 const AdditionalText = styled.p`
@@ -47,6 +55,10 @@ const AdditionalText = styled.p`
   margin: 0 auto;
   margin-bottom: 60px;
   margin-top: 30px;
+
+  @media(max-width: 690px) {
+    margin-bottom: 0px;
+  }
 `;
 
 const Container = styled.div`
@@ -61,49 +73,63 @@ const DottedLine = styled.span`
   height: 1px;
   border-top: 1px dotted #5c5c5c;
   right: -45px;
+
+  @media(max-width: 690px) {
+   display: none;
+  }
 `;
 
 const items = () => [
-  <div key="Руководители">
+  <>
     <img src={ItemIcon1} alt="Руководители"></img>
     <p style={{ marginTop: "25px" }}>Руководители</p>
-  </div>,
-  <div key="HR-менеджеры">
+  </>,
+  <>
     <img src={ItemIcon2} alt="HR-менеджеры"></img>
     <p style={{ marginTop: "25px" }}>HR-менеджеры</p>
-  </div>,
-  <div key="Руководители отделов персонала">
+  </>,
+  <>
     <img src={ItemIcon3} alt="Руководители отделов персонала"></img>
-    <p style={{ marginTop: "25px" }}>Руководители отделов персонала</p>
-  </div>,
+    <p style={{ marginTop: "25px" }}>Руководители отделов</p>
+  </>,
 ];
 
 const ForWhom = () => {
+  const [s, setS] = React.useState(false);
+  const listEl = React.useRef();
+
+  const height = React.useMemo(() => {
+    return listEl.current?.offsetHeight || "auto";
+  }, [listEl, s]);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setS(true);
+    }, 0);
+  }, []);
+
   return (
     <Container className="container">
-      <Element
-        name="forWhom"
-        className="forWhom"
-        key={"display" + "forWhom"}
-      >
-      <div style={{ margin: "0 auto", width: "65px", height: "1px" }}>
-        <ArrowInCircle id="forWhom" color={config.collors.secondary} />
-      </div>
-      <h2 style={{ textAlign: "center" }} className="blockTitle">
-        Для кого
-      </h2>
-      <AdditionalText>
-        Программа предназначена для средних и крупных коммерческих компаний,
-        бюджетных организаций и государственных предприятий.
-      </AdditionalText>
-      <ItemsList>
-        {items().map((item, idx) => (
-          <div style={{ position: "relative" }}>
-            {item}
-            {idx !== 2 ? <DottedLine /> : null}
-          </div>
-        ))}
-      </ItemsList>
+      <Element name="forWhom" className="forWhom" key={"display" + "forWhom"}>
+        <div style={{ margin: "0 auto", width: "65px", height: "1px" }}>
+          <ArrowInCircle id="forWhom" color={config.collors.secondary} />
+        </div>
+        <h2 style={{ textAlign: "center" }} className="blockTitle">
+          Для кого
+        </h2>
+        <AdditionalText>
+          Программа предназначена для средних и крупных коммерческих компаний,
+          бюджетных организаций и государственных предприятий.
+        </AdditionalText>
+
+        <ItemsList ref={listEl}>
+          {items().map((item, idx) => (
+            <div key={idx} style={{ position: "relative", height }}>
+              {item}
+              {idx !== 2 ? <DottedLine /> : null}
+            </div>
+          ))}
+        </ItemsList>
       </Element>
     </Container>
   );

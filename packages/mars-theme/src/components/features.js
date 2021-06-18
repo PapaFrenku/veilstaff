@@ -38,6 +38,21 @@ const FeatureContainer = styled.div`
     margin: 0;
     margin-top: 20px;
   }
+
+  @media(max-width: 1200px) {
+    max-width: 215px;
+  }
+
+  @media(max-width: 960px) {
+    width: 50%;
+    max-width: unset;
+    margin-bottom: 20px;
+  }
+
+  @media(max-width: 410px) {
+    width: 100%;
+    margin-bottom: 30px;
+  }
 `;
 
 const Plus = styled.span`
@@ -48,6 +63,9 @@ const Plus = styled.span`
   position: absolute;
   right: -18px;
   top: 40px;
+  @media(max-width: 960px) {
+    display: none;
+  }
 `;
 
 const FeaturesList = styled.div`
@@ -57,6 +75,7 @@ const FeaturesList = styled.div`
   justify-content: space-between;
   padding: 0;
   margin: 0;
+  flex-wrap: wrap;
 `;
 
 const BlockContainer = styled.div`
@@ -70,7 +89,7 @@ const ImageWrapper = styled.div`
 `;
 
 const featuresArr = [
-  <FeatureContainer key={1}>
+  <>
     <ImageWrapper>
       <img src={Feature1} />
     </ImageWrapper>
@@ -79,8 +98,8 @@ const featuresArr = [
       Экономьте ваше время - находите лучших кандидатов за короткое время с
       помощью тестов
     </p>
-  </FeatureContainer>,
-  <FeatureContainer key={2}>
+  </>,
+  <>
     <ImageWrapper>
       <img src={Feature2} />
     </ImageWrapper>
@@ -89,8 +108,8 @@ const featuresArr = [
       Проверяйте реальные навыки и таланты сотрудников через систему оценки
       персонала
     </p>
-  </FeatureContainer>,
-  <FeatureContainer key={3}>
+  </>,
+  <>
     <ImageWrapper>
       <img src={Feature3} />
     </ImageWrapper>
@@ -98,14 +117,14 @@ const featuresArr = [
     <p>
       Находите и взращивайте лидеров, которые приведут вашу компанию к успеху
     </p>
-  </FeatureContainer>,
-  <FeatureContainer key={4}>
+  </>,
+  <>
     <ImageWrapper>
       <img src={Feature4} />
     </ImageWrapper>
     <h4>Коллектив без конфликтов</h4>
     <p>Выявляйте, предотвращайте и разрешайте кофликты в коллективе</p>
-  </FeatureContainer>,
+  </>,
 ];
 
 const Features = () => {
@@ -122,16 +141,15 @@ const Features = () => {
     return listEl.current?.offsetHeight;
   }, [listEl.current?.offsetHeight]);
 
-  console.log(height, listEl);
   return (
     <BlockContainer>
       <div className="container">
         <FeaturesList ref={listEl}>
           {featuresArr.map((item, idx, arr) => (
-            <div key={idx} style={{ height: `${height}px`, position: "relative" }}>
+            <FeatureContainer key={idx} style={{position: "relative" }}>
               {item}
               {idx !== 3 ? <Plus>+</Plus> : null}
-            </div>
+            </FeatureContainer>
           ))}
         </FeaturesList>
       </div>

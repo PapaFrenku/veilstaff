@@ -16,7 +16,7 @@ const Button = styled.button`
     cursor: pointer;
     transition: all 0.35s ease-out;
     font-weight: 600;
-    
+    justify-content: center;
     &:hover {
         opacity: 0.8;
     }

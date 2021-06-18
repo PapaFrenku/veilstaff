@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Global, css, connect, Head } from "frontity";
+import { Global, css, connect, Head, styled } from "frontity";
 import FontFaces from "./styles/font-faces";
 import { StickyProvider } from "react-stickup";
 import Header from "./header";
@@ -17,6 +17,7 @@ import Calculator from "./calculator";
 import ContactForm from "./contactForm";
 import Footer from "./footer";
 import { window, document } from "global";
+import MobileMenu from "./mobileMenu";
 
 // export const useDocument = () => {
 //   const [myDocument, setMyDocument] = useState(null);
@@ -65,9 +66,16 @@ const Theme = ({ state }) => {
 
       <FontFaces />
       <Global styles={globalStyles} />
-      <StickyProvider>
-        <Header />
-      </StickyProvider>
+
+      <HeaderContainer>
+        <StickyProvider>
+          <Header />
+        </StickyProvider>
+      </HeaderContainer>
+      <MobileMenuContainer>
+        <MobileMenu />
+      </MobileMenuContainer>
+
       <TopPreview />
       <ProgrammFeatures />
       <Modules />
@@ -79,6 +87,18 @@ const Theme = ({ state }) => {
     </>
   );
 };
+
+const HeaderContainer = styled.div`
+  @media (max-width: 1070px) {
+    display: none;
+  }
+`;
+
+const MobileMenuContainer = styled.div`
+  @media (min-width: 1071px) {
+    display: none;
+  }
+`;
 
 const globalStyles = css`
   html {
@@ -129,6 +149,7 @@ const globalStyles = css`
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    text-align: center;
     &::after {
       content: "";
       display: block;
@@ -138,6 +159,19 @@ const globalStyles = css`
       margin-top: 18px;
       background-color: ${config.collors.secondary};
     }
+  }
+  .modalTitle {
+    font-size: 1.75em;
+    font-weight: 600;
+    line-height: 1em;
+    margin: 0;
+    position: relative;
+    width: fit-content;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
   hr {
     box-sizing: content-box; /* 1 */
@@ -367,6 +401,7 @@ const globalStyles = css`
     line-height: 35px;
     font-weight: 300;
     font-size: 18px;
+    padding-right: 20px;
     &::after {
       content: "";
       width: 0;
@@ -381,12 +416,20 @@ const globalStyles = css`
       transform: translateX(20px);
       transition: 0.2s;
     }
+
+    @media(max-width: 690px) {
+      font-size: 14px;
+      line-height: 1.8em;
+      padding-right: 10px;
+      ::after {
+       display: none;
+      }
+    }
   }
 
   .selectedTab {
     color: ${config.collors.secondary};
     position: relative;
-    padding-right: 20px;
     &::after {
       border-color: transparent ${config.collors.secondary} transparent
         transparent;
@@ -423,9 +466,13 @@ const globalStyles = css`
     cursor: pointer;
     transition: all 0.35s ease-out;
     font-weight: 600;
-
+    justify-content: center;
     &:hover {
       opacity: 0.8;
+    }
+
+    & span {
+      white-space: nowrap;
     }
 
     & span::after {
@@ -451,9 +498,13 @@ const globalStyles = css`
     cursor: pointer;
     transition: all 0.35s ease-out;
     font-weight: 600;
-
+    justify-content: center;
     &:hover {
       opacity: 0.8;
+    }
+
+    & span {
+      white-space: nowrap;
     }
 
     & span::after {
@@ -473,10 +524,82 @@ const globalStyles = css`
   }
   .tabItem:hover {
     color: ${config.collors.secondary};
-    transition: .2s;
+    transition: 0.2s;
   }
   .b24-form-control {
     border-radius: 12px !important;
+  }
+
+  .bm-burger-button {
+    position: fixed;
+    width: 36px;
+    height: 30px;
+    left: 36px;
+    top: 36px;
+  }
+
+  /* Color/shape of burger icon bars */
+  .bm-burger-bars {
+    background: #373a47;
+  }
+
+  /* Color/shape of burger icon bars on hover*/
+  .bm-burger-bars-hover {
+    background: #a90000;
+  }
+
+  /* Position and sizing of clickable cross button */
+  .bm-cross-button {
+    height: 24px;
+    width: 24px;
+  }
+
+  /* Color/shape of close button cross */
+  .bm-cross {
+    background: #bdc3c7;
+  }
+
+  /*
+Sidebar wrapper styles
+Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+*/
+  .bm-menu-wrap {
+    position: fixed;
+    height: 100%;
+    top: 0;
+  }
+
+  /* General sidebar styles */
+  .bm-menu {
+    background: #f3f3f3;
+    padding: 2.5em 1.5em 0;
+    font-size: 1.15em;
+  }
+
+  /* Morph shape necessary with bubble or elastic */
+  .bm-morph-shape {
+    fill: #373a47;
+  }
+
+  /* Wrapper for item list */
+  .bm-item-list {
+    padding: 0.8em;
+
+    & a {
+      font-size: 22px;
+      margin-bottom: 1em;
+    }
+  }
+
+  /* Individual item */
+  .bm-item {
+    display: inline-block;
+  }
+
+  /* Styling of overlay */
+  .bm-overlay {
+    background: rgba(255, 255, 255, 0.75) !important;
+    top: 0;
   }
 `;
 

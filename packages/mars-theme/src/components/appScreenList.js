@@ -20,6 +20,9 @@ const UnderText = styled.p`
   max-width: 550px;
   margin-top: 40px;
   height: 70px;
+  @media(max-width: 500px) {
+    margin-top: 0px;
+  }
 `;
 
 const Container = styled.div`
@@ -30,9 +33,11 @@ const Container = styled.div`
 
 const SliderBg = styled.div`
   height: 350px;
-  width: 591px;
+  max-width: 591px;
+  width: 100%;
   padding-bottom: 10px;
   background: url(${MackBookBg});
+  background-position: center;
   /* padding: 20px; */
   background-size: 100%;
   background-repeat: no-repeat;
@@ -43,8 +48,20 @@ const SliderBg = styled.div`
   justify-content: center;
 
   & > div {
-    width: 485px;
-    height: 320px;
+    /* max-width: 485px; */
+    width: calc(100% - 100px);
+    /* height: 320px; */
+  }
+
+  @media(max-width: 650px) {
+
+    & > div {
+      width: 80%
+    }
+  }
+
+  @media(max-width: 500px) {
+    height: 270px;
   }
 `;
 
@@ -67,6 +84,10 @@ const LinksList = styled.ul`
   align-items: center;
   margin-bottom: 50px;
   top: 95px;
+  flex-wrap: wrap;
+  @media(max-width: 690px) {
+    margin-bottom: 0px;
+  }
 `;
 
 const LinkWrapper = styled.li`
@@ -107,9 +128,16 @@ const ArroWrapper = styled.div`
   justify-content: center;
   align-items: center;
   transform: ${(props) => (props.isPrev ? "rotate(180deg)" : "")};
+  left: ${props => props.isPrev ? '-95px' : 'unset'};
+  right: ${props => props.isPrev ? 'unset' : '-100px'};
   &:hover {
     background-color: ${config.collors.primary};
     color: #fff;
+  }
+
+  @media(max-width: 740px) {
+    left: ${props => props.isPrev ? '-20px' : 'unset'};
+    right: ${props => props.isPrev ? 'unset' : '-20px'};
   }
 
   & svg {
@@ -126,7 +154,6 @@ const AppScreenList = ({state, actions, libraries}) => {
   const getData = async () => {
     const arr = []
     for(let key in state.source.post) {
-      console.log(state.source.post[key].acf.type)
       if(state.source.post[key].acf.type === 'screen') {
         arr.push(state.source.post[key])
       }
@@ -152,7 +179,7 @@ const AppScreenList = ({state, actions, libraries}) => {
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
     return (
-      <ArroWrapper style={{ right: "-100px" }} onClick={next}>
+      <ArroWrapper onClick={next}>
         <ReactSVG src={ArrowIcon} />
       </ArroWrapper>
     );
@@ -161,7 +188,7 @@ const AppScreenList = ({state, actions, libraries}) => {
   const PrevArrow = (props) => {
     const { className, style, onClick } = props;
     return (
-      <ArroWrapper isPrev={true} style={{ left: "-95px" }} onClick={prev}>
+      <ArroWrapper isPrev={true} onClick={prev}>
         <ReactSVG src={ArrowIcon} />
       </ArroWrapper>
     );

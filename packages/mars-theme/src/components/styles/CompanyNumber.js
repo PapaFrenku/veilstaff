@@ -21,6 +21,12 @@ const CompanyNumber = styled.a`
     &:hover {
         color: ${config.collors.secondary};
     }
+
+    @media(max-width: 1205px) {
+        & .telNumber {
+            display: none;
+        }
+    }
 `
 
 export default CompanyNumber;

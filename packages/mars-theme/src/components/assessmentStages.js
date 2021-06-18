@@ -28,6 +28,10 @@ const StageList = styled.div`
   /* align-items: center; */
   justify-content: center;
   padding-top: 45px;
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
 `;
 
 const StageListCol = styled.ul`
@@ -38,6 +42,13 @@ const StageListCol = styled.ul`
   &:last-of-type {
     margin-left: 80px;
   }
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin-left: 0 !important;
+  }
 `;
 
 const StageItem = styled.li`
@@ -45,6 +56,11 @@ const StageItem = styled.li`
   display: flex;
   align-items: center;
   width: 100%;
+
+  @media (max-width: 700px) {
+    width: 75%;
+    flex-direction: column;
+  }
 `;
 
 const StageCounter = styled.span`
@@ -61,6 +77,11 @@ const StageCounter = styled.span`
   color: #fff;
   font-weight: 600;
   margin-right: 15px;
+
+  @media (max-width: 700px) {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
 `;
 
 const StageText = styled.span`
@@ -69,6 +90,9 @@ const StageText = styled.span`
   line-height: 19px;
   display: inline-block;
   flex-grow: 1;
+  @media (max-width: 700px) {
+    text-align: center;
+  }
 `;
 
 const AssessmentStages = () => {
@@ -97,11 +121,13 @@ const AssessmentStages = () => {
   return (
     <Container>
       <Element
-        name="assessmentStages" className="assessmentStages" key={"display" + "assessmentStages"}
+        name="assessmentStages"
+        className="assessmentStages"
+        key={"display" + "assessmentStages"}
       >
         <div className="container">
           <div style={{ margin: "0 auto", width: "65px", height: "1px" }}>
-            <ArrowInCircle id="assessmentStages"/>
+            <ArrowInCircle id="assessmentStages" />
           </div>
           <h2 className="blockTitle">Этапы проведения оценки</h2>
           <HeadText>

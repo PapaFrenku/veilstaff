@@ -16,6 +16,10 @@ const CalculatorWrapper = styled.div`
   );
   height: 165px;
   color: #fff;
+
+  @media(max-width: 990px) {
+    height: auto;
+  }
 `;
 
 const Container = styled.div`
@@ -24,6 +28,31 @@ const Container = styled.div`
   display: flex;
   height: inherit;
   align-items: center;
+
+  & button {
+     margin-right: 27px;
+  }
+
+  @media(max-width: 990px) {
+    flex-direction: column;
+    padding-top: 30px;
+    padding-bottom: 28px;
+    & button {
+      width: 50%;
+      margin: 0;
+      margin-bottom: 20px;
+    }
+  }
+
+  @media(max-width: 690px) {
+    padding-left: 15px;
+    padding-right: 15px;
+    & button {
+      width: 100%;
+      margin: 0;
+      margin-bottom: 20px;
+    }
+  }
 `;
 
 const Title = styled.h2`
@@ -33,6 +62,12 @@ const Title = styled.h2`
   line-height: 30px;
   margin: 0;
   text-align: right;
+  @media(max-width: 990px) {
+    margin-bottom: 10px;
+  }
+  @media(max-width: 690px) {
+    text-align: center;
+  }
 `;
 
 const Text = styled.p`
@@ -46,12 +81,29 @@ const Text = styled.p`
   & span {
     font-size: inherit;
   }
+
+  @media(max-width: 690px) {
+    width: 100%;
+    text-align: center;
+  }
 `;
 
 const InputWrapper = styled.div`
   width: 20%;
   margin-left: 28px;
   margin-right: 15px;
+
+  @media(max-width: 990px) {
+    margin-left: 0;
+    margin-right: 0;
+    width: 50%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  @media(max-width: 690px) {
+    width: 100%;
+  }
 `;
 
 export const Calculator = () => {
@@ -104,7 +156,6 @@ export const Calculator = () => {
               e.preventDefault();
               onClick();
             }}
-            style={{ marginRight: "27px" }}
             color={config.collors.primary}
             brColor={"#fff"}
             bgColor="#fff"

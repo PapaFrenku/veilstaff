@@ -6,9 +6,11 @@ import Logo from "../assets/images/logo.png";
 import { Sticky, StickyScrollUp } from "react-stickup";
 import config from "../config";
 import Button from "./styles/button";
-import CompanyNumber from './styles/CompanyNumber'
+import CompanyNumber from "./styles/CompanyNumber";
+import { ReactSVG } from "react-svg";
+import PhoneCall from "../assets/images/phone-call.svg";
 
-const categories = [
+export const categories = [
   {
     id: "about-programm",
     title: "О программе",
@@ -36,6 +38,11 @@ const categories = [
 ];
 
 const HeaderContainer = styled.header``;
+
+const AdditionalButtons = styled.div`
+  display: flex;
+  margin-left: auto;
+`;
 
 const NavContainer = styled.nav`
   border-radius: 40px;
@@ -78,7 +85,16 @@ const NavContainer = styled.nav`
 
   & li a {
     font-size: 16px;
-    
+  }
+
+  @media (max-width: 1310px) {
+    & li a {
+      font-size: 14px;
+    }
+  }
+  @media(max-width: 1210px) {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 `;
 
@@ -105,7 +121,6 @@ export default class Header extends Component {
 
   componentDidMount = () => {
     window.addEventListener("scroll", this.handleScroll);
-    console.log(window);
     if (window) {
       this.setState({ offset: window.pageYOffset });
     }
@@ -135,10 +150,7 @@ export default class Header extends Component {
               </LogoContainer>
               <ul>
                 {categories.map((category) => (
-                  <li
-                    key={category.id}
-                    ref={this[category.id]}
-                  >
+                  <li key={category.id} ref={this[category.id]}>
                     <Link
                       activeClass="activeCategoryLink"
                       className={category.id}
@@ -154,44 +166,40 @@ export default class Header extends Component {
                   </li>
                 ))}
               </ul>
-              <CompanyNumber href="tel:+78123197345" style={{marginLeft: "auto"}}>
-                8 (812) 319-73-45
-              </CompanyNumber>
-              <Button
-                color={"#fff"}
-                brColor={config.collors.secondary}
-                bgColor={config.collors.secondary}
-                onClick={(e) => {
-                  e.preventDefault()
-                  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
-                }}
-                type="button"
-                style={{padding: "10px 15px", height: '40px', borderRadius: "11px", marginLeft: "20px"}}
-              >
-                <span>
-                  Обратный звонок
-                </span>
-              </Button>
+              <AdditionalButtons>
+                <CompanyNumber
+                  href="tel:+78123197345"
+                  style={{ marginLeft: "auto" }}
+                >
+                  <ReactSVG src={PhoneCall} />
+                  <span className="telNumber">8 (812) 319-73-45</span>
+                </CompanyNumber>
+                <Button
+                  color={"#fff"}
+                  brColor={config.collors.secondary}
+                  bgColor={config.collors.secondary}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.scrollTo({
+                      top: document.body.scrollHeight,
+                      behavior: "smooth",
+                    });
+                  }}
+                  type="button"
+                  style={{
+                    padding: "10px 15px",
+                    height: "40px",
+                    borderRadius: "11px",
+                    marginLeft: "20px",
+                  }}
+                >
+                  <span>Обратный звонок</span>
+                </Button>
+              </AdditionalButtons>
             </NavContainer>
           </div>
         </HeaderContainer>
       </Sticky>
     );
   }
-}
-
-{
-  /* <div style={{ marginTop: "30px" }}>
-{categories.map((category) => (
-  <Element
-    name={category.id.toString()}
-    className={category.id}
-    key={"display" + category.id}
-  >
-    <div style={{ height: "50vh" }}>
-      <h2>{category.title}</h2>
-    </div>
-  </Element>
-))}
-</div> */
 }

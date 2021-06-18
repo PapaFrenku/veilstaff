@@ -50,6 +50,10 @@ const NavContainer = styled.nav`
 const Container = styled.div`
   padding-top: 15px;
   padding-bottom: 15px;
+
+  @media(max-width: 1100px) {
+    display: none;
+  }
 `;
 
 const categories = [
@@ -111,7 +115,7 @@ const Footer = () => {
         </ul>
         <CompanyNumber href="tel:+78123197345" style={{marginLeft: '20px'}}>
           <ReactSVG src={PhoneCall} />
-          <span>8 (812) 319-73-45</span>
+          <span className="telNumber">8 (812) 319-73-45</span>
         </CompanyNumber>
         {/* <Button
           color={"#fff"}

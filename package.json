@@ -27,6 +27,7 @@
     "global": "^4.4.0",
     "html-react-parser": "^1.2.6",
     "lodash": "^4.17.21",
+    "react-burger-menu": "^3.0.6",
     "react-input-mask": "^2.0.4",
     "react-modal": "^3.14.3",
     "react-number-format": "^4.6.3",

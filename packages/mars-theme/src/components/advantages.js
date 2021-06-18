@@ -51,6 +51,17 @@ const ModuleItem = styled.div`
       color: #fff;
     }
   }
+
+  @media(max-width: 1070px) {
+    margin-right: 10px !important;
+    margin-left: 10px !important;
+    width: calc(50% - 20px);
+  }
+
+  @media(max-width: 1070px) {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 `;
 
 const ItemTitle = styled.h3`
@@ -72,6 +83,15 @@ const AdvantagesList = styled.div`
   align-items: stretch;
   justify-content: center;
   padding: 55px;
+  padding-bottom: 0;
+
+  @media(max-width: 1070px) {
+    padding: 35px;
+  }
+
+  @media(max-width: 560px) {
+    padding: 0px;
+  }
 `;
 
 const IconWrapper = styled.div`
