@@ -37,7 +37,7 @@ const Container = styled.div`
   margin-bottom: 4.2rem;
   @media (max-width: 930px) {
     margin-top: 2rem;
-  margin-bottom: 2.2rem;
+  margin-bottom: 1.8rem;
   }
 `;
 
@@ -49,7 +49,7 @@ const SlideContent = styled.div`
   @media (max-width: 930px) {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     padding-left: 0;
   }
 `;

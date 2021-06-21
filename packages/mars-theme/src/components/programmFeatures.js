@@ -45,7 +45,8 @@ const TabContent = styled.p`
   max-width: 620px;
 
   @media (max-width: 690px) {
-    height: 65vh;
+    height: 450px;
+    overflow: auto;
   }
 `;
 

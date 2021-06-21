@@ -3,11 +3,14 @@ import React, { Component } from "react";
 import { slide as Menu } from "react-burger-menu";
 import { Link } from "react-scroll";
 import { categories } from "./header";
-import {ReactSVG} from 'react-svg'
+import { ReactSVG } from "react-svg";
 import CompanyNumber from "./styles/CompanyNumber";
 import Button from "./styles/button";
 import PhoneCall from "../assets/images/phone-call.svg";
-import config from '../config'
+import config from "../config";
+import { Sticky, StickyScrollUp } from "react-stickup";
+import { window } from "global";
+import Logo from "../assets/images/logo.png";
 
 const LinksWrapper = styled.div`
   display: flex !important;
@@ -15,9 +18,31 @@ const LinksWrapper = styled.div`
   align-items: flex-start;
 `;
 
+const LogoContainer = styled.div`
+  width: 140px;
+  height: fit-content;
+  margin-left: auto;
+  @media(max-width: 1070px) {
+    width: 110px;
+  }
+`;
+
+const MobileMenuWrapper = styled.header`
+  height: 60px;
+  background: #fff;
+  border-radius: 40px;
+  padding: 12px;
+  padding-left: 20px;
+  padding-right: 30px;
+  position: relative;
+  margin-left: 20px;
+  margin-right: 20px;
+`;
+
 class MobileMenu extends Component {
   state = {
     isOpen: false,
+    offset: 0,
   };
   constructor(props) {
     super(props);
@@ -34,63 +59,95 @@ class MobileMenu extends Component {
     ev.preventDefault();
   };
 
+  componentDidMount = () => {
+    window.addEventListener("scroll", this.handleScroll);
+    if (window) {
+      this.setState({ offset: window.pageYOffset });
+    }
+  };
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  }
+
+  handleScroll = (event) => {
+    const scrollTop = event.currentTarget.pageYOffset;
+    this.setState({
+      offset: scrollTop,
+    });
+  };
+
   render() {
     return (
-      <Menu
-        isOpen={this.state.isOpen}
-        onOpen={() => {
-          this.setState({ isOpen: true });
-        }}
-        onClose={() => {
-          this.setState({ isOpen: false });
-        }}
-      >
-        <LinksWrapper>
-          {categories.map((category) => (
-            <Link
-              key={category.id}
-              activeClass="activeCategoryLink"
-              className={category.id}
-              style={{ display: "inline-block" }}
-              to={category.id.toString()}
-              spy={true}
-              smooth={true}
-              duration={200}
-              offset={-50}
-              onSetActive={() => this.scrollToCategory(category.id)}
-              onClick={() => {
-                this.setState({ isOpen: false });
-              }}
-            >
-              {category.title}
-            </Link>
-          ))}
-          <CompanyNumber href="tel:+78123197345" style={{marginTop: '20px'}}>
-            <ReactSVG src={PhoneCall} />
-            <span className="telNumber">8 (812) 319-73-45</span>
-          </CompanyNumber>
-          <Button
-            color={"#fff"}
-            brColor={config.collors.secondary}
-            bgColor={config.collors.secondary}
-            onClick={(e) => {
-              e.preventDefault();
-              window.scrollTo({
-                top: document.body.scrollHeight,
-                behavior: "smooth",
-              });
+      <Sticky style={{ zIndex: 100, marginTop: "20px" }}>
+        <MobileMenuWrapper
+          className={`${
+            this.state.offset != 0 ? "mobileHeaderWithShadow" : ""
+          }`}
+        >
+          <Menu
+            isOpen={this.state.isOpen}
+            onOpen={() => {
+              this.setState({ isOpen: true });
             }}
-            type="button"
-            style={{
-              padding: "10px 15px",
-              height: "40px",
-              borderRadius: "11px",
+            onClose={() => {
+              this.setState({ isOpen: false });
             }}
           >
-            <span>Обратный звонок</span>
-          </Button>
-        </LinksWrapper>
-      </Menu>
+            <LinksWrapper>
+              {categories.map((category) => (
+                <Link
+                  key={category.id}
+                  activeClass="activeCategoryLink"
+                  className={category.id}
+                  style={{ display: "inline-block" }}
+                  to={category.id.toString()}
+                  spy={true}
+                  smooth={true}
+                  duration={200}
+                  offset={-50}
+                  onSetActive={() => this.scrollToCategory(category.id)}
+                  onClick={() => {
+                    this.setState({ isOpen: false });
+                  }}
+                >
+                  {category.title}
+                </Link>
+              ))}
+              <CompanyNumber
+                href="tel:+78123197345"
+                style={{ marginTop: "20px" }}
+              >
+                <ReactSVG src={PhoneCall} />
+                <span className="telNumber">8 (812) 319-73-45</span>
+              </CompanyNumber>
+              <Button
+                color={"#fff"}
+                brColor={config.collors.secondary}
+                bgColor={config.collors.secondary}
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: "smooth",
+                  });
+                }}
+                type="button"
+                style={{
+                  padding: "10px 15px",
+                  height: "40px",
+                  borderRadius: "11px",
+                }}
+              >
+                <span>Обратный звонок</span>
+              </Button>
+            </LinksWrapper>
+          </Menu>
+          <LogoContainer>
+            <img src={Logo} alt="Логотип"></img>
+          </LogoContainer>
+        </MobileMenuWrapper>
+      </Sticky>
     );
   }
 }

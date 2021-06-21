@@ -110,6 +110,7 @@ const RecimendationCard = styled.div`
   border: 2px solid ${config.collors.primary};
   border-radius: 10px;
   width: 33.33333333%;
+  flex-grow: 1;
 
   @media(max-width: 990px) {
     margin-left: 10px;

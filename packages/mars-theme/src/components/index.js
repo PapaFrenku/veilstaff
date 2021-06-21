@@ -46,9 +46,11 @@ const Theme = ({ state }) => {
           <Header />
         </StickyProvider>
       </HeaderContainer>
-      <MobileMenuContainer>
-        <MobileMenu />
-      </MobileMenuContainer>
+      <StickyProvider>
+        <MobileMenuContainer>
+          <MobileMenu />
+        </MobileMenuContainer>
+      </StickyProvider>
 
       <TopPreview />
       <ProgrammFeatures />
@@ -452,6 +454,17 @@ const globalStyles = css`
     }
   }
 
+  .mobileHeaderWithShadow {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 20%);
+    background: #fff;
+    opacity: 0.7;
+    transition: 0.2s;
+    transform: translateY(20px);
+    &:hover {
+      opacity: 1;
+    }
+  }
+
   .primaryButton {
     background: ${config.collors.primary};
     color: #fff;
@@ -532,11 +545,11 @@ const globalStyles = css`
   }
 
   .bm-burger-button {
-    position: fixed;
+    position: absolute;
     width: 36px;
     height: 30px;
-    left: 36px;
-    top: 36px;
+    left: 30px;
+    top: 15px;
   }
 
   /* Color/shape of burger icon bars */
@@ -568,6 +581,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
     position: fixed;
     height: 100%;
     top: 0;
+    left: 0;
   }
 
   /* General sidebar styles */
