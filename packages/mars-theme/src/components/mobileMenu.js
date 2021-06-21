@@ -35,8 +35,8 @@ const MobileMenuWrapper = styled.header`
   padding-left: 20px;
   padding-right: 30px;
   position: relative;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 15px;
+  margin-right: 15px;
 `;
 
 class MobileMenu extends Component {
@@ -79,7 +79,7 @@ class MobileMenu extends Component {
 
   render() {
     return (
-      <Sticky style={{ zIndex: 100, marginTop: "20px" }}>
+      <Sticky style={{ zIndex: 100, marginTop: "15px" }}>
         <MobileMenuWrapper
           className={`${
             this.state.offset != 0 ? "mobileHeaderWithShadow" : ""

@@ -459,7 +459,7 @@ const globalStyles = css`
     background: #fff;
     opacity: 0.7;
     transition: 0.2s;
-    transform: translateY(20px);
+    transform: translateY(10px);
     &:hover {
       opacity: 1;
     }

@@ -36,8 +36,8 @@ const Container = styled.div`
   margin-top: 4rem;
   margin-bottom: 4.2rem;
   @media (max-width: 930px) {
-    margin-top: 2rem;
-  margin-bottom: 1.8rem;
+    margin-top: 1rem;
+    margin-bottom: 1.8rem;
   }
 `;
 
@@ -90,18 +90,29 @@ const SlideTitle = styled.h2`
   margin-bottom: 40px;
   max-width: 466px;
   @media (max-width: 930px) {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     margin-top: 20px;
+    font-size: 1.8em;
   }
 `;
 
 const SlideText = styled.div`
   font-weight: 300;
   line-height: 22px;
+  margin: 0;
+  margin-bottom: 30px;
+  @media (max-width: 930px) {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  & * {
+    font-size: inherit;
+  }
 `;
 
 const SlideButton = styled.div`
-  margin-top: 30px;
+  /* margin-top: 20px; */
   display: flex;
   /* justify-content: center; */
 
