@@ -34,7 +34,8 @@ const Theme = ({ state }) => {
     <>
       {/* Add some metatags to the <head> of the HTML. */}
       <Head>
-        <meta name="description" content={state.frontity.description} />
+        <meta name="description" content={state.description} />
+        <title>{state.title}</title>
         <html lang="ru" />
       </Head>
 

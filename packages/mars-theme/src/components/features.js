@@ -22,7 +22,7 @@ const FeatureContainer = styled.div`
     width: fit-content;
     height: auto;
   }
-  & h4 {
+  & h3 {
     text-align: center;
     margin-top: 30px;
     font-size: 1.2em;
@@ -93,7 +93,7 @@ const featuresArr = [
     <ImageWrapper>
       <img src={Feature1} />
     </ImageWrapper>
-    <h4>Поиск и рекрутинг кандидатов</h4>
+    <h3>Поиск и рекрутинг кандидатов</h3>
     <p>
       Экономьте ваше время - находите лучших кандидатов за короткое время с
       помощью тестов
@@ -103,7 +103,7 @@ const featuresArr = [
     <ImageWrapper>
       <img src={Feature2} />
     </ImageWrapper>
-    <h4>Тестирование и оценка персонала</h4>
+    <h3>Тестирование и оценка персонала</h3>
     <p>
       Проверяйте реальные навыки и таланты сотрудников через систему оценки
       персонала
@@ -113,7 +113,7 @@ const featuresArr = [
     <ImageWrapper>
       <img src={Feature3} />
     </ImageWrapper>
-    <h4>Поиск талантов и лидеров</h4>
+    <h3>Поиск талантов и лидеров</h3>
     <p>
       Находите и взращивайте лидеров, которые приведут вашу компанию к успеху
     </p>
@@ -122,7 +122,7 @@ const featuresArr = [
     <ImageWrapper>
       <img src={Feature4} />
     </ImageWrapper>
-    <h4>Коллектив без конфликтов</h4>
+    <h3>Коллектив без конфликтов</h3>
     <p>Выявляйте, предотвращайте и разрешайте кофликты в коллективе</p>
   </>,
 ];

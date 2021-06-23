@@ -1,11 +1,5 @@
 const settings = {
   name: "veilstaff",
-  state: {
-    frontity: {
-      title: "Test Frontity Blog",
-      description: "WordPress installation for Frontity development",
-    },
-  },
   packages: [
     {
       name: "@frontity/mars-theme",

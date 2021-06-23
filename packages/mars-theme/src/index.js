@@ -11,6 +11,8 @@ export default {
       menu: [],
       isMobileMenuOpen: false,
     },
+    title: "Система подбора, тестирования и оценки персонала!",
+    description: ""
   },
   actions: {
     theme: {
