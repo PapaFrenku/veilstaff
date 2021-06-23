@@ -29,7 +29,7 @@ const settings = {
       name: "@frontity/wp-source",
       state: {
         source: {
-          url: "http://91.201.41.228/index.php/",
+          url: "http://veilstaff.com/index.php/",
           postTypes: [
             {
               type: "banner",

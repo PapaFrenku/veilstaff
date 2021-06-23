@@ -17,7 +17,7 @@ const Subtitle = styled.p`
   line-height: 20px;
   margin-top: 20px;
 
-  @media(max-width: 990px) {
+  @media (max-width: 990px) {
     margin-bottom: 35px;
   }
 `;
@@ -50,14 +50,14 @@ const ResultCard = styled.div`
     }
   }
 
-  @media(max-width: 990px) {
+  @media (max-width: 990px) {
     margin-left: 10px;
     margin-right: 10px;
     width: calc(33.333% - 20px);
     margin-bottom: 28px;
   }
 
-  @media(max-width: 620px) {
+  @media (max-width: 620px) {
     margin-left: 10px;
     margin-right: 10px;
     width: calc(50% - 20px);
@@ -84,8 +84,10 @@ const ResultCardContent = styled.p`
   font-weight: 300;
   color: inherit;
   padding: 18px;
+  // padding-top: 30px;
   text-align: center;
   line-height: 20px;
+  margin: 0;
 `;
 
 const ResultsList = styled.div`
@@ -96,7 +98,7 @@ const ResultsList = styled.div`
   padding-bottom: 48px;
   justify-content: center;
 
-  @media(max-width: 990px) {
+  @media (max-width: 990px) {
     flex-wrap: wrap;
     padding-bottom: 0;
     padding-top: 0;
@@ -112,7 +114,7 @@ const RecimendationCard = styled.div`
   width: 33.33333333%;
   flex-grow: 1;
 
-  @media(max-width: 990px) {
+  @media (max-width: 990px) {
     margin-left: 10px;
     margin-right: 10px;
     width: calc(50% - 20px);
@@ -124,48 +126,158 @@ const resultsList = [
   {
     title: "Общие рейтинги",
     content: (
-      <span>
-        Топ-20 лучших и худших сотрудников с учетом вовлеченности Топ-10 лучших
-        и худших руководителейс учетом вовлеченности Топ сотрудников с
-        максимальной/минимальной вовлечённостью Топ отделов по общей оценке"
-      </span>
+      <ol
+        style={{
+          padding: 0,
+          // paddingLeft: "12px",
+          textAlign: "left",
+        }}
+      >
+        <li
+        style={{
+          marginBottom: "5px",
+        }}
+        >Топ-20 <b>лучших</b> и <b>худших</b> <b>сотрудников</b> с учетом вовлеченности;</li>
+        <li
+        style={{
+          marginBottom: "5px",
+        }}
+        >топ-10 <b>лучших</b> и <b>худших руководителей</b> с учетом вовлеченности;</li>
+        <li
+        style={{
+          marginBottom: "5px",
+        }}
+        >топ сотрудников с <b>максимальной/минимальной</b> вовлечённостью;</li>
+        <li
+        style={{
+          marginBottom: "5px",
+        }}
+        >топ <b>отделов</b> по <b>общей оценке</b></li>
+      </ol>
     ),
   },
   {
     title: "По компетенциям",
     content: (
-      <span>
-        Оценка всех сотрудников (коллеги / подчиненные / руководители) Средние
-        оценки по каждому отделу Сводный отчет по каждой компетенции
-      </span>
+      <ol
+        style={{
+          padding: 0,
+          // paddingLeft: "12px",
+          textAlign: "left",
+        }}
+      >
+        <li 
+        style={{
+          marginBottom: "5px",
+        }}
+        >Оценка <b>всех сотрудников</b> (коллеги / подчиненные / руководители);</li>
+        <li
+        style={{
+          marginBottom: "5px",
+        }}
+        >средние оценки по <b>каждому отделу</b>;</li>
+        <li
+        style={{
+          marginBottom: "5px",
+        }}
+        >сводный отчет по каждой <b>компетенции</b></li>
+      </ol>
     ),
   },
   {
     title: "По вовлеченности",
     content: (
       <span>
-        Оценка всех сотрудников (коллеги / подчиненные / руководители) Оценка
-        вовлеченности; общая и средняя оценка; Отчет по отделам: средние оценки
-        по каждому отделу по каждой компетенции"
+        <ol
+          style={{
+            padding: 0,
+            // paddingLeft: "12px",
+            textAlign: "left",
+          }}
+        >
+          <li
+            style={{
+              marginBottom: "5px",
+            }}
+          >
+            Оценка всех <b>сотрудников</b> (коллеги / подчиненные / руководители);
+          </li>
+          <li
+            style={{
+              marginBottom: "5px",
+            }}
+          >
+            оценка вовлеченности;
+          </li>
+          <li
+            style={{
+              marginBottom: "5px",
+            }}
+          >
+            общая и средняя оценка;
+          </li>
+          <li>
+            <b>средние</b> оценки по каждому <b>отделу</b>, по каждой
+            <b>компетенции</b>
+          </li>
+        </ol>
       </span>
     ),
   },
   {
     title: "По навыкам",
     content: (
-      <span>
-        График “паутинка” с оценками по всем навыкамСредние оценки по навыкам
-        для руководителей Средние оценки по навыкам для сотрудников"
-      </span>
+      <ol
+      style={{
+        padding: 0,
+        // paddingLeft: "12px",
+        textAlign: "left",
+      }}
+      >
+        <li
+        style={{
+          marginBottom: "5px",
+        }}
+        >График <b>“паутинка”</b> с оценками по всем <b>навыкам</b>;</li>
+        <li
+        style={{
+          marginBottom: "5px",
+        }}
+        >cредние оценки по <b>навыкам</b> для <b>руководителей</b>;</li>
+        <li
+        style={{
+          marginBottom: "5px",
+        }}
+        >cредние оценки по <b>навыкам</b> для <b>сотрудников</b></li>
+      </ol>
     ),
   },
   {
     title: "По сотрудникам",
     content: (
-      <span>
-        Динамика прохождения опроса Стрессоустойчивость и взаимодействие с
-        людьми (худшие) Список талантов"
-      </span>
+      <ol 
+      style={{
+        padding: 0,
+        // paddingLeft: "12px",
+        textAlign: "left",
+      }}
+      >
+        <li
+        style={{
+          marginBottom: "5px",
+        }}
+        ><b>Динамика</b> прохождения <b>опроса</b></li>
+        <li
+        style={{
+          marginBottom: "5px",
+        }}
+        ><b>cтрессоустойчивость и взаимодействие с людьми</b>;</li>
+        <li
+        style={{
+          marginBottom: "5px",
+        }}
+        ><b>cписок талантов</b></li>
+      </ol>
     ),
   },
 ];

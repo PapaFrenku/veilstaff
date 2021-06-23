@@ -616,6 +616,21 @@ Note: Beware of modifying this element as it can break the animations - you shou
     background: rgba(255, 255, 255, 0.75) !important;
     top: 0;
   }
+
+  ol {
+    list-style: none ;
+
+    & li {
+      position: relative;
+
+      &::before {
+        content: "– ";
+        font-size: inherit;
+        color: inherit;
+        position: inline-block;
+      }
+    }
+  }
 `;
 
 export default connect(Theme);
