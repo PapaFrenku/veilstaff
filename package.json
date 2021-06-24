@@ -35,6 +35,7 @@
     "react-slick": "^0.28.1",
     "react-stickup": "^1.12.0",
     "react-svg": "^13.0.6",
-    "react-tabs": "^3.2.2"
+    "react-tabs": "^3.2.2",
+    "react-yandex-metrika": "^2.6.0"
   }
 }

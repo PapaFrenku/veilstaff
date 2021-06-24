@@ -18,7 +18,8 @@ import ContactForm from "./contactForm";
 import Footer from "./footer";
 import { window, document } from "global";
 import MobileMenu from "./mobileMenu";
-import FavIcon from '../assets/images/favicon.png'
+import FavIcon from '../assets/images/favicon.png';
+import ym, { YMInitializer } from 'react-yandex-metrika';
 
 // export const useDocument = () => {
 //   const [myDocument, setMyDocument] = useState(null);
@@ -33,7 +34,6 @@ import FavIcon from '../assets/images/favicon.png'
 const Theme = ({ state }) => {
   return (
     <>
-      {/* Add some metatags to the <head> of the HTML. */}
       <Head>
         <meta name="description" content={state.description} />
         <title>{state.title}</title>
@@ -91,41 +91,7 @@ const Theme = ({ state }) => {
         )}
       </script>
 
-      <script type="text/javascript">
-        {(function (m, e, t, r, i, k, a) {
-          m[i] =
-            m[i] ||
-            function () {
-              (m[i].a = m[i].a || []).push(arguments);
-            };
-          m[i].l = 1 * new Date();
-          (k = e.createElement(t)),
-            (a = e.getElementsByTagName(t)[0]),
-            (k.async = 1),
-            (k.src = r),
-            a.parentNode.insertBefore(k, a);
-        })(
-          window,
-          document,
-          "script",
-          "https://mc.yandex.ru/metrika/tag.js",
-          "ym"
-        ) &&
-          ym(62196937, "init", {
-            clickmap: true,
-            trackLinks: true,
-            accurateTrackBounce: true,
-          })}
-      </script>
-      <noscript>
-        <div>
-          <img
-            src="https://mc.yandex.ru/watch/62196937"
-            style="position:absolute; left:-9999px;"
-            alt=""
-          />
-        </div>
-      </noscript>
+      <YMInitializer accounts={[62196937]} options={{webvisor: true}} />
     </>
   );
 };
