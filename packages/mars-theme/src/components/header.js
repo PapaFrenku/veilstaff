@@ -9,7 +9,7 @@ import Button from "./styles/button";
 import CompanyNumber from "./styles/CompanyNumber";
 import { ReactSVG } from "react-svg";
 import PhoneCall from "../assets/images/phone-call.svg";
-
+import ym, { YMInitializer } from "react-yandex-metrika";
 export const categories = [
   {
     id: "about-programm",
@@ -124,6 +124,7 @@ export default class Header extends Component {
     if (window) {
       this.setState({ offset: window.pageYOffset });
     }
+    ym('hit', '/');
   };
 
   componentWillUnmount() {
