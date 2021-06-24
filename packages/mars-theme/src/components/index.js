@@ -19,7 +19,7 @@ import Footer from "./footer";
 import { window, document } from "global";
 import MobileMenu from "./mobileMenu";
 import FavIcon from "../assets/images/favicon.png";
-import ym, { YMInitializer } from "react-yandex-metrika";
+// import ym, { YMInitializer } from "react-yandex-metrika";
 
 // export const useDocument = () => {
 //   const [myDocument, setMyDocument] = useState(null);
@@ -32,11 +32,11 @@ import ym, { YMInitializer } from "react-yandex-metrika";
 // };
 
 const Theme = ({ state }) => {
-  useEffect(() => {
-    window.onload = function () {
-      ym('hit', '/');
-    };
-  }, []);
+  // useEffect(() => {
+  //   window.onload = function () {
+  //     ym('hit', '/');
+  //   };
+  // }, []);
 
   return (
     <>
@@ -46,7 +46,7 @@ const Theme = ({ state }) => {
         <link rel="shortcut icon" href={FavIcon}></link>
         <html lang="ru" />
       </Head>
-      <YMInitializer
+      {/* <YMInitializer
         accounts={[62196937]}
         options={{
           clickmap: true,
@@ -55,7 +55,7 @@ const Theme = ({ state }) => {
           webvisor: true,
           trackHash: true,
         }}
-      />
+      /> */}
 
       <FontFaces />
       <Global styles={globalStyles} />
@@ -106,7 +106,6 @@ const Theme = ({ state }) => {
           "https://vkmbitrix.ru/upload/crm/site_button/loader_3_61voe2.js"
         )}
       </script>
-      {/* <div>{setT}</div> */}
     </>
   );
 };
