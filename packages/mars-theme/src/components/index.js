@@ -43,17 +43,17 @@ const Theme = ({ state }) => {
       <Head>
         <meta name="description" content={state.description} />
         <title>{state.title}</title>
+        <meta name="yandex-verification" content="02223b7b24550df9" />
         <link rel="shortcut icon" href={FavIcon}></link>
         <html lang="ru" />
       </Head>
       <YMInitializer
         accounts={[62196937]}
         options={{
-          clickmap: true,
-          trackLinks: true,
-          accurateTrackBounce: true,
-          webvisor: true,
-          trackHash: true,
+          clickmap:true,
+          trackLinks:true,
+          accurateTrackBounce:true,
+          webvisor:true
         }}
       />
 
