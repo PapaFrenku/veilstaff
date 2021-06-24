@@ -36,6 +36,7 @@ const Theme = ({ state }) => {
       <Head>
         <meta name="description" content={state.description} />
         <title>{state.title}</title>
+        <link rel="shortcut icon" href="/favicon.ico"></link>
         <html lang="ru" />
       </Head>
 
