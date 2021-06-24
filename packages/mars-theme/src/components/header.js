@@ -160,6 +160,7 @@ export default class Header extends Component {
                       duration={200}
                       offset={-50}
                       onSetActive={() => this.scrollToCategory(category.id)}
+                      href={`/${category.id}`}
                     >
                       {category.title}
                     </Link>

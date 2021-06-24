@@ -181,6 +181,7 @@ const PreviewContainer = ({ state, actions, libraries }) => {
                       e.preventDefault();
                       setGetDemoIsOpen(true);
                     }}
+                    id="get-demo"
                     className="primaryButton"
                   >
                     <span>Попробовать демо</span>
@@ -194,6 +195,7 @@ const PreviewContainer = ({ state, actions, libraries }) => {
                     }}
                     style={{ marginLeft: "20px" }}
                     className="transparentButton"
+                    id="start"
                   >
                     <span>Начать работу</span>
                   </button>
