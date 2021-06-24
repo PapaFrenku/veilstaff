@@ -11,6 +11,7 @@ import Modal from "react-modal";
 import { window, document } from "global";
 import Cancel from "../assets/images/cancel.svg";
 import { ReactSVG } from "react-svg";
+import ym from 'react-yandex-metrika'
 
 {
   /* <PreviewContainer>
@@ -180,6 +181,7 @@ const PreviewContainer = ({ state, actions, libraries }) => {
                     onClick={(e) => {
                       e.preventDefault();
                       setGetDemoIsOpen(true);
+                      ym('reachGoal', 'get-demo')
                     }}
                     id="get-demo"
                     className="primaryButton"
@@ -192,6 +194,7 @@ const PreviewContainer = ({ state, actions, libraries }) => {
                     onClick={(e) => {
                       e.preventDefault();
                       setGetStartedIsOpen(true);
+                      ym('reachGoal', 'start')
                     }}
                     style={{ marginLeft: "20px" }}
                     className="transparentButton"
