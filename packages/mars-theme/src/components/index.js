@@ -18,6 +18,7 @@ import ContactForm from "./contactForm";
 import Footer from "./footer";
 import { window, document } from "global";
 import MobileMenu from "./mobileMenu";
+import FavIcon from '../assets/images/favicon.png'
 
 // export const useDocument = () => {
 //   const [myDocument, setMyDocument] = useState(null);
@@ -36,6 +37,7 @@ const Theme = ({ state }) => {
       <Head>
         <meta name="description" content={state.description} />
         <title>{state.title}</title>
+        <link rel="shortcut icon" href={FavIcon}></link>
         <html lang="ru" />
       </Head>
 
