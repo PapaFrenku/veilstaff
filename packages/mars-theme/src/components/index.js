@@ -88,6 +88,37 @@ const Theme = ({ state }) => {
           "https://vkmbitrix.ru/upload/crm/site_button/loader_3_61voe2.js"
         )}
       </script>
+
+      <script type="text/javascript">
+        {(function (m, e, t, r, i, k, a) {
+          if (e) {
+            m[i] =
+              m[i] ||
+              function () {
+                (m[i].a = m[i].a || []).push(arguments);
+              };
+            m[i].l = 1 * new Date();
+            (k = e.createElement(t)),
+              (a = e.getElementsByTagName(t)[0]),
+              (k.async = 1),
+              (k.src = r),
+              a.parentNode.insertBefore(k, a);
+          }
+        })(
+          window,
+          document,
+          "script",
+          "https://mc.yandex.ru/metrika/tag.js",
+          "ym"
+        ) &&
+          ym(62196937, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true,
+            ecommerce: "dataLayer",
+          })}
+      </script>
     </>
   );
 };
@@ -619,7 +650,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   }
 
   ol {
-    list-style: none ;
+    list-style: none;
 
     & li {
       position: relative;

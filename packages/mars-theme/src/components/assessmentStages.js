@@ -150,7 +150,7 @@ const AssessmentStages = () => {
             <StageListCol>
               {stages2.map((text, idx) => (
                 <StageItem key={text}>
-                  <StageCounter>{stages1.length + idx}</StageCounter>
+                  <StageCounter>{stages1.length + idx + 1}</StageCounter>
                   <StageText>{text}</StageText>
                 </StageItem>
               ))}
