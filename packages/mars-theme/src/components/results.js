@@ -80,7 +80,7 @@ const ResultCardTitle = styled.h4`
   border: 2px solid ${config.collors.primary};
 `;
 
-const ResultCardContent = styled.p`
+const ResultCardContent = styled.div`
   font-weight: 300;
   color: inherit;
   padding: 18px;
