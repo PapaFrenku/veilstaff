@@ -32,11 +32,11 @@ import ym, { YMInitializer } from "react-yandex-metrika";
 // };
 
 const Theme = ({ state }) => {
-  useEffect(() => {
-    window.onload = function () {
-      ym('hit', '/');
-    };
-  }, []);
+  // useEffect(() => {
+  //   window.onload = function () {
+  //     ym('hit', '/');
+  //   };
+  // }, []);
 
   return (
     <>
@@ -47,7 +47,7 @@ const Theme = ({ state }) => {
         <link rel="shortcut icon" href={FavIcon}></link>
         <html lang="ru" />
       </Head>
-      <YMInitializer
+      {/* <YMInitializer
         accounts={[62196937]}
         options={{
           clickmap:true,
@@ -55,7 +55,7 @@ const Theme = ({ state }) => {
           accurateTrackBounce:true,
           webvisor:true
         }}
-      />
+      /> */}
 
       <FontFaces />
       <Global styles={globalStyles} />
