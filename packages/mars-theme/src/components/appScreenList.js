@@ -274,7 +274,7 @@ const AppScreenList = ({ state, actions, libraries }) => {
 
   const prev = () => {
     slick.current.slickPrev();
-    if (currentSlide - 1 < 0) {
+    if (currentSlide === 0) {
       setCurrentSlide(slides.length - 1);
     } else {
       setCurrentSlide((prev) => prev - 1);
