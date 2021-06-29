@@ -19,6 +19,7 @@ import Footer from "./footer";
 import { window, document } from "global";
 import MobileMenu from "./mobileMenu";
 import FavIcon from "../assets/images/favicon.png";
+import parser from "html-react-parser";
 
 // export const useDocument = () => {
 //   const [myDocument, setMyDocument] = useState(null);
@@ -32,45 +33,61 @@ import FavIcon from "../assets/images/favicon.png";
 
 const Theme = ({ state }) => {
   const [metrikaIsInited, setMetrikaIsInited] = useState(false);
-  const init = function (m, e, t, r, i, k, a, resolve) {
-    m[i] =
-      m[i] ||
-      function () {
-        (m[i].a = m[i].a || []).push(arguments);
-      };
-    m[i].l = 1 * new Date();
-    (k = e.createElement(t)),
-      (a = e.getElementsByTagName(t)[0]),
-      (k.async = 1),
-      (k.src = r),
-      a.parentNode.insertBefore(k, a);
-    setMetrikaIsInited(true);
+  const [data, setData] = useState([]);
+
+  const getData = async () => {
+    const arr = [];
+    for (let key in state.source.post) {
+      if (state.source.post[key].acf.type === "html") {
+        arr.push(state.source.post[key]);
+      }
+    }
+
+    setData(arr);
   };
 
   useEffect(() => {
-    window.onload = () => {
-      init(
-        window,
-        document,
-        "script",
-        "https://mc.yandex.ru/metrika/tag.js",
-        "ym"
-      );
-    };
+    getData();
   }, []);
 
-  useEffect(() => {
-    if (metrikaIsInited && window.hasOwnProperty("ym")) {
-      window.ym(62196937, "init", {
-        clickmap: true,
-        trackLinks: true,
-        accurateTrackBounce: true,
-        webvisor: true,
-        defer: true,
-      });
-    }
-  }, [metrikaIsInited]);
+  // const init = function (m, e, t, r, i, k, a, resolve) {
+  //   m[i] =
+  //     m[i] ||
+  //     function () {
+  //       (m[i].a = m[i].a || []).push(arguments);
+  //     };
+  //   m[i].l = 1 * new Date();
+  //   (k = e.createElement(t)),
+  //     (a = e.getElementsByTagName(t)[0]),
+  //     (k.async = 1),
+  //     (k.src = r),
+  //     a.parentNode.insertBefore(k, a);
+  //   setMetrikaIsInited(true);
+  // };
 
+  // useEffect(() => {
+  //   window.onload = () => {
+  //     init(
+  //       window,
+  //       document,
+  //       "script",
+  //       "https://mc.yandex.ru/metrika/tag.js",
+  //       "ym"
+  //     );
+  //   };
+  // }, []);
+
+  // useEffect(() => {
+  //   if (metrikaIsInited && window.hasOwnProperty("ym")) {
+  //     window.ym(62196937, "init", {
+  //       clickmap: true,
+  //       trackLinks: true,
+  //       accurateTrackBounce: true,
+  //       webvisor: true,
+  //       defer: true,
+  //     });
+  //   }
+  // }, [metrikaIsInited]);
   return (
     <>
       <Head>
@@ -80,15 +97,6 @@ const Theme = ({ state }) => {
         <link rel="shortcut icon" href={FavIcon}></link>
         <html lang="ru" />
       </Head>
-      {/* <YMInitializer
-          accounts={[62196937]}
-          options={{
-            clickmap: true,
-            trackLinks: true,
-            accurateTrackBounce: true,
-            webvisor: true,
-          }}
-        /> */}
       <FontFaces />
       <Global styles={globalStyles} />
 
@@ -138,6 +146,7 @@ const Theme = ({ state }) => {
           "https://vkmbitrix.ru/upload/crm/site_button/loader_3_61voe2.js"
         )}
       </script>
+      {data.length && window ? parser(data[0].acf.html) : null}
     </>
   );
 };
