@@ -58,6 +58,17 @@ const CloseBtn = styled.button`
   display: block;
   margin-left: auto;
   cursor: pointer;
+  right: 20px;
+  padding-top: 10px;
+  
+  padding-bottom: 10px;
+  & > div {
+    width: 20px;
+    height: 20px;
+    margin-left: auto;
+    margin-right: 10px;
+   
+  }
   & svg {
     width: 20px;
     height: 20px;
@@ -68,10 +79,6 @@ const Container = styled.div`
   background: #fff;
   padding-top: 65px;
   padding-bottom: 67px;
-
-  & .ReactModal__Content {
-    width: 50%;
-  }
 `;
 
 const SliderBg = styled.div`
@@ -373,7 +380,7 @@ const AppScreenList = ({ state, actions, libraries }) => {
             setFullScreenImage(null);
           }}
         >
-          <ReactSVG src={Cancel} />
+          <div><ReactSVG src={Cancel} /></div>
           <img src={fullScreenImage} onClick={() => {}}></img>
         </CloseBtn>
       </Modal>

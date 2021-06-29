@@ -654,7 +654,8 @@ Note: Beware of modifying this element as it can break the animations - you shou
   }
 
   .ReactModal__Content {
-    width: 50% !important;
+    width: 65% !important;
+    padding: 0 !important;
   }
 
   @media(max-width: 1100px) {
