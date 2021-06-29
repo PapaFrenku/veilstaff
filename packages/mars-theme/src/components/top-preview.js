@@ -89,11 +89,18 @@ const SlideTitle = styled.h2`
   line-height: 1em;
   margin: 0;
   margin-bottom: 40px;
-  max-width: 466px;
   @media (max-width: 930px) {
     margin-bottom: 10px;
     margin-top: 20px;
     font-size: 1.8em;
+  }
+
+  & span {
+    font-size: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+    line-height: inherit;
+    display: block;
   }
 `;
 
@@ -116,7 +123,7 @@ const SlideButton = styled.div`
   /* margin-top: 20px; */
   display: flex;
   /* justify-content: center; */
-
+  width: 100%;
   @media (max-width: 500px) {
     flex-direction: column;
     width: 100%;
@@ -173,15 +180,23 @@ const PreviewContainer = ({ state, actions, libraries }) => {
           <SlideContainer key={idx}>
             <img src={item.banner_image.url} />
             <SlideContent key={1}>
-              <SlideTitle>{item.banner_title}</SlideTitle>
+              <SlideTitle>{parse(item.banner_title)}</SlideTitle>
               <SlideText>{parse(item.banner_content)}</SlideText>
               <SlideButton>
                 {item.button_get_demo && (
                   <button
+                  style={{width: '100%', maxWidth: "420px"}}
+                    // onClick={(e) => {
+                    //   e.preventDefault();
+                    //   setGetDemoIsOpen(true);
+                    //   ym('reachGoal', 'get-demo')
+                    // }}
                     onClick={(e) => {
                       e.preventDefault();
-                      setGetDemoIsOpen(true);
-                      ym('reachGoal', 'get-demo')
+                      window.scrollTo({
+                        top: document.body.scrollHeight,
+                        behavior: "smooth",
+                      });
                     }}
                     id="get-demo"
                     className="primaryButton"
@@ -189,7 +204,7 @@ const PreviewContainer = ({ state, actions, libraries }) => {
                     <span>Попробовать демо</span>
                   </button>
                 )}
-                {item.button_get_started && (
+                {/* {item.button_get_started && (
                   <button
                     onClick={(e) => {
                       e.preventDefault();
@@ -202,7 +217,7 @@ const PreviewContainer = ({ state, actions, libraries }) => {
                   >
                     <span>Начать работу</span>
                   </button>
-                )}
+                )} */}
               </SlideButton>
             </SlideContent>
           </SlideContainer>
@@ -225,7 +240,7 @@ const PreviewContainer = ({ state, actions, libraries }) => {
       </Container>
       <Features />
       <ForWhom />
-      <Modal
+      {/* <Modal
         isOpen={getStartedmodalIsOpen}
         onRequestClose={() => {
           setGetStartedIsOpen(false);
@@ -291,7 +306,7 @@ const PreviewContainer = ({ state, actions, libraries }) => {
             "https://vkmbitrix.ru/upload/crm/form/loader_31_uze9f6.js"
           )}{" "}
         </script>
-      </Modal>
+      </Modal> */}
     </Element>
   );
 };

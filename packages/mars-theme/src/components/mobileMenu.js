@@ -135,6 +135,7 @@ class MobileMenu extends Component {
                     top: document.body.scrollHeight,
                     behavior: "smooth",
                   });
+                  this.setState({isOpen: false})
                 }}
                 type="button"
                 style={{

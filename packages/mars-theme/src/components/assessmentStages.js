@@ -17,12 +17,14 @@ const Container = styled.div`
 
 const HeadText = styled.p`
   font-weight: 300;
-  color: #5c5c5c;
   line-height: 19px;
   text-align: center;
   max-width: 435px;
   margin: 0 auto;
   margin-top: 17px;
+  font-weight: 600;
+  font-size: 16px;
+  color: #000;
 `;
 
 const StageList = styled.div`

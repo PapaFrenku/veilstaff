@@ -47,24 +47,23 @@ const ItemsList = styled.ul`
 `;
 
 const AdditionalText = styled.p`
-  color: #5c5c5c;
   font-size: 1em;
   line-height: 20px;
-  font-weight: 300;
+  font-weight: 600;
   text-align: center;
   max-width: 620px;
   margin: 0 auto;
-  margin-bottom: 60px;
-  margin-top: 30px;
+  margin-bottom: 50px;
+  margin-top: 20px;
 
-  @media(max-width: 690px) {
+  /* @media(max-width: 690px) {
     margin-bottom: 0px;
-  }
+  } */
 `;
 
 const Container = styled.div`
   padding-top: 60px;
-  padding-bottom: 60px;
+  padding-bottom: 72px;
   position: relative;
 `;
 

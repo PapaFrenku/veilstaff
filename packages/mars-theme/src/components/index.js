@@ -43,7 +43,7 @@ const Theme = ({ state }) => {
       <Head>
         <meta name="description" content={state.description} />
         <title>{state.title}</title>
-        <meta name="yandex-verification" content="02223b7b24550df9" />
+        <meta name="yandex-verification" content="2565820f9675e0a5" />
         <link rel="shortcut icon" href={FavIcon}></link>
         <html lang="ru" />
       </Head>
@@ -483,7 +483,9 @@ const globalStyles = css`
       opacity: 1;
     }
   }
-
+  .ReactModal__Overlay {
+    z-index: 1000000;
+  }
   .primaryButton {
     background: ${config.collors.primary};
     color: #fff;

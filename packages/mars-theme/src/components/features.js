@@ -1,10 +1,10 @@
 import React, { useRef, useMemo, useEffect, useState } from "react";
 import { styled } from "frontity";
 import { Element } from "react-scroll";
-import Feature1 from "../assets/images/feature1.png";
-import Feature2 from "../assets/images/feature2.png";
+import Feature1 from "../assets/images/searching.svg";
+import Feature2 from "../assets/images/thinking.svg";
 import Feature3 from "../assets/images/feature3.png";
-import Feature4 from "../assets/images/feature4.png";
+import Feature4 from "../assets/images/high-five.svg";
 import ForWhom from "./forWhom";
 
 const FeatureContainer = styled.div`
@@ -19,37 +19,40 @@ const FeatureContainer = styled.div`
   height: inherit;
   position: relative;
   & img {
-    width: fit-content;
-    height: auto;
+    width: auto;
+    height: 100%;
   }
   & h3 {
     text-align: center;
     margin-top: 30px;
-    font-size: 1.2em;
+    font-size: 1.4em;
     margin-top: 30px;
     margin-bottom: 0;
     font-weight: 600;
-    max-width: 200px;
-    line-height: 20px;
+    
+    max-width: 235px;
+    line-height: 1em;
   }
   & p {
     text-align: center;
-    font-size: 14px;
+    /* font-size: 14px; */
     margin: 0;
     margin-top: 20px;
+    font-weight: 300;
+    line-height: 20px;
   }
 
-  @media(max-width: 1200px) {
+  @media (max-width: 1200px) {
     max-width: 215px;
   }
 
-  @media(max-width: 960px) {
+  @media (max-width: 960px) {
     width: 50%;
     max-width: unset;
     margin-bottom: 20px;
   }
 
-  @media(max-width: 410px) {
+  @media (max-width: 410px) {
     width: 100%;
     margin-bottom: 30px;
   }
@@ -63,7 +66,7 @@ const Plus = styled.span`
   position: absolute;
   right: -18px;
   top: 40px;
-  @media(max-width: 960px) {
+  @media (max-width: 960px) {
     display: none;
   }
 `;
@@ -79,13 +82,13 @@ const FeaturesList = styled.div`
 `;
 
 const BlockContainer = styled.div`
-  padding-top: 4em;
-  padding-bottom: 6.25em;
+ padding-top: 4.5em;
+  padding-bottom: 4.65em;
   background-color: #fff;
 `;
 
 const ImageWrapper = styled.div`
-  height: 120px;
+  height: 100px;
 `;
 
 const featuresArr = [
@@ -120,7 +123,7 @@ const featuresArr = [
   </>,
   <>
     <ImageWrapper>
-      <img src={Feature4} />
+      <img style={{ marginTop: "-5px" }} src={Feature4} />
     </ImageWrapper>
     <h3>Коллектив без конфликтов</h3>
     <p>Выявляйте, предотвращайте и разрешайте кофликты в коллективе</p>
@@ -146,7 +149,7 @@ const Features = () => {
       <div className="container">
         <FeaturesList ref={listEl}>
           {featuresArr.map((item, idx, arr) => (
-            <FeatureContainer key={idx} style={{position: "relative" }}>
+            <FeatureContainer key={idx} style={{ position: "relative" }}>
               {item}
               {idx !== 3 ? <Plus>+</Plus> : null}
             </FeatureContainer>

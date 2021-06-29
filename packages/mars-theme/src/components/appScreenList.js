@@ -9,6 +9,21 @@ import Screen1 from "../assets/images/screen1.png";
 import config from "../config";
 import AssessmentStages from "./assessmentStages";
 import Advantages from "./advantages";
+import Screen from "../assets/images/website.svg";
+import Modal from "react-modal";
+import Cancel from "../assets/images/cancel.svg";
+import SearchIcon from "../assets/images/magnifier.svg";
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    zIndex: "1000000"
+  },
+};
 
 const UnderText = styled.p`
   font-weight: 300;
@@ -20,15 +35,39 @@ const UnderText = styled.p`
   max-width: 550px;
   margin-top: 40px;
   height: 70px;
-  @media(max-width: 500px) {
+  @media (max-width: 500px) {
     margin-top: 0px;
   }
 `;
 
+const HeadingIcon = styled.div`
+  color: #5c5c5c;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  & svg {
+    width: 50px;
+    height: 50px;
+  }
+`;
+
+const CloseBtn = styled.button`
+  background: transparent;
+  border: none;
+  display: block;
+  margin-left: auto;
+  cursor: pointer;
+  & svg {
+    width: 12px;
+    height: 12px;
+  }
+`;
+
+
 const Container = styled.div`
   background: #fff;
-  padding-top: 95px;
-  padding-bottom: 50px;
+  padding-top: 65px;
+  padding-bottom: 67px;
 `;
 
 const SliderBg = styled.div`
@@ -46,21 +85,44 @@ const SliderBg = styled.div`
   /* overflow: hidden; */
   align-items: center;
   justify-content: center;
-
+  position: relative;
   & > div {
     /* max-width: 485px; */
     width: calc(100% - 100px);
     /* height: 320px; */
   }
 
-  @media(max-width: 650px) {
+  &::before {
+    content: "";
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: ${config.collors.primary};
+    background-image: url(${SearchIcon});
+    position: absolute;
+    top: -20px;
+    right: 20px;
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1000;
+    
+  }
 
+  @media (max-width: 650px) {
     & > div {
-      width: 80%
+      width: 80%;
+    }
+
+    &::before {
+      top: 18px;
+      right: 18px;
+      width: 50px;
+      height: 50px;
     }
   }
 
-  @media(max-width: 500px) {
+  @media (max-width: 500px) {
     height: 270px;
   }
 `;
@@ -69,6 +131,8 @@ const SlideWrapper = styled.div`
   position: relative;
   padding-left: 4px;
   overflow: hidden;
+  position: relative;
+  cursor: zoom-in;
   & img {
     width: inherit;
     height: inherit;
@@ -85,8 +149,10 @@ const LinksList = styled.ul`
   margin-bottom: 50px;
   top: 95px;
   flex-wrap: wrap;
-  @media(max-width: 690px) {
+  margin-top: 50px;
+  @media (max-width: 690px) {
     margin-bottom: 0px;
+    margin-top: 30px;
   }
 `;
 
@@ -128,16 +194,16 @@ const ArroWrapper = styled.div`
   justify-content: center;
   align-items: center;
   transform: ${(props) => (props.isPrev ? "rotate(180deg)" : "")};
-  left: ${props => props.isPrev ? '-95px' : 'unset'};
-  right: ${props => props.isPrev ? 'unset' : '-100px'};
+  left: ${(props) => (props.isPrev ? "-95px" : "unset")};
+  right: ${(props) => (props.isPrev ? "unset" : "-100px")};
   &:hover {
     background-color: ${config.collors.primary};
     color: #fff;
   }
 
-  @media(max-width: 740px) {
-    left: ${props => props.isPrev ? '-20px' : 'unset'};
-    right: ${props => props.isPrev ? 'unset' : '-20px'};
+  @media (max-width: 740px) {
+    left: ${(props) => (props.isPrev ? "-20px" : "unset")};
+    right: ${(props) => (props.isPrev ? "unset" : "-20px")};
   }
 
   & svg {
@@ -146,29 +212,32 @@ const ArroWrapper = styled.div`
   }
 `;
 
-const AppScreenList = ({state, actions, libraries}) => {
+const AppScreenList = ({ state, actions, libraries }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [fullScreenImage, setFullScreenImage] = useState(null)
 
   const [data, setData] = useState([]);
 
   const getData = async () => {
-    const arr = []
-    for(let key in state.source.post) {
-      if(state.source.post[key].acf.type === 'screen') {
-        arr.push(state.source.post[key])
+    const arr = [];
+    for (let key in state.source.post) {
+      if (state.source.post[key].acf.type === "screen") {
+        arr.push(state.source.post[key]);
       }
     }
 
-    setData(arr)
+    setData(arr);
   };
 
   const slides = useMemo(() => {
-    return data.map((item) => ({
-      title: item.acf.title,
-      image: item.acf.image,
-      index: item.acf.index,
-      description: item.acf.description
-    })).sort((a, b) => a.index - b.index)
+    return data
+      .map((item) => ({
+        title: item.acf.title,
+        image: item.acf.image,
+        index: item.acf.index,
+        description: item.acf.description,
+      }))
+      .sort((a, b) => a.index - b.index);
   }, [data]);
 
   useEffect(() => {
@@ -226,7 +295,11 @@ const AppScreenList = ({state, actions, libraries}) => {
   };
 
   return (
-    <Element name="interface" className="interface" key={"display" + "interface"}>
+    <Element
+      name="interface"
+      className="interface"
+      key={"display" + "interface"}
+    >
       <Container>
         <div
           style={{
@@ -236,6 +309,15 @@ const AppScreenList = ({state, actions, libraries}) => {
           }}
           className="container"
         >
+          <HeadingIcon>
+            <ReactSVG src={Screen} />
+          </HeadingIcon>
+          <h2
+            style={{ textAlign: "center", marginTop: "20px" }}
+            className="blockTitle"
+          >
+            Экранны приложения
+          </h2>
           <LinksList>
             {slides.map((item, idx) => (
               <LinkWrapper
@@ -254,18 +336,37 @@ const AppScreenList = ({state, actions, libraries}) => {
             <Slider ref={slick} {...settings}>
               {slides.map((item) => (
                 <SlideWrapper key={item.title}>
-                  <img src={item.image.url} alt={item.title}></img>
+                  <img src={item.image.url} onClick={() => {
+                    setFullScreenImage(item.image.url)
+                  }} alt={item.title}></img>
                 </SlideWrapper>
               ))}
             </Slider>
           </SliderBg>
-          <UnderText>
-            {slides[currentSlide]?.description}
-          </UnderText>
+          <UnderText>{slides[currentSlide]?.description}</UnderText>
         </div>
       </Container>
       <AssessmentStages />
       <Advantages />
+
+      <Modal
+        isOpen={fullScreenImage}
+        onRequestClose={() => {
+          setFullScreenImage(null);
+        }}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+        <CloseBtn
+          onClick={(e) => {
+            setFullScreenImage(null)
+          }}
+        >
+          <ReactSVG src={Cancel} />
+          <img src={fullScreenImage} onClick={() => {
+          }}></img>
+        </CloseBtn>
+      </Modal>
     </Element>
   );
 };
