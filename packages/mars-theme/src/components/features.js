@@ -36,10 +36,10 @@ const FeatureContainer = styled.div`
   & p {
     text-align: center;
     /* font-size: 14px; */
-    margin: 0;
-    margin-top: 20px;
+    color: #5c5c5c;
     font-weight: 300;
     line-height: 20px;
+    max-width: 620px;
   }
 
   @media (max-width: 1200px) {

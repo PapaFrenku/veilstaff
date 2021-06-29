@@ -35,9 +35,8 @@ const Form = styled.form`
 `;
 
 const Subtitle = styled.div`
-  color: #5c5c5c;
   line-height: 20px;
-  font-weight: 300;
+  font-weight: 600;
   text-align: center;
   max-width: 245px;
   margin: 0 auto;
