@@ -88,7 +88,7 @@ const BlockContainer = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-  height: 100px;
+  height: 90px;
 `;
 
 const featuresArr = [
