@@ -185,7 +185,7 @@ export default class Header extends Component {
                     
                     const element = document.getElementById("feedbackForm");
                     window.scrollTo({
-                      top: document.body.scrollHeight - element.offsetHeight,
+                      top: document.body.scrollHeight - (element.offsetHeight + 100),
                       behavior: "smooth",
                     });
                   }}

@@ -11,7 +11,7 @@ import Modal from "react-modal";
 import { window, document } from "global";
 import Cancel from "../assets/images/cancel.svg";
 import { ReactSVG } from "react-svg";
-import ym from 'react-yandex-metrika'
+import ym from "react-yandex-metrika";
 
 {
   /* <PreviewContainer>
@@ -185,7 +185,7 @@ const PreviewContainer = ({ state, actions, libraries }) => {
               <SlideButton>
                 {item.button_get_demo && (
                   <button
-                  style={{width: '100%', maxWidth: "420px"}}
+                    style={{ width: "100%", maxWidth: "420px" }}
                     // onClick={(e) => {
                     //   e.preventDefault();
                     //   setGetDemoIsOpen(true);
@@ -193,8 +193,9 @@ const PreviewContainer = ({ state, actions, libraries }) => {
                     // }}
                     onClick={(e) => {
                       e.preventDefault();
+                      const element = document.getElementById("feedbackForm");
                       window.scrollTo({
-                        top: document.body.scrollHeight,
+                        top: document.body.scrollHeight - (element.offsetHeight + 100),
                         behavior: "smooth",
                       });
                     }}
