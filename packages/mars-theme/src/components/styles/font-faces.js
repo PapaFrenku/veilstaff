@@ -30,7 +30,7 @@ const FontFace = ({ state }) => {
         }
         @font-face {
           font-family: "MyriadPro";
-          font-weight: normal;
+          font-weight: 400;
 	        font-style: normal;
           src: url(${font[1]}) format("woff");
         }

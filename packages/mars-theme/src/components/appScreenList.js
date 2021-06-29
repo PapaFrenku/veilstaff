@@ -368,7 +368,7 @@ const AppScreenList = ({ state, actions, libraries }) => {
       <Advantages />
 
       <Modal
-        isOpen={fullScreenImage}
+        isOpen={!!fullScreenImage}
         onRequestClose={() => {
           setFullScreenImage(null);
         }}

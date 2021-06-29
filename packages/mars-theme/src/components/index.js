@@ -19,7 +19,6 @@ import Footer from "./footer";
 import { window, document } from "global";
 import MobileMenu from "./mobileMenu";
 import FavIcon from "../assets/images/favicon.png";
-import ym, { YMInitializer } from "react-yandex-metrika";
 
 // export const useDocument = () => {
 //   const [myDocument, setMyDocument] = useState(null);
@@ -32,12 +31,45 @@ import ym, { YMInitializer } from "react-yandex-metrika";
 // };
 
 const Theme = ({ state }) => {
-  // useEffect(() => {
-  //   window.onload = function () {
-  //     ym('hit', '/');
-  //   };
-  // }, []);
+  const [metrikaIsInited, setMetrikaIsInited] = useState(false);
+  const init = function (m, e, t, r, i, k, a, resolve) {
+    m[i] =
+      m[i] ||
+      function () {
+        (m[i].a = m[i].a || []).push(arguments);
+      };
+    m[i].l = 1 * new Date();
+    (k = e.createElement(t)),
+      (a = e.getElementsByTagName(t)[0]),
+      (k.async = 1),
+      (k.src = r),
+      a.parentNode.insertBefore(k, a);
+    setMetrikaIsInited(true);
+  };
 
+  useEffect(() => {
+    window.onload = () => {
+      init(
+        window,
+        document,
+        "script",
+        "https://mc.yandex.ru/metrika/tag.js",
+        "ym"
+      );
+    };
+  }, []);
+
+  useEffect(() => {
+    if (metrikaIsInited && window.hasOwnProperty('ym')) {
+      window.ym(62196937, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        webvisor: true,
+      });
+    }
+  }, [metrikaIsInited]);
+  
   return (
     <>
       <Head>
@@ -47,16 +79,15 @@ const Theme = ({ state }) => {
         <link rel="shortcut icon" href={FavIcon}></link>
         <html lang="ru" />
       </Head>
-      <YMInitializer
-        accounts={[62196937]}
-        options={{
-          clickmap:true,
-          trackLinks:true,
-          accurateTrackBounce:true,
-          webvisor:true
-        }}
-      />
-
+      {/* <YMInitializer
+          accounts={[62196937]}
+          options={{
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true,
+          }}
+        /> */}
       <FontFaces />
       <Global styles={globalStyles} />
 
@@ -658,7 +689,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
     padding: 0 !important;
   }
 
-  @media(max-width: 1100px) {
+  @media (max-width: 1100px) {
     .ReactModal__Content {
       width: 100% !important;
     }
