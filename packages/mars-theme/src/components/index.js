@@ -652,6 +652,16 @@ Note: Beware of modifying this element as it can break the animations - you shou
       }
     }
   }
+
+  .ReactModal__Content {
+    width: 50% !important;
+  }
+
+  @media(max-width: 1100px) {
+    .ReactModal__Content {
+      width: 100% !important;
+    }
+  }
 `;
 
 export default connect(Theme);

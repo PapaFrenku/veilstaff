@@ -13,6 +13,7 @@ import Screen from "../assets/images/website.svg";
 import Modal from "react-modal";
 import Cancel from "../assets/images/cancel.svg";
 import SearchIcon from "../assets/images/magnifier.svg";
+
 const customStyles = {
   content: {
     top: "50%",
@@ -22,7 +23,6 @@ const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     zIndex: "1000000",
-    width: '80%'
   },
 };
 
@@ -68,6 +68,10 @@ const Container = styled.div`
   background: #fff;
   padding-top: 65px;
   padding-bottom: 67px;
+
+  & .ReactModal__Content {
+    width: 50%;
+  }
 `;
 
 const SliderBg = styled.div`
