@@ -21,7 +21,8 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    zIndex: "1000000"
+    zIndex: "1000000",
+    width: '80%'
   },
 };
 
@@ -58,11 +59,10 @@ const CloseBtn = styled.button`
   margin-left: auto;
   cursor: pointer;
   & svg {
-    width: 12px;
-    height: 12px;
+    width: 20px;
+    height: 20px;
   }
 `;
-
 
 const Container = styled.div`
   background: #fff;
@@ -86,6 +86,7 @@ const SliderBg = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  cursor: zoom-in;
   & > div {
     /* max-width: 485px; */
     width: calc(100% - 100px);
@@ -106,7 +107,7 @@ const SliderBg = styled.div`
     background-repeat: no-repeat;
     background-position: center;
     z-index: 1000;
-    
+    cursor: zoom-in;
   }
 
   @media (max-width: 650px) {
@@ -196,6 +197,7 @@ const ArroWrapper = styled.div`
   transform: ${(props) => (props.isPrev ? "rotate(180deg)" : "")};
   left: ${(props) => (props.isPrev ? "-95px" : "unset")};
   right: ${(props) => (props.isPrev ? "unset" : "-100px")};
+  cursor: pointer;
   &:hover {
     background-color: ${config.collors.primary};
     color: #fff;
@@ -214,7 +216,7 @@ const ArroWrapper = styled.div`
 
 const AppScreenList = ({ state, actions, libraries }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [fullScreenImage, setFullScreenImage] = useState(null)
+  const [fullScreenImage, setFullScreenImage] = useState(null);
 
   const [data, setData] = useState([]);
 
@@ -263,7 +265,8 @@ const AppScreenList = ({ state, actions, libraries }) => {
     );
   };
 
-  const next = () => {
+  const next = (e) => {
+    e.stopPropagation()
     slick.current.slickNext();
     if (currentSlide + 1 === slides.length) {
       setCurrentSlide(0);
@@ -272,7 +275,8 @@ const AppScreenList = ({ state, actions, libraries }) => {
     }
   };
 
-  const prev = () => {
+  const prev = (e) => {
+    e.stopPropagation()
     slick.current.slickPrev();
     if (currentSlide === 0) {
       setCurrentSlide(slides.length - 1);
@@ -316,7 +320,7 @@ const AppScreenList = ({ state, actions, libraries }) => {
             style={{ textAlign: "center", marginTop: "20px" }}
             className="blockTitle"
           >
-            Экранны приложения
+            Экраны приложения
           </h2>
           <LinksList>
             {slides.map((item, idx) => (
@@ -332,13 +336,16 @@ const AppScreenList = ({ state, actions, libraries }) => {
               </LinkWrapper>
             ))}
           </LinksList>
-          <SliderBg>
+          <SliderBg
+            onClick={(e) => {
+              const slide = slides[currentSlide].image.url
+              setFullScreenImage(slide);
+            }}
+          >
             <Slider ref={slick} {...settings}>
               {slides.map((item) => (
                 <SlideWrapper key={item.title}>
-                  <img src={item.image.url} onClick={() => {
-                    setFullScreenImage(item.image.url)
-                  }} alt={item.title}></img>
+                  <img src={item.image.url} alt={item.title}></img>
                 </SlideWrapper>
               ))}
             </Slider>
@@ -359,12 +366,11 @@ const AppScreenList = ({ state, actions, libraries }) => {
       >
         <CloseBtn
           onClick={(e) => {
-            setFullScreenImage(null)
+            setFullScreenImage(null);
           }}
         >
           <ReactSVG src={Cancel} />
-          <img src={fullScreenImage} onClick={() => {
-          }}></img>
+          <img src={fullScreenImage} onClick={() => {}}></img>
         </CloseBtn>
       </Modal>
     </Element>

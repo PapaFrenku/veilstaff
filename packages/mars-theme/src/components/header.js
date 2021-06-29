@@ -182,8 +182,10 @@ export default class Header extends Component {
                   bgColor={config.collors.secondary}
                   onClick={(e) => {
                     e.preventDefault();
+                    
+                    const element = document.getElementById("feedbackForm");
                     window.scrollTo({
-                      top: document.body.scrollHeight,
+                      top: document.body.scrollHeight - element.offsetHeight,
                       behavior: "smooth",
                     });
                   }}
