@@ -60,16 +60,17 @@ const Theme = ({ state }) => {
   }, []);
 
   useEffect(() => {
-    if (metrikaIsInited && window.hasOwnProperty('ym')) {
+    if (metrikaIsInited && window.hasOwnProperty("ym")) {
       window.ym(62196937, "init", {
         clickmap: true,
         trackLinks: true,
         accurateTrackBounce: true,
         webvisor: true,
+        defer: true,
       });
     }
   }, [metrikaIsInited]);
-  
+
   return (
     <>
       <Head>
