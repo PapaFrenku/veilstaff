@@ -31,6 +31,23 @@ import parser from "html-react-parser";
 //   return myDocument;
 // };
 
+const metrikaScript = `
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(62196937, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/62196937" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->`;
+
 const Theme = ({ state }) => {
   const [metrikaIsInited, setMetrikaIsInited] = useState(false);
   const [data, setData] = useState([]);
@@ -146,7 +163,7 @@ const Theme = ({ state }) => {
           "https://vkmbitrix.ru/upload/crm/site_button/loader_3_61voe2.js"
         )}
       </script>
-      {data.length && window ? parser(data[0].acf.html) : null}
+      {window ? parser(metrikaScript) : null}
     </>
   );
 };
