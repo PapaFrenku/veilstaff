@@ -82,7 +82,7 @@ const Theme = ({ state }) => {
         )}
       </script>
       <YMInitializer
-        accounts={[62196937]}
+        accounts={[62196937, 82299637]}
         options={{
           defer: true,
           clickmap: true,
