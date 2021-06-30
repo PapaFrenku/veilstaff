@@ -35,7 +35,7 @@ const Theme = ({ state }) => {
       <Head>
         <meta name="description" content={state.description} />
         <title>{state.title}</title>
-        <meta name="yandex-verification" content="2565820f9675e0a5" />
+        <meta name="yandex-verification" content="7c77d6b20f8f60c6" />
         <link rel="shortcut icon" href={FavIcon}></link>
         <html lang="ru" />
       </Head>
