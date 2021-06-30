@@ -16,13 +16,20 @@ import Results from "./results";
 import Calculator from "./calculator";
 import ContactForm from "./contactForm";
 import Footer from "./footer";
-import { window, document } from "global";
+import window from "global";
 import MobileMenu from "./mobileMenu";
 import FavIcon from "../assets/images/favicon.png";
 import parser from "html-react-parser";
-import { YMInitializer } from "react-yandex-metrika";
 
 const Theme = ({ state }) => {
+  useEffect(() => {
+    window?.ym(62196937, "init", {
+      clickmap:true,
+      trackLinks:true,
+      accurateTrackBounce:true,
+      webvisor:true
+    });
+  }, [window])
   return (
     <>
       <Head>
@@ -32,16 +39,6 @@ const Theme = ({ state }) => {
         <link rel="shortcut icon" href={FavIcon}></link>
         <html lang="ru" />
       </Head>
-      <YMInitializer
-        accounts={[62196937]}
-        options={{
-          defer: true,
-          clickmap: true,
-          trackLinks: true,
-          accurateTrackBounce: true,
-          webvisor: true,
-        }}
-      />
       <FontFaces />
       <Global styles={globalStyles} />
 
@@ -78,7 +75,7 @@ const Theme = ({ state }) => {
       />
       <script>
         {(function (w, d, u) {
-          if (d) {
+          if (d && Object.keys(d).length) {
             var s = d.createElement("script");
             s.async = true;
             s.src = u + "?" + ((Date.now() / 60000) | 0);
@@ -87,11 +84,35 @@ const Theme = ({ state }) => {
           }
         })(
           window,
-          document,
+          window.document,
           "https://vkmbitrix.ru/upload/crm/site_button/loader_3_61voe2.js"
         )}
       </script>
-      
+      <script type="text/javascript">
+        {
+          ((function (m, e, t, r, i, k, a) {
+            if (e && Object.keys(e).length) {
+              m[i] =
+                m[i] ||
+                function () {
+                  (m[i].a = m[i].a || []).push(arguments);
+                };
+              m[i].l = 1 * new Date();
+              (k = e.createElement(t)),
+                (a = e.getElementsByTagName(t)[0]),
+                (k.async = 1),
+                (k.src = r),
+                a.parentNode.insertBefore(k, a);
+            }
+          })(
+            window,
+            window.document,
+            "script",
+            "https://mc.yandex.ru/metrika/tag.js",
+            "ym"
+          ))
+        }
+      </script>
     </>
   );
 };
