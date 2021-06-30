@@ -32,6 +32,16 @@ const Theme = ({ state }) => {
         <link rel="shortcut icon" href={FavIcon}></link>
         <html lang="ru" />
       </Head>
+      <YMInitializer
+        accounts={[62196937]}
+        options={{
+          defer: true,
+          clickmap: true,
+          trackLinks: true,
+          accurateTrackBounce: true,
+          webvisor: true,
+        }}
+      />
       <FontFaces />
       <Global styles={globalStyles} />
 
@@ -81,16 +91,7 @@ const Theme = ({ state }) => {
           "https://vkmbitrix.ru/upload/crm/site_button/loader_3_61voe2.js"
         )}
       </script>
-      <YMInitializer
-        accounts={[62196937, 82299637]}
-        options={{
-          defer: true,
-          clickmap: true,
-          trackLinks: true,
-          accurateTrackBounce: true,
-          webvisor: true,
-        }}
-      />
+      
     </>
   );
 };
