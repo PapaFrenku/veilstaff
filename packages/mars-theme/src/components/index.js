@@ -20,6 +20,12 @@ import window from "global";
 import MobileMenu from "./mobileMenu";
 import FavIcon from "../assets/images/favicon.png";
 import parser from "html-react-parser";
+import ReactGA from 'react-ga';
+
+ReactGA.initialize('GTM-TFTQGZR', {
+  debug: true,
+  titleCase: false,
+});
 
 const Theme = ({ state }) => {
   useEffect(() => {
@@ -30,6 +36,7 @@ const Theme = ({ state }) => {
       webvisor:true
     });
   }, [window])
+
   return (
     <>
       <Head>

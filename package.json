@@ -28,6 +28,7 @@
     "html-react-parser": "^1.2.6",
     "lodash": "^4.17.21",
     "react-burger-menu": "^3.0.6",
+    "react-ga": "^3.3.0",
     "react-input-mask": "^2.0.4",
     "react-medium-image-zoom": "^4.3.4",
     "react-modal": "^3.14.3",
