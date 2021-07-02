@@ -23,7 +23,6 @@ import parser from "html-react-parser";
 import ReactGA from 'react-ga';
 
 ReactGA.initialize('GTM-TFTQGZR', {
-  debug: true,
   titleCase: false,
 });
 
