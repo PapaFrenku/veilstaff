@@ -61,10 +61,16 @@ const ContactForm = () => {
 
   useEffect(() => {
     if(document) {
-      console.log(document)
-      setIsLoaded(true)
+      setIsLoaded(true);
     }
   }, [document])
+
+  const formBtn = document?.querySelector('.b24-form-btn')
+  if(formBtn) {
+    formBtn.addEventListener(("submit"), () => {
+      console.log("submit")
+    })
+  }
 
   return (
     <Container id="feedbackForm">
