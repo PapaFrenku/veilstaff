@@ -22,7 +22,7 @@ import FavIcon from "../assets/images/favicon.png";
 import parser from "html-react-parser";
 import ReactGA from 'react-ga';
 
-ReactGA.initialize('GTM-TFTQGZR', {
+ReactGA.initialize('G-8GWGF0TGDM', {
   titleCase: false,
 });
 
