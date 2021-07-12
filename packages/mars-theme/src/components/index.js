@@ -20,21 +20,28 @@ import window from "global";
 import MobileMenu from "./mobileMenu";
 import FavIcon from "../assets/images/favicon.png";
 import parser from "html-react-parser";
-import ReactGA from 'react-ga';
+import ReactGA from "react-ga";
 
-ReactGA.initialize('G-8GWGF0TGDM', {
+ReactGA.initialize("G-8GWGF0TGDM", {
   titleCase: false,
 });
 
 const Theme = ({ state }) => {
   useEffect(() => {
     window?.ym(62196937, "init", {
-      clickmap:true,
-      trackLinks:true,
-      accurateTrackBounce:true,
-      webvisor:true
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true,
+      webvisor: true,
     });
-  }, [window])
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "UA-164308151-1");
+  }, [window]);
 
   return (
     <>
@@ -95,30 +102,31 @@ const Theme = ({ state }) => {
         )}
       </script>
       <script type="text/javascript">
-        {
-          ((function (m, e, t, r, i, k, a) {
-            if (e && Object.keys(e).length) {
-              m[i] =
-                m[i] ||
-                function () {
-                  (m[i].a = m[i].a || []).push(arguments);
-                };
-              m[i].l = 1 * new Date();
-              (k = e.createElement(t)),
-                (a = e.getElementsByTagName(t)[0]),
-                (k.async = 1),
-                (k.src = r),
-                a.parentNode.insertBefore(k, a);
-            }
-          })(
-            window,
-            window.document,
-            "script",
-            "https://mc.yandex.ru/metrika/tag.js",
-            "ym"
-          ))
-        }
+        {(function (m, e, t, r, i, k, a) {
+          if (e && Object.keys(e).length) {
+            m[i] =
+              m[i] ||
+              function () {
+                (m[i].a = m[i].a || []).push(arguments);
+              };
+            m[i].l = 1 * new Date();
+            (k = e.createElement(t)),
+              (a = e.getElementsByTagName(t)[0]),
+              (k.async = 1),
+              (k.src = r),
+              a.parentNode.insertBefore(k, a);
+          }
+        })(
+          window,
+          window.document,
+          "script",
+          "https://mc.yandex.ru/metrika/tag.js",
+          "ym"
+        )}
       </script>
+      <script
+        src="https://www.googletagmanager.com/gtag/js?id=UA-164308151-1 "
+      ></script>
     </>
   );
 };
