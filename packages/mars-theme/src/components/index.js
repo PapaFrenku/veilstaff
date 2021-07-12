@@ -19,12 +19,6 @@ import Footer from "./footer";
 import window from "global";
 import MobileMenu from "./mobileMenu";
 import FavIcon from "../assets/images/favicon.png";
-import parser from "html-react-parser";
-import ReactGA from "react-ga";
-
-ReactGA.initialize("G-8GWGF0TGDM", {
-  titleCase: false,
-});
 
 const Theme = ({ state }) => {
   useEffect(() => {
