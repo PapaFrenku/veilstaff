@@ -41,6 +41,7 @@ const Theme = ({ state }) => {
     gtag("js", new Date());
 
     gtag("config", "UA-164308151-1");
+    gtag('config', 'G-8GWGF0TGDM');
   }, [window]);
 
   return (
