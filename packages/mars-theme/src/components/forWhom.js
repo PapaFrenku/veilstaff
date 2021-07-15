@@ -65,6 +65,10 @@ const Container = styled.div`
   padding-top: 60px;
   padding-bottom: 72px;
   position: relative;
+
+  @media (max-width: 767px) {
+    padding-bottom: 40px;
+  }
 `;
 
 const DottedLine = styled.span`
