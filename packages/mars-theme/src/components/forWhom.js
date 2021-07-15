@@ -138,7 +138,7 @@ const ForWhom = () => {
 
         <ItemsList ref={listEl}>
           {items().map((item, idx) => (
-            <div key={idx} style={{ position: "relative", height }}>
+            <div key={idx} style={{ position: "relative", height: 'auto' }}>
               {item}
               {idx !== 2 ? <DottedLine /> : null}
             </div>
