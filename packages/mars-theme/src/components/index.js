@@ -35,7 +35,7 @@ const Theme = ({ state }) => {
     gtag("js", new Date());
 
     gtag("config", "UA-164308151-1");
-    gtag('config', 'G-8GWGF0TGDM');
+    gtag("config", "G-8GWGF0TGDM");
   }, [window]);
 
   return (
@@ -46,6 +46,17 @@ const Theme = ({ state }) => {
         <meta name="yandex-verification" content="7c77d6b20f8f60c6" />
         <link rel="shortcut icon" href={FavIcon}></link>
         <html lang="ru" />
+        <link
+          rel="stylesheet"
+          type="text/css"
+          charSet="UTF-8"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
+        />
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
+        />
       </Head>
       <FontFaces />
       <Global styles={globalStyles} />
@@ -70,17 +81,6 @@ const Theme = ({ state }) => {
       <ContactForm />
       <Footer />
 
-      <link
-        rel="stylesheet"
-        type="text/css"
-        charSet="UTF-8"
-        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
-      />
-      <link
-        rel="stylesheet"
-        type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
-      />
       <script>
         {(function (w, d, u) {
           if (d && Object.keys(d).length) {
@@ -119,9 +119,7 @@ const Theme = ({ state }) => {
           "ym"
         )}
       </script>
-      <script
-        src="https://www.googletagmanager.com/gtag/js?id=UA-164308151-1 "
-      ></script>
+      <script src="https://www.googletagmanager.com/gtag/js?id=UA-164308151-1 "></script>
     </>
   );
 };

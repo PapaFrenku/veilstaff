@@ -13,14 +13,14 @@ const ItemsList = styled.ul`
   list-style: none;
   margin: 0;
   align-items: center;
-
+  flex-wrap: wrap;
   & img {
     width: fit-content;
     height: fit-content;
   }
 
   & div {
-    width: 100%;
+    width: 33.3333%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -37,8 +37,22 @@ const ItemsList = styled.ul`
     line-height: 20px;
   }
 
-  @media(max-width: 690px) {
+  @media (max-width: 767px) {
     align-items: baseline;
+    & div {
+      width: 50%;
+    }
+    & img {
+      width: 45px;
+      height: auto;
+    }
+  }
+
+  @media (max-width: 690px) {
+    align-items: baseline;
+    & div {
+      width: 100%;
+    }
     & img {
       width: 45px;
       height: auto;
@@ -74,8 +88,8 @@ const DottedLine = styled.span`
   border-top: 1px dotted #5c5c5c;
   right: -45px;
 
-  @media(max-width: 690px) {
-   display: none;
+  @media (max-width: 690px) {
+    display: none;
   }
 `;
 
