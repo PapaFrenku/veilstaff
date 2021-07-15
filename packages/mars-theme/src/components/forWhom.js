@@ -40,22 +40,8 @@ const ItemsList = styled.ul`
   @media (max-width: 767px) {
     align-items: baseline;
     & div {
-      width: 50%;
-    }
-    & img {
-      width: 45px;
-      height: auto;
-    }
-  }
-
-  @media (max-width: 690px) {
-    align-items: baseline;
-    & div {
       width: 100%;
-    }
-    & img {
-      width: 45px;
-      height: auto;
+      margin-bottom: 40px;
     }
   }
 `;
@@ -88,8 +74,11 @@ const DottedLine = styled.span`
   border-top: 1px dotted #5c5c5c;
   right: -45px;
 
-  @media (max-width: 690px) {
-    display: none;
+  @media (max-width: 767px) {
+    
+    width: 200px;
+    bottom: -20px;
+    left: calc(50% - 100px);
   }
 `;
 
