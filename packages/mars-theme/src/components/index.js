@@ -19,6 +19,7 @@ import Footer from "./footer";
 import window from "global";
 import MobileMenu from "./mobileMenu";
 import FavIcon from "../assets/images/favicon.png";
+import { Up } from "./up";
 
 const Theme = ({ state }) => {
   useEffect(() => {
@@ -118,6 +119,7 @@ const Theme = ({ state }) => {
       <Results />
       <Calculator />
       <ContactForm />
+      <Up />
       <Footer />
     </>
   );
@@ -414,6 +416,13 @@ const globalStyles = css`
     margin: 0 auto;
   }
 
+  @media screen and (max-width: 768px) {
+    .container {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+
   p {
     font-size: 1rem;
     font-weight: normal;
@@ -434,7 +443,7 @@ const globalStyles = css`
   .tabItem {
     color: ${config.collors.primary};
     line-height: 35px;
-    font-weight: 300;
+    /* font-weight: 300; */
     font-size: 18px;
     padding-right: 20px;
     &::after {
@@ -586,6 +595,15 @@ const globalStyles = css`
     top: 15px;
   }
 
+  @media (max-width: 425px) {
+    .bm-burger-button {
+      width: 30px;
+      height: 25px;
+      left: 15px;
+      top: calc(50% - 12.5px);
+    }
+  }
+
   /* Color/shape of burger icon bars */
   .bm-burger-bars {
     background: #373a47;
@@ -664,6 +682,26 @@ Note: Beware of modifying this element as it can break the animations - you shou
         position: inline-block;
       }
     }
+  }
+
+  .upButton {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+
+    width: 40px;
+    height: 40px;
+
+    cursor: pointer;
+
+    border: none;
+    border-radius: 10px;
+    background: ${config.collors.primary};
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .upButton:hover {
+    background-color: ${config.collors.primary};
   }
 
   .ReactModal__Content {

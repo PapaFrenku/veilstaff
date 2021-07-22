@@ -23,6 +23,7 @@
     "@frontity/tiny-router": "^1.4.2",
     "@frontity/wp-source": "^1.11.5",
     "formik": "^2.2.9",
+    "framer-motion": "^4.1.17",
     "frontity": "^1.16.0",
     "global": "^4.4.0",
     "html-react-parser": "^1.2.6",

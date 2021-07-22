@@ -50,10 +50,15 @@ const StageListCol = styled.ul`
   }
 
   @media (max-width: 700px) {
-    flex-direction: column;
+    /* flex-direction: column;
     width: 100%;
     align-items: center;
-    margin-left: 0 !important;
+    margin-left: 0 !important; */
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(2, 160px);
+    margin-left: 0px !important;
   }
 `;
 
@@ -64,8 +69,7 @@ const StageItem = styled.li`
   width: 100%;
 
   @media (max-width: 700px) {
-    width: 75%;
-    flex-direction: column;
+    flex-direction: column; 
   }
 `;
 
@@ -92,12 +96,13 @@ const StageCounter = styled.span`
 
 const StageText = styled.span`
   color: #5c5c5c;
-  font-weight: 300;
+  /* font-weight: 300; */
   line-height: 19px;
   display: inline-block;
   flex-grow: 1;
   @media (max-width: 700px) {
     text-align: center;
+    font-size: 14px;
   }
 `;
 

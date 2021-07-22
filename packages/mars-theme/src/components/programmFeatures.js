@@ -40,7 +40,7 @@ const HeadingIcon = styled.div`
 
 const TabContent = styled.p`
   color: #5c5c5c;
-  font-weight: 300;
+  /* font-weight: 300; */
   line-height: 24px;
   max-width: 620px;
 

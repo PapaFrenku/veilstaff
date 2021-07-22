@@ -53,6 +53,11 @@ const MobileMenuWrapper = styled.header`
   top: 0;
   display: flex;
   align-items: center;
+
+  @media (max-width: 425px) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 `;
 
 const CompanyNumberWrapper = styled.div`
@@ -63,7 +68,10 @@ const CompanyNumberWrapper = styled.div`
   padding-top: 6px;
 
   @media (max-width: 425px) {
-    display: none;
+    margin-left: 70px;
+    & a span {
+      font-size: 16px;
+    }
   }
 `;
 
