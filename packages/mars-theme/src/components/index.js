@@ -57,6 +57,45 @@ const Theme = ({ state }) => {
           type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
         />
+        <script>
+          {(function (w, d, u) {
+            if (d && Object.keys(d).length) {
+              var s = d.createElement("script");
+              s.async = true;
+              s.src = u + "?" + ((Date.now() / 60000) | 0);
+              var h = d.getElementsByTagName("script")[0];
+              h.parentNode.insertBefore(s, h);
+            }
+          })(
+            window,
+            window.document,
+            "https://vkmbitrix.ru/upload/crm/site_button/loader_3_61voe2.js"
+          )}
+        </script>
+        <script type="text/javascript">
+          {(function (m, e, t, r, i, k, a) {
+            if (e && Object.keys(e).length) {
+              m[i] =
+                m[i] ||
+                function () {
+                  (m[i].a = m[i].a || []).push(arguments);
+                };
+              m[i].l = 1 * new Date();
+              (k = e.createElement(t)),
+                (a = e.getElementsByTagName(t)[0]),
+                (k.async = 1),
+                (k.src = r),
+                a.parentNode.insertBefore(k, a);
+            }
+          })(
+            window,
+            window.document,
+            "script",
+            "https://mc.yandex.ru/metrika/tag.js",
+            "ym"
+          )}
+        </script>
+        <script src="https://www.googletagmanager.com/gtag/js?id=UA-164308151-1 "></script>
       </Head>
       <FontFaces />
       <Global styles={globalStyles} />
@@ -80,46 +119,6 @@ const Theme = ({ state }) => {
       <Calculator />
       <ContactForm />
       <Footer />
-
-      <script>
-        {(function (w, d, u) {
-          if (d && Object.keys(d).length) {
-            var s = d.createElement("script");
-            s.async = true;
-            s.src = u + "?" + ((Date.now() / 60000) | 0);
-            var h = d.getElementsByTagName("script")[0];
-            h.parentNode.insertBefore(s, h);
-          }
-        })(
-          window,
-          window.document,
-          "https://vkmbitrix.ru/upload/crm/site_button/loader_3_61voe2.js"
-        )}
-      </script>
-      <script type="text/javascript">
-        {(function (m, e, t, r, i, k, a) {
-          if (e && Object.keys(e).length) {
-            m[i] =
-              m[i] ||
-              function () {
-                (m[i].a = m[i].a || []).push(arguments);
-              };
-            m[i].l = 1 * new Date();
-            (k = e.createElement(t)),
-              (a = e.getElementsByTagName(t)[0]),
-              (k.async = 1),
-              (k.src = r),
-              a.parentNode.insertBefore(k, a);
-          }
-        })(
-          window,
-          window.document,
-          "script",
-          "https://mc.yandex.ru/metrika/tag.js",
-          "ym"
-        )}
-      </script>
-      <script src="https://www.googletagmanager.com/gtag/js?id=UA-164308151-1 "></script>
     </>
   );
 };
