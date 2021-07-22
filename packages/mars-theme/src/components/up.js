@@ -17,6 +17,10 @@ const ButtonIcon = styled.button`
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
   background-color: var(--primary);
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   &:hover {
     background-color: ${config.collors.primary};
   }

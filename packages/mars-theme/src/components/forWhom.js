@@ -49,6 +49,7 @@ const ItemsList = styled.ul`
     }
     & img {
       width: 40px;
+      height: auto;
     }
   }
 `;
