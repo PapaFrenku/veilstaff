@@ -13,7 +13,7 @@ const ItemsList = styled.ul`
   list-style: none;
   margin: 0;
   align-items: center;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   & img {
     width: fit-content;
     height: fit-content;
@@ -35,13 +35,20 @@ const ItemsList = styled.ul`
     max-width: 185px;
     text-align: center;
     line-height: 20px;
+    margin-top: 25px;
   }
 
   @media (max-width: 767px) {
     align-items: baseline;
-    & div {
-      width: 100%;
-      margin-bottom: 40px;
+    & > div {
+      margin-bottom: 0;
+    }
+    p {
+      font-size: 16px;
+      margin-top: 15px;
+    }
+    & img {
+      width: 40px;
     }
   }
 `;
@@ -83,21 +90,22 @@ const DottedLine = styled.span`
     width: 200px;
     bottom: -20px;
     left: calc(50% - 100px);
+    display: none;
   }
 `;
 
 const items = () => [
   <>
     <img src={ItemIcon1} alt="Руководители"></img>
-    <p style={{ marginTop: "25px" }}>Руководители</p>
+    <p>Руководители</p>
   </>,
   <>
     <img src={ItemIcon2} alt="HR-менеджеры"></img>
-    <p style={{ marginTop: "25px" }}>HR-менеджеры</p>
+    <p>HR-менеджеры</p>
   </>,
   <>
     <img src={ItemIcon3} alt="Руководители отделов персонала"></img>
-    <p style={{ marginTop: "25px" }}>Руководители отделов</p>
+    <p>Руководители отделов</p>
   </>,
 ];
 
