@@ -5,7 +5,7 @@ import config from "../config";
 import ArrowInCircle from "./styles/ArrowInCircle";
 
 const Container = styled.div`
-  background-color: #f8f8f8;
+  /* background-color: #f8f8f8; */
   padding-top: 60px;
   padding-bottom: 72px;
   position: relative;

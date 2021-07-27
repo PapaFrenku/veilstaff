@@ -24,7 +24,7 @@ const ModuleItem = styled.div`
   width: 266px;
   /* height: 246px; */
   margin-right: 50px;
-  background: #f8f8f8;
+  /* background: #f8f8f8; */
   margin-bottom: 40px;
   border-radius: 10px;
   padding: 25px 20px;

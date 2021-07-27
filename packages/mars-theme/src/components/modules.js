@@ -12,9 +12,9 @@ import ArrowInCircle from './styles/ArrowInCircle';
 import AppScreenList from "./appScreenList";
 
 const Container = styled.div`
-  background-color: #fff;
+  /* background-color: #fff; */
   padding-bottom: 40px;
-  background: #f8f8f8;
+  /* background: #f8f8f8; */
   padding-top: 60px;
   position: relative;
 `;

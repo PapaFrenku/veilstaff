@@ -152,7 +152,7 @@ const globalStyles = css`
   * body {
     margin: 0;
     font-family: MyriadPro;
-    background: #f3f3f3;
+    background: linear-gradient(90deg, hsla(0, 0%, 95%, 1) 0%, hsla(224, 100%, 95%, 1) 100%);
     font-size: 16px;
     line-height: 16px;
   }
