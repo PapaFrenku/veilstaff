@@ -463,8 +463,9 @@ const globalStyles = css`
 
     @media (max-width: 690px) {
       font-size: 14px;
-      line-height: 1.8em;
+      line-height: 1.2em;
       padding-right: 10px;
+      margin-bottom: 15px;
       ::after {
         display: none;
       }
