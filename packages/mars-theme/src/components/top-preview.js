@@ -198,6 +198,16 @@ const PreviewContainer = ({ state, actions, libraries }) => {
                     <span>Попробовать демо</span>
                   </button>
                 )}
+                <button
+                    style={{ width: "100%", maxWidth: "420px", marginLeft: '20px' }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.location.href = "https://disk.yandex.ru/i/lulQqKzokADMeg";
+                    }}
+                    className="transparentButton"
+                  >
+                    <span>Скачать презентацию</span>
+                  </button>
                 {/* {item.button_get_started && (
                   <button
                     onClick={(e) => {
