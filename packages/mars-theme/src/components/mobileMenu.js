@@ -113,6 +113,15 @@ class MobileMenu extends Component {
     });
   };
 
+  toogleMenu = (s) => {
+    if(s) {
+      document.body.classList.add("stop-scrolling")
+    } else {
+      document.body.classList.remove("stop-scrolling")
+    }
+    this.setState({ isOpen: s });
+  }
+
   render() {
     return (
       <MobileMenuWrapper
@@ -121,10 +130,10 @@ class MobileMenu extends Component {
         <Menu
           isOpen={this.state.isOpen}
           onOpen={() => {
-            this.setState({ isOpen: true });
+            this.toogleMenu(true)
           }}
           onClose={() => {
-            this.setState({ isOpen: false });
+            this.toogleMenu(false)
           }}
         >
           <LinksWrapper>

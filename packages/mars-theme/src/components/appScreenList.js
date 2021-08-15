@@ -194,14 +194,14 @@ const LinkWrapper = styled.li`
   }
 `;
 
-const ArroWrapper = styled.div`
+const ArrowWrapper = styled.div`
   width: 45px;
   height: 45px;
   background-color: #dfdfdf;
   border-radius: 50%;
   position: absolute;
   top: calc(50% - 25px);
-  z-index: 100000;
+  z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -212,6 +212,11 @@ const ArroWrapper = styled.div`
   &:hover {
     background-color: ${config.collors.primary};
     color: #fff;
+  }
+
+  & > div {
+    height: 15px;
+    width: 15px;
   }
 
   @media (max-width: 740px) {
@@ -261,18 +266,18 @@ const AppScreenList = ({ state, actions, libraries }) => {
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
     return (
-      <ArroWrapper onClick={next}>
+      <ArrowWrapper onClick={next}>
         <ReactSVG src={ArrowIcon} />
-      </ArroWrapper>
+      </ArrowWrapper>
     );
   };
 
   const PrevArrow = (props) => {
     const { className, style, onClick } = props;
     return (
-      <ArroWrapper isPrev={true} onClick={prev}>
+      <ArrowWrapper isPrev={true} onClick={prev}>
         <ReactSVG src={ArrowIcon} />
-      </ArroWrapper>
+      </ArrowWrapper>
     );
   };
 

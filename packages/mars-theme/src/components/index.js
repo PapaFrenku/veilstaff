@@ -152,7 +152,11 @@ const globalStyles = css`
   * body {
     margin: 0;
     font-family: MyriadPro;
-    background: linear-gradient(90deg, hsla(0, 0%, 95%, 1) 0%, hsla(224, 100%, 95%, 1) 100%);
+    background: linear-gradient(
+      90deg,
+      hsla(0, 0%, 95%, 1) 0%,
+      hsla(224, 100%, 95%, 1) 100%
+    );
     font-size: 16px;
     line-height: 16px;
   }
@@ -164,6 +168,7 @@ const globalStyles = css`
 
   body {
     margin: 0;
+    position: relative;
   }
 
   main {
@@ -705,6 +710,12 @@ Note: Beware of modifying this element as it can break the animations - you shou
     background-color: ${config.collors.primary};
   }
 
+  .stop-scrolling {
+    height: 100%;
+    overflow: hidden;
+    margin-right: 8px;
+  }
+
   .ReactModal__Content {
     width: 65% !important;
     padding: 0 !important;
@@ -714,6 +725,27 @@ Note: Beware of modifying this element as it can break the animations - you shou
     .ReactModal__Content {
       width: 100% !important;
     }
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f8f8f8;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: ${config.collors.secondary};
+    border-radius: 8px;
+    transition: .1s;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    opacity: 0.7;
   }
 `;
 

@@ -32,10 +32,10 @@ const customStyles = {
 
 const Container = styled.div`
   position: relative;
-  margin-top: 4rem;
+  padding-top: 4rem;
   margin-bottom: 4.2rem;
   @media (max-width: 930px) {
-    margin-top: 5.2rem;
+    padding-top: 5.2rem;
     margin-bottom: 1.8rem;
   }
 `;

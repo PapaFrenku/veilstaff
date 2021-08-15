@@ -131,24 +131,32 @@ const ImageWrapper = styled.div`
   width: fit-content;
 `;
 
-const ArroWrapper = styled.div`
+const ArrowWrapper = styled.div`
   width: 25px;
   height: 25px;
   background-color: #dfdfdf;
   border-radius: 50%;
   position: absolute;
   top: ${(props) => (props.isPrev ? "calc(50% - 45px)" : "calc(50% - 45px)")}; 
-  z-index: 100000;
+  z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
   transform: ${(props) => (props.isPrev ? "rotate(180deg)" : "")};
-  left: ${(props) => (props.isPrev ? "-95px" : "unset")};
+  left: ${(props) => (props.isPrev ? "-100px" : "unset")};
   right: ${(props) => (props.isPrev ? "unset" : "-100px")};
   cursor: pointer;
   &:hover {
     background-color: ${config.collors.primary};
     color: #fff;
+  }
+
+  & > div {
+    height: 10px;
+    width: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   @media (max-width: 768px) {
@@ -222,18 +230,18 @@ const Features = () => {
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
     return (
-      <ArroWrapper onClick={onClick}>
+      <ArrowWrapper onClick={onClick}>
         <ReactSVG src={ArrowIcon} />
-      </ArroWrapper>
+      </ArrowWrapper>
     );
   };
 
   const PrevArrow = (props) => {
     const { className, style, onClick } = props;
     return (
-      <ArroWrapper isPrev isPrev={true} onClick={onClick}>
+      <ArrowWrapper isPrev isPrev={true} onClick={onClick}>
         <ReactSVG src={ArrowIcon} />
-      </ArroWrapper>
+      </ArrowWrapper>
     );
   };
 
