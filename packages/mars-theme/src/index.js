@@ -1,6 +1,6 @@
 import Theme from './components';
 
-export default {
+const config = {
   name: "veilstaff-theme",
   roots: {
     theme: Theme
@@ -16,12 +16,15 @@ export default {
   },
   actions: {
     theme: {
-      toggleMobileMenu: ({ state }) => {
-        state.theme.isMobileMenuOpen = !state.theme.isMobileMenuOpen;
+      toggleMobileMenu: ({ actions }) => {
+        // state.theme.isMobileMenuOpen = !state.theme.isMobileMenuOpen;
+        // actions.router.set("/competences")
       },
       closeMobileMenu: ({ state }) => {
         state.theme.isMobileMenuOpen = false;
       },
+
     },
   },
 };
+export default config

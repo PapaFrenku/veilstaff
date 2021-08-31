@@ -215,8 +215,6 @@ const Features = () => {
 
   const width = useWindowResize();
 
-  console.log(width);
-
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);

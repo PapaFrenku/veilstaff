@@ -39,5 +39,8 @@
     "react-svg": "^13.0.6",
     "react-tabs": "^3.2.2",
     "slick-carousel": "^1.8.1"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.19"
   }
 }

@@ -20,8 +20,14 @@ import window from "global";
 import MobileMenu from "./mobileMenu";
 import FavIcon from "../assets/images/favicon.png";
 import { Up } from "./up";
+import CompetencesList from "./competencesList";
+import CompImage from "../assets/images/20944874_preview_rev_1.png";
+import Home from "../components/home";
+import Switch from "@frontity/components/switch";
+import NotFound from "./notFound";
+import CompetencePage from "./competencePage";
 
-const Theme = ({ state }) => {
+const Theme = ({ state, actions }) => {
   useEffect(() => {
     window?.ym(62196937, "init", {
       clickmap: true,
@@ -38,7 +44,8 @@ const Theme = ({ state }) => {
     gtag("config", "UA-164308151-1");
     gtag("config", "G-8GWGF0TGDM");
   }, [window]);
-
+  const data = state.source.get(state.router.link);
+  // console.log(data, state.source)
   return (
     <>
       <Head>
@@ -100,27 +107,22 @@ const Theme = ({ state }) => {
       </Head>
       <FontFaces />
       <Global styles={globalStyles} />
-
-      <HeaderContainer>
-        <StickyProvider>
-          <Header />
-        </StickyProvider>
-      </HeaderContainer>
       <StickyProvider>
+        <HeaderContainer>
+          <Header />
+        </HeaderContainer>
         <MobileMenuContainer>
           <MobileMenu />
         </MobileMenuContainer>
       </StickyProvider>
-
-      <TopPreview />
-      <ProgrammFeatures />
-      <Modules />
-      <AppScreenList />
-      <Results />
-      <Calculator />
+      <Switch>
+        <Home when={data.isHome}/>
+        <CompetencePage when={data.link.includes("/library")} />
+        <NotFound />
+      </Switch>
       <ContactForm />
-      <Up />
       <Footer />
+      <Up />
     </>
   );
 };
@@ -740,12 +742,18 @@ Note: Beware of modifying this element as it can break the animations - you shou
   ::-webkit-scrollbar-thumb {
     background: ${config.collors.secondary};
     border-radius: 8px;
-    transition: .1s;
+    transition: 0.1s;
   }
 
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     opacity: 0.7;
+  }
+
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 `;
 

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Link } from "react-scroll";
 import { window } from "global";
 import { styled } from "frontity";
+import { Link } from "react-scroll";
+import FrontityLink from "@frontity/components/link";
 import Logo from "../assets/images/logo.png";
 import { Sticky, StickyScrollUp } from "react-stickup";
 import config from "../config";
@@ -9,34 +10,60 @@ import Button from "./styles/button";
 import CompanyNumber from "./styles/CompanyNumber";
 import { ReactSVG } from "react-svg";
 import PhoneCall from "../assets/images/phone-call.svg";
-export const categories = [
+import DropdownMenu from "./dropdownMenu";
+// import Link from "@frontity/components/link";
+
+export const subCategories = [
   {
     id: "about-programm",
+    link: "about-programm",
     title: "О программе",
   },
   {
     id: "features",
+    link: "features",
     title: "Возможности",
   },
   {
     id: "modules",
+    link: "modules",
     title: "Модули",
   },
   {
     id: "interface",
+    link: "interface",
     title: "Интерфейс",
   },
   {
     id: "getting-started",
+    link: "getting-started",
     title: "Начать работу",
   },
   {
     id: "calculator",
+    link: "calculator",
     title: "Калькулятор",
   },
 ];
 
-const HeaderContainer = styled.header``;
+export const categories = [
+  {
+    id: "library",
+    title: "Библиотека"
+  },
+  {
+    id: "exams",
+    title: "Тестирование",
+  },
+  {
+    id: 'about-360',
+    title: "Опросы 360",
+  }
+]
+
+const HeaderContainer = styled.header`
+  padding-top: 2.5rem;
+`;
 
 const AdditionalButtons = styled.div`
   display: flex;
@@ -50,7 +77,7 @@ const NavContainer = styled.nav`
   margin: 0 auto;
   padding-left: 35px;
   padding-right: 35px;
-  margin-top: 2.5em;
+  /* margin-top: 2.5em; */
   display: flex;
   align-items: center;
   height: 75px;
@@ -60,7 +87,7 @@ const NavContainer = styled.nav`
     align-items: center;
     display: flex;
     flex-direction: row;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
     white-space: nowrap;
     list-style-type: none;
     padding-left: 20px;
@@ -91,7 +118,7 @@ const NavContainer = styled.nav`
       font-size: 14px;
     }
   }
-  @media(max-width: 1210px) {
+  @media (max-width: 1210px) {
     padding-left: 20px;
     padding-right: 20px;
   }
@@ -145,27 +172,23 @@ export default class Header extends Component {
           <div>
             <NavContainer>
               <LogoContainer>
-                <img src={Logo} alt="Логотип"></img>
+                <Link link="/">
+                  <img src={Logo} alt="Логотип"></img>
+                </Link>
               </LogoContainer>
               <ul>
+                <DropdownMenu title="Главная страница" items={subCategories} />
                 {categories.map((category) => (
-                  <li key={category.id} ref={this[category.id]}>
-                    <Link
-                      activeClass="activeCategoryLink"
-                      className={category.id}
-                      to={category.id.toString()}
-                      spy={true}
-                      smooth={true}
-                      duration={200}
-                      offset={-50}
-                      onSetActive={() => this.scrollToCategory(category.id)}
-                      href={`/${category.id}`}
+                  <li key={category.id}>
+                    <FrontityLink
+                      link={`/${category.id}`}
                     >
                       {category.title}
-                    </Link>
+                    </FrontityLink>
                   </li>
                 ))}
               </ul>
+              
               <AdditionalButtons>
                 <CompanyNumber
                   href="tel:+78123197345"
@@ -180,10 +203,12 @@ export default class Header extends Component {
                   bgColor={config.collors.secondary}
                   onClick={(e) => {
                     e.preventDefault();
-                    
+
                     const element = document.getElementById("feedbackForm");
                     window.scrollTo({
-                      top: document.body.scrollHeight - (element.offsetHeight + 100),
+                      top:
+                        document.body.scrollHeight -
+                        (element.offsetHeight + 100),
                       behavior: "smooth",
                     });
                   }}

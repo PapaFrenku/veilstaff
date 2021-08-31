@@ -13,6 +13,7 @@ import Screen from "../assets/images/website.svg";
 import Modal from "react-modal";
 import Cancel from "../assets/images/cancel.svg";
 import SearchIcon from "../assets/images/magnifier.svg";
+import CompetenceModule from "./competenceModule";
 
 const customStyles = {
   content: {
@@ -352,7 +353,7 @@ const AppScreenList = ({ state, actions, libraries }) => {
               </LinkWrapper>
             ))}
           </LinksList>
-          <SliderBg
+          {/* <SliderBg
             onClick={(e) => {
               const slide = slides[currentSlide].image.url
               setFullScreenImage(slide);
@@ -365,11 +366,12 @@ const AppScreenList = ({ state, actions, libraries }) => {
                 </SlideWrapper>
               ))}
             </Slider>
-          </SliderBg>
+          </SliderBg> */}
           <UnderText>{slides[currentSlide]?.description}</UnderText>
         </div>
       </Container>
-      <AssessmentStages />
+      {/* <AssessmentStages /> */}
+      <CompetenceModule />
       <Advantages />
 
       <Modal
