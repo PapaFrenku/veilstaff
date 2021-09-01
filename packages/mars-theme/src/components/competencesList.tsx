@@ -43,6 +43,10 @@ const ComptenceWrapper = styled(motion.div)`
       background: ${config.collors.primary};
     }
   }
+
+  @media(max-width: 1024px) {
+    height: auto;
+  }
 `;
 
 const CompetenceHeader = styled.div`
@@ -165,7 +169,7 @@ const ExpandedWrapper = styled(motion.div)`
   & > button {
   }
 
-  @media(max-width: 1024px) {
+  @media(max-width: 768px) {
     width: 100%;
     position: relative;
     top: 0;
@@ -225,6 +229,9 @@ export const CompetenceCompact = ({
       layoutId="expandable-card"
       initial={false}
       onClick={() => !disabled && onExpand()}
+      style={{
+        opacity: disabled ? 0.7 : 1
+      }}
     >
       <div>
         <CompetenceHeader>
