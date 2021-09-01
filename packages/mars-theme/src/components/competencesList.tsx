@@ -27,32 +27,20 @@ type Props = {
 };
 
 const ComptenceWrapper = styled(motion.div)`
-  /* background: #fff; */
-  /* border-radius: 8px; */
-
-  padding-bottom: 35px;
   transition: 0.1;
-  /* margin-bottom: 40px; */
   cursor: pointer;
-  height: 145px;
   z-index: ${(p: any) => p.isActive && 100};
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  padding-bottom: 35px;
+  position: relative;
+  height: 150px;
   &:hover {
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
     & .circle {
       color: #fff;
       background: ${config.collors.primary};
-    }
-  }
-
-  & > div {
-    background: #fff;
-    border-radius: 8px;
-    padding: 20px;
-    padding-bottom: 35px;
-    position: relative;
-    height: max-content;
-    min-height: 145px;
-    &:hover {
     }
   }
 `;
@@ -101,7 +89,7 @@ const CompetencesListWrapper = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-row-gap: 40px;
   grid-column-gap: 50px;
-
+  position: relative;
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
@@ -163,13 +151,12 @@ const SkillWrapper = styled.p`
 `;
 
 const ExpandedWrapper = styled(motion.div)`
-  width: 40vw;
-  height: 40vh;
+  width: 60%;
   background-color: #fff;
-  padding: 20px;
+  padding: 30px;
   position: absolute;
-  top: calc(50% - 20vh);
-  left: calc(50% - 20vw);
+  top: calc(50% - 100px);
+  left: calc(50% - 30%);
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
   border-radius: 16px;
   z-index: 100;
@@ -177,12 +164,29 @@ const ExpandedWrapper = styled(motion.div)`
   flex-direction: column;
   & > button {
   }
+
+  @media(max-width: 1024px) {
+    width: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    padding: 20px;
+  }
 `;
 
 const AditionalContentWrapper = styled.div`
   padding-top: 30px;
   padding-bottom: 20px;
 `;
+
+const PlugDiv = styled.div`
+  min-height: 120px;
+
+
+  @media(max-width: 768px) {
+    display: none;
+  } 
+`
 
 interface CompetenceProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -295,7 +299,7 @@ const Competence: React.FC<CompetenceProps & Competence> = ({
       <AnimateSharedLayout>
         {isExpanded ? (
           <>
-            <div></div>
+            <PlugDiv></PlugDiv>
             <CompetenceExpanded onCollapse={collapseCompetence}>
               <CompetenceHeader>
                 <img src={image.url} />
@@ -303,14 +307,14 @@ const Competence: React.FC<CompetenceProps & Competence> = ({
                   <ComptetenceTitle>{title}</ComptetenceTitle>
                   <CompetenceDescription>{description}</CompetenceDescription>
                 </div>
-                <ArrowInCircle
+                {/* <ArrowInCircle
                   // animate={isOpen ? "enter" : "exit"}
                   initial={false}
                   variants={arrowAnimate}
                   className="circle"
                 >
                   <ReactSVG src={Arrow} />
-                </ArrowInCircle>
+                </ArrowInCircle> */}
               </CompetenceHeader>
               <AditionalContentWrapper>
                 <ComptetenceTitle>Навыки компетенции:</ComptetenceTitle>
