@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { styled, connect } from "frontity";
 import { Link } from "react-scroll";
 import config from "../config";
 import { ReactSVG } from "react-svg";
 import Arrow from "../assets/images/next.svg";
+import FrontityLink from "@frontity/components/link";
 
 const SubMenu = styled(motion.div)`
   position: absolute;
@@ -68,7 +69,7 @@ const Menuitem = styled(motion.div)`
     `2px solid ${props.isActive && config.collors.primary}`}; */
   margin-left: 20px;
   margin-right: 20px;
-  color: #646464;  
+  color: rgb(0, 0, 0);  
   & > a {
     display: flex;
     font-size: inherit;
@@ -83,6 +84,7 @@ const Menuitem = styled(motion.div)`
 const ArrowWrapper = styled(motion.span)`
   margin-left: 10px;
   & svg {
+    opacity: ${(p: any) => p.isHome ? 1 : 0};
     width: 10px;
     height: 10px;
   }
@@ -142,29 +144,33 @@ const DropdownMenu: React.FC<
   Props & { state: any; actions: any; libraries: any }
 > = ({ items, title, link, state }) => {
   const [isHover, toggleHover] = useState(false);
-  const toggleHoverMenu = () => {
-    toggleHover(!isHover);
-  };
+
+  useEffect(() => {
+    toggleHover(false)
+  }, [state.router.link])
 
   const data = state.source.get(state.router.link);
+  
+  const isHome = state.router.link === '/';
 
   return (
     <Menuitem
-      onHoverStart={toggleHoverMenu}
-      onHoverEnd={toggleHoverMenu}
+      onHoverStart={() => toggleHover(true)}
+      onHoverEnd={() => toggleHover(false)}
       isActive={data.isHome}
     >
-      <a href={link}>
+      <FrontityLink link={'/'}>
         {title}
-        <ArrowWrapper
+        {<ArrowWrapper
+          isHome={isHome}
           animate={isHover ? "enter" : "exit"}
           initial={false}
           variants={arrowAnimate}
         >
           <ReactSVG width="10" src={Arrow} />
-        </ArrowWrapper>
-      </a>
-      <SubMenu
+        </ArrowWrapper>}
+      </FrontityLink>
+      {isHome && <SubMenu
         initial="exit"
         animate={isHover ? "enter" : "exit"}
         variants={subMenuAnimate}
@@ -190,7 +196,7 @@ const DropdownMenu: React.FC<
             </SubMenuItem>
           ))}
         </div>
-      </SubMenu>
+      </SubMenu>}
     </Menuitem>
   );
 };

@@ -45,7 +45,6 @@ const Theme = ({ state, actions }) => {
     gtag("config", "G-8GWGF0TGDM");
   }, [window]);
   const data = state.source.get(state.router.link);
-  // console.log(data, state.source)
   return (
     <>
       <Head>
@@ -109,7 +108,7 @@ const Theme = ({ state, actions }) => {
       <Global styles={globalStyles} />
       <StickyProvider>
         <HeaderContainer>
-          <Header />
+          <Header url={state.router.link} />
         </HeaderContainer>
         <MobileMenuContainer>
           <MobileMenu />
