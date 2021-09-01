@@ -11,7 +11,8 @@ import Arrow from "../assets/images/next.svg";
 import { ReactSVG } from "react-svg";
 import config from "../config";
 import Link from "@frontity/components/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimateSharedLayout } from "framer-motion";
+import Button from "./styles/button";
 
 export type Competence = {
   title: string;
@@ -36,7 +37,7 @@ const ComptenceWrapper = styled(motion.div)`
   height: 145px;
   z-index: ${(p: any) => p.isActive && 100};
   &:hover {
-    /* box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); */
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
     & .circle {
       color: #fff;
       background: ${config.collors.primary};
@@ -52,10 +53,7 @@ const ComptenceWrapper = styled(motion.div)`
     height: max-content;
     min-height: 145px;
     &:hover {
-      box-shadow: ${(p: any) =>
-        !p.isActive && "0px 0px 20px rgba(0, 0, 0, 0.2)"};
     }
-    box-shadow: ${(p: any) => p.isActive && "0px 6px 3px rgb(0 0 0 / 15%)"};
   }
 `;
 
@@ -146,7 +144,7 @@ const CompetenceSkillsWrapper = styled.div`
 const SkillWrapper = styled.p`
   position: relative;
 
-  & > span{
+  & > span {
     content: "";
     width: 20px;
     height: 20px;
@@ -164,6 +162,23 @@ const SkillWrapper = styled.p`
   }
 `;
 
+const ExpandedWrapper = styled(motion.div)`
+  width: 40vw;
+  height: 40vh;
+  background-color: #fff;
+  padding: 20px;
+  position: absolute;
+  top: calc(50% - 20vh);
+  left: calc(50% - 20vw);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  & > button {
+  }
+`;
+
 const AditionalContentWrapper = styled.div`
   padding-top: 30px;
   padding-bottom: 20px;
@@ -171,8 +186,9 @@ const AditionalContentWrapper = styled.div`
 
 interface CompetenceProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  onExpand: (title: string) => void;
-  expanded: string;
+  onExpand: () => void;
+  onCollapse: () => void;
+  disabled: boolean;
 }
 
 const arrowAnimate = {
@@ -193,21 +209,18 @@ const arrowAnimate = {
   },
 };
 
-export const Competence = ({
+export const CompetenceCompact = ({
   title,
   description,
   image,
-  alias,
   onExpand,
-  expanded,
-  skills,
-}: CompetenceProps & Competence) => {
-  const isOpen = title === expanded;
+  disabled,
+}: Competence & { onExpand: () => void; disabled: boolean }) => {
   return (
     <ComptenceWrapper
-      isActive={isOpen}
+      layoutId="expandable-card"
       initial={false}
-      onClick={() => onExpand(title)}
+      onClick={() => !disabled && onExpand()}
     >
       <div>
         <CompetenceHeader>
@@ -217,7 +230,7 @@ export const Competence = ({
             <CompetenceDescription>{description}</CompetenceDescription>
           </div>
           <ArrowInCircle
-            animate={isOpen ? "enter" : "exit"}
+            // animate={isOpen ? "enter" : "exit"}
             initial={false}
             variants={arrowAnimate}
             className="circle"
@@ -225,40 +238,115 @@ export const Competence = ({
             <ReactSVG src={Arrow} />
           </ArrowInCircle>
         </CompetenceHeader>
-
-        <AnimatePresence initial={false}>
-          {isOpen && (
-            <motion.section
-              key="content"
-              initial="collapsed"
-              animate="open"
-              exit="collapsed"
-              variants={{
-                open: { opacity: 1, height: "auto" },
-                collapsed: { opacity: 0, height: 0 },
-              }}
-              transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
-            >
-              <AditionalContentWrapper>
-                <ComptetenceTitle>Навыки компетенции:</ComptetenceTitle>
-                <CompetenceSkillsWrapper>
-                  {skills ? skills?.map((s, idx) => (
-                    <SkillWrapper key={s.title}><span>{++idx}</span>{s.title}</SkillWrapper>
-                  )) : "у этой компетенции нет навыков"}
-                </CompetenceSkillsWrapper>
-              </AditionalContentWrapper>
-            </motion.section>
-          )}
-        </AnimatePresence>
       </div>
     </ComptenceWrapper>
   );
 };
 
-export const CompetencesList = ({ competences }: any) => {
-  const [expanded, setExpanded] = useState<string>("");
+function CompetenceExpanded({ children, onCollapse }) {
+  return (
+    <>
+      <ExpandedWrapper
+        className="card expanded"
+        layoutId="expandable-card"
+      >
+        {children}
+        <Button
+          color={"#fff"}
+          brColor={config.collors.primary}
+          bgColor={config.collors.primary}
+          type="button"
+          style={{
+            margin: "auto auto 0 auto",
+          }}
+          onClick={onCollapse}
+        >
+          <span>Закрыть</span>
+        </Button>
+      </ExpandedWrapper>
+    </>
+  );
+}
 
-  const onClick = (title: string) => {
+const Competence: React.FC<CompetenceProps & Competence> = ({
+  title,
+  skills,
+  image,
+  description,
+  alias,
+  onCollapse,
+  onExpand,
+  disabled,
+}) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const collapseCompetence = () => {
+    setIsExpanded(false);
+    onCollapse();
+  };
+
+  const expandCompetence = () => {
+    setIsExpanded(true);
+    onExpand();
+  };
+
+  return (
+    <>
+      <AnimateSharedLayout>
+        {isExpanded ? (
+          <>
+            <div></div>
+            <CompetenceExpanded onCollapse={collapseCompetence}>
+              <CompetenceHeader>
+                <img src={image.url} />
+                <div style={{ paddingLeft: "5px" }}>
+                  <ComptetenceTitle>{title}</ComptetenceTitle>
+                  <CompetenceDescription>{description}</CompetenceDescription>
+                </div>
+                <ArrowInCircle
+                  // animate={isOpen ? "enter" : "exit"}
+                  initial={false}
+                  variants={arrowAnimate}
+                  className="circle"
+                >
+                  <ReactSVG src={Arrow} />
+                </ArrowInCircle>
+              </CompetenceHeader>
+              <AditionalContentWrapper>
+                <ComptetenceTitle>Навыки компетенции:</ComptetenceTitle>
+                <CompetenceSkillsWrapper>
+                  {skills
+                    ? skills?.map((s, idx) => (
+                        <SkillWrapper key={s.title}>
+                          <span>{++idx}</span>
+                          {s.title}
+                        </SkillWrapper>
+                      ))
+                    : "у этой компетенции нет навыков"}
+                </CompetenceSkillsWrapper>
+              </AditionalContentWrapper>
+            </CompetenceExpanded>
+          </>
+        ) : (
+          <CompetenceCompact
+            title={title}
+            skills={skills}
+            image={image}
+            description={description}
+            alias={alias}
+            onExpand={expandCompetence}
+            disabled={disabled}
+          />
+        )}
+      </AnimateSharedLayout>
+    </>
+  );
+};
+
+export const CompetencesList = ({ competences }: any) => {
+  const [expanded, setExpanded] = useState<string | null>(null);
+
+  const onClick = (title: string | null) => {
     if (expanded === title) {
       setExpanded(null);
     } else {
@@ -276,8 +364,9 @@ export const CompetencesList = ({ competences }: any) => {
           title={item.title}
           image={item.image}
           alias={item.alias}
-          onExpand={onClick}
-          expanded={expanded}
+          onExpand={() => onClick(item.title)}
+          onCollapse={() => onClick(null)}
+          disabled={expanded !== null && expanded !== item.title}
         />
       ))}
     </CompetencesListWrapper>
