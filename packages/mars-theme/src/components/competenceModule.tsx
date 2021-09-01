@@ -74,7 +74,7 @@ const CompetenceModule = ({ state, actions, libraries }) => {
       className="competences"
       key={"display" + "competences"}
     >
-      <Container className="container">
+      <Container>
         <h2 style={{ textAlign: "center" }} className="blockTitle">
           Библиотека компетенций
         </h2>
@@ -84,7 +84,7 @@ const CompetenceModule = ({ state, actions, libraries }) => {
         </ListWrapper>
       </Container>
     </Element>
-  );
+  );  
 };
 
 export default connect(CompetenceModule);
