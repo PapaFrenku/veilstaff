@@ -11,6 +11,7 @@ import CompanyNumber from "./styles/CompanyNumber";
 import { ReactSVG } from "react-svg";
 import PhoneCall from "../assets/images/phone-call.svg";
 import DropdownMenu from "./dropdownMenu";
+import LinkList from "./linkList";
 // import Link from "@frontity/components/link";
 
 export const subCategories = [
@@ -177,19 +178,7 @@ export default class Header extends Component {
                   <img src={Logo} alt="Логотип"></img>
                 </Link>
               </LogoContainer>
-              <ul>
-                <DropdownMenu title="Главная страница" items={subCategories} />
-                {categories.map((category) => (
-                  <li key={category.id}>
-                    <FrontityLink
-                      link={`/${category.id}`}
-                      className={this.props.url === `/${category.id}/` ? "activeCategoryLink" : ""}
-                    >
-                      {category.title}
-                    </FrontityLink>
-                  </li>
-                ))}
-              </ul>
+              <LinkList url={this.props.url} />
               
               <AdditionalButtons>
                 <CompanyNumber

@@ -11,6 +11,7 @@ import config from "../config";
 import { Sticky, StickyScrollUp } from "react-stickup";
 import { window } from "global";
 import Logo from "../assets/images/logo.png";
+import LinkList from "./linkList";
 
 const LinksWrapper = styled.div`
   display: flex !important;
@@ -137,25 +138,7 @@ class MobileMenu extends Component {
           }}
         >
           <LinksWrapper>
-            {categories.map((category) => (
-              <Link
-                key={category.id}
-                activeClass="activeCategoryLink"
-                className={category.id}
-                style={{ display: "inline-block" }}
-                to={category.id.toString()}
-                spy={true}
-                smooth={true}
-                duration={200}
-                offset={-50}
-                onSetActive={() => this.scrollToCategory(category.id)}
-                onClick={() => {
-                  this.setState({ isOpen: false });
-                }}
-              >
-                {category.title}
-              </Link>
-            ))}
+            <LinkList url={this.props.url}/>
             <CompanyNumber
               href="tel:+78123197345"
               style={{ marginTop: "20px" }}

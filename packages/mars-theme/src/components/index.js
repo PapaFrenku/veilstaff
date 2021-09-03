@@ -111,7 +111,7 @@ const Theme = ({ state, actions }) => {
           <Header url={state.router.link} />
         </HeaderContainer>
         <MobileMenuContainer>
-          <MobileMenu />
+          <MobileMenu url={state.router.link}/>
         </MobileMenuContainer>
       </StickyProvider>
       <Switch>
@@ -420,6 +420,7 @@ const globalStyles = css`
     padding-left: 20px;
     padding-right: 20px;
     margin: 0 auto;
+    width: 100%;
   }
 
   @media screen and (max-width: 768px) {

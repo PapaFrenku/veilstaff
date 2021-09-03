@@ -9,16 +9,18 @@ import { Up } from "./up";
 import CompetencesList from "./competencesList";
 import CompImage from "../assets/images/20944874_preview_rev_1.png";
 import CompetenceModule from "./competenceModule";
+import Price from "./price";
 
 const Home = () => {
   return (
     <>
-      {/* <TopPreview /> */}
+      <TopPreview />
       <ProgrammFeatures />
       <Modules />
       <AppScreenList />
       <Results />
-      <Calculator />
+      {/* <Calculator /> */}
+      <Price />
     </>
   );
 };

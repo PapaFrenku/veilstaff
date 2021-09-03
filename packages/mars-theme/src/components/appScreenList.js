@@ -353,7 +353,7 @@ const AppScreenList = ({ state, actions, libraries }) => {
               </LinkWrapper>
             ))}
           </LinksList>
-          {/* <SliderBg
+          <SliderBg
             onClick={(e) => {
               const slide = slides[currentSlide].image.url
               setFullScreenImage(slide);
@@ -366,12 +366,12 @@ const AppScreenList = ({ state, actions, libraries }) => {
                 </SlideWrapper>
               ))}
             </Slider>
-          </SliderBg> */}
+          </SliderBg>
           <UnderText>{slides[currentSlide]?.description}</UnderText>
         </div>
       </Container>
       {/* <AssessmentStages /> */}
-      <CompetenceModule />
+
       <Advantages />
 
       <Modal

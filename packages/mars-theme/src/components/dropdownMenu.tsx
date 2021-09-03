@@ -137,7 +137,6 @@ interface Props {
   }[];
   title: string;
   link: string;
-  itemOnClick: (s: string) => void
 }
 
 const DropdownMenu: React.FC<
